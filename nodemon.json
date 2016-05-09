@@ -1,0 +1,13 @@
+{
+    "verbose": false,
+    "restartable": "rs",
+    "colours": true,
+    "ignore": [
+      "backup",
+      "docs",
+      "node_modules"
+    ],
+    "watch": [
+      "src/server/"
+    ]
+}
