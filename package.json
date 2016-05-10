@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/eslint src/**/*.js"
+    "lint": "./node_modules/.bin/eslint src/**/*.js",
+    "test": "mocha --compilers js:babel-register --timeout 5000 test/.setup.js test/*.spec.js"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,8 @@
     "debug": "^2.2.0",
     "eslint": "^2.9.0",
     "eslint-config-axial": "^1.0.8",
+    "jsdom": "^9.0.0",
+    "jsdom-global": "^1.7.0",
     "mocha": "^2.4.5",
     "nodemon": "^1.9.2",
     "sinon": "^1.17.4",

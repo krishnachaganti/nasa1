@@ -5,14 +5,15 @@ import http from 'http';
 import bodyParser from 'body-parser';
 import methodOverride from 'method-override';
 import morgan from 'morgan';
-
+import ApiRouter from './api/apiRouter';
 const app = Express();
+app.server = http.createServer(app);
 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride());
-
+app.use('/api', ApiRouter);
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   const err = new Error('Not Found');
@@ -44,8 +45,8 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(3000, () => {
-  console.log('Running'); // eslint-disable-line
+app.server.listen(process.env.PORT || 3000, () => {
+  console.log(`Started on port ${app.server.address().port}`);
 });
 
 export default app;
