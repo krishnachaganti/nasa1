@@ -1,10 +1,9 @@
 import Express from 'express';
+import reportRouter from './report/index';
 
-import * as reportController from './report/report.controller';
 const router = Express.Router();
 
 router.get('/status', (req, res) => res.send('OK'));
-router.get('/reports', reportController.getAll);
-router.get('/reports/csv', reportController.parseCSV);
+router.use('/reports', reportRouter);
 
 export default router;

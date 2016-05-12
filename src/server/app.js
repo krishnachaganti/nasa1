@@ -1,11 +1,10 @@
 // Set default node environment to development
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 import Express from 'express';
+import chalk from 'chalk';
 import http from 'http';
 import mongoose from 'mongoose';
-import bodyParser from 'body-parser';
-import methodOverride from 'method-override';
-import morgan from 'morgan';
+
 import ApiRouter from './api/apiRouter';
 
 import fs from 'fs';
@@ -14,21 +13,13 @@ import path from 'path';
 const file = __dirname + '/report.csv';
 const result = convert.CSVtoJSON(file);
 
-console.log(result);
-const app = Express();
-
-app.server = http.createServer(app);
-
 mongoose.connect('mongodb://104.236.173.141:27017/splatter');
+const db = mongoose.connection;
 
-app.use(morgan('dev'));
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
-app.use(methodOverride());
-app.use('/api', ApiRouter);
+const app = Express();
+app.server = http.createServer(app);
+require('./config/express').default(app);
+app.use('/api/v1', ApiRouter);
 
 // development error handler
 // will print stacktrace
@@ -59,6 +50,15 @@ app.use((err, req, res, next) => {
 
 app.server.listen(process.env.PORT || 3000, () => {
   console.log(`Started on port ${app.server.address().port}`);
+  db.on('error', () => {
+    console.error(chalk.red('MongoDB Connection Error. Please make sure that',
+       'is running.'));
+    process.exit(-1); // eslint-disable-line no-process-exit
+  });
+
+  db.once('open', callback => {
+    console.info(chalk.green('Connected to MongoDB:'));
+  });
 });
 
 export default app;

@@ -8,7 +8,7 @@ describe('API tests', () => {
   describe('Status check', () => {
     it('returns 200 on /status path', done => {
       request(app)
-        .get('/api/status')
+        .get('/api/v1/status')
         .expect(200)
         .end(err => {
           if (err) {
