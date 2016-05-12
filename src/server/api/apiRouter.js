@@ -5,5 +5,6 @@ const router = Express.Router();
 
 router.get('/status', (req, res) => res.send('OK'));
 router.get('/reports', reportController.getAll);
+router.get('/reports/csv', reportController.parseCSV);
 
 export default router;

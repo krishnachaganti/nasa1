@@ -41,6 +41,7 @@
     "method-override": "^2.3.5",
     "mongoose": "^4.4.16",
     "morgan": "^1.7.0",
+    "simple-csv-to-json": "^1.0.0",
     "winston": "^2.2.0"
   }
 }

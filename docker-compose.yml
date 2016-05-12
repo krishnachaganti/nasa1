@@ -1,0 +1,47 @@
+version: '2'
+
+services:
+  data-volumes:
+    image: busybox
+    tty: true
+    stdin_open: true
+    volumes:
+      - "./tools/data:/data:rw"
+      - "./tools/data/rethinkdb_data:/data/rethinkdb_data:rw"
+      - "./docs/logs/rethinkdb:/var/logs/rethinkdb:rw"
+  rethinkdb:
+    build: ./tools/docker/rethinkdb
+    ports:
+     - "8080:8080/tcp"
+     - "28015:28015/tcp"
+     - "29015:29015/tcp"
+    expose:
+      - "8080"
+      - "28015"
+      - "29015"
+    volumes_from:
+      - data-volumes
+    networks:
+      - nasa
+  mongodb:
+    build: ./tools/docker/redis
+    ports:
+     - "6379:6379/tcp"
+    expose:
+      - "6379"
+    volumes_from:
+      - data-volumes
+    networks:
+      - nasa
+  splatter:
+    build: ./
+    depends_on:
+        - db
+    ports:
+      - 3000:3000/tcp
+      - 5858:5858/tcp
+    networks:
+      - nasa
+networks:
+  nasa:
+    driver: bridge

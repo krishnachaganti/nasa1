@@ -9,7 +9,12 @@ import morgan from 'morgan';
 import ApiRouter from './api/apiRouter';
 
 import fs from 'fs';
+import convert from 'simple-csv-to-json';
+import path from 'path';
+const file = __dirname + '/report.csv';
+const result = convert.CSVtoJSON(file);
 
+console.log(result);
 const app = Express();
 
 app.server = http.createServer(app);
