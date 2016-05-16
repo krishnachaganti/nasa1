@@ -1,0 +1,57 @@
+{"level":"info","message":"received request: POST /api/v1/reports from IP: ::ffff:127.0.0.1","timestamp":"2016-05-16T15:56:20.169Z"}
+{"level":"info","message":"received request: POST /api/v1/reports from IP: ::ffff:127.0.0.1","timestamp":"2016-05-16T15:57:43.941Z"}
+{"level":"info","message":"received request: POST /api/v1/reports from IP: ::ffff:127.0.0.1","timestamp":"2016-05-16T15:58:14.776Z"}
+{"level":"info","message":"received request: POST /api/v1/reports from IP: ::ffff:127.0.0.1","timestamp":"2016-05-16T16:01:07.151Z"}
+{"level":"info","message":"received request: POST /api/v1/reports from IP: ::ffff:127.0.0.1","timestamp":"2016-05-16T16:11:08.018Z"}
+{"level":"info","message":"received request: POST /api/v1/reports from IP: ::ffff:127.0.0.1","timestamp":"2016-05-16T16:12:02.188Z"}
+{"level":"info","message":"received request: POST /api/v1/reports from IP: ::ffff:127.0.0.1","timestamp":"2016-05-16T16:12:54.910Z"}
+{"level":"info","message":"received request: POST /api/v1/reports from IP: ::ffff:127.0.0.1","timestamp":"2016-05-16T16:14:53.015Z"}
+{"level":"info","message":"received request: POST /api/v1/reports from IP: ::ffff:127.0.0.1","timestamp":"2016-05-16T16:15:35.207Z"}
+{"level":"info","message":"received request: POST /api/v1/reports from IP: ::ffff:127.0.0.1","timestamp":"2016-05-16T16:16:21.262Z"}
+{"level":"info","message":"received request: POST /api/v1/reports from IP: ::ffff:127.0.0.1","timestamp":"2016-05-16T16:17:27.925Z"}
+{"level":"info","message":"received request: POST /api/v1/reports from IP: ::ffff:127.0.0.1","timestamp":"2016-05-16T16:17:55.523Z"}
+{"level":"info","message":"received request: POST /api/v1/reports from IP: ::ffff:127.0.0.1","timestamp":"2016-05-16T16:19:10.662Z"}
+{"level":"info","message":"received request: POST /api/v1/reports from IP: ::ffff:127.0.0.1","timestamp":"2016-05-16T16:19:34.581Z"}
+{"level":"info","message":"received request: POST /api/v1/reports from IP: ::ffff:127.0.0.1","timestamp":"2016-05-16T16:19:58.523Z"}
+{"level":"info","message":"received request: POST /api/v1/reports from IP: ::ffff:127.0.0.1","timestamp":"2016-05-16T16:20:33.560Z"}
+{"level":"info","message":"received request: POST /api/v1/reports from IP: ::ffff:127.0.0.1","timestamp":"2016-05-16T16:21:52.307Z"}
+{"level":"info","message":"received request: POST /api/v1/reports from IP: ::ffff:127.0.0.1","timestamp":"2016-05-16T16:24:29.406Z"}
+{"level":"info","message":"received request: POST /api/v1/reports from IP: ::ffff:127.0.0.1","timestamp":"2016-05-16T16:26:50.050Z"}
+{"level":"info","message":"received request: POST /api/v1/reports from IP: ::ffff:127.0.0.1","timestamp":"2016-05-16T16:27:52.752Z"}
+{"level":"info","message":"received request: POST /api/v1/reports from IP: ::ffff:127.0.0.1","timestamp":"2016-05-16T16:28:24.419Z"}
+{"level":"info","message":"received request: POST /api/v1/reports from IP: ::ffff:127.0.0.1","timestamp":"2016-05-16T16:28:46.975Z"}
+{"level":"info","message":"received request: POST /api/v1/reports from IP: ::ffff:127.0.0.1","timestamp":"2016-05-16T16:30:16.153Z"}
+{"level":"info","message":"received request: POST /api/v1/reports from IP: ::ffff:127.0.0.1","timestamp":"2016-05-16T16:30:40.415Z"}
+{"level":"info","message":"received request: POST /api/v1/reports from IP: ::ffff:127.0.0.1","timestamp":"2016-05-16T16:31:52.624Z"}
+{"level":"info","message":"received request: POST /api/v1/reports from IP: ::ffff:127.0.0.1","timestamp":"2016-05-16T16:33:03.068Z"}
+{"level":"info","message":"received request: POST /api/v1/reports from IP: ::ffff:127.0.0.1","timestamp":"2016-05-16T16:34:04.829Z"}
+{"level":"info","message":"received request: POST /api/v1/reports from IP: ::ffff:127.0.0.1","timestamp":"2016-05-16T16:35:11.530Z"}
+{"level":"info","message":"received request: POST /api/v1/reports from IP: ::ffff:127.0.0.1","timestamp":"2016-05-16T16:36:08.494Z"}
+{"level":"info","message":"received request: POST /api/v1/reports from IP: ::ffff:127.0.0.1","timestamp":"2016-05-16T16:36:30.387Z"}
+{"level":"info","message":"received request: POST /api/v1/reports from IP: ::ffff:127.0.0.1","timestamp":"2016-05-16T16:36:59.026Z"}
+{"level":"info","message":"received request: POST /api/v1/reports from IP: ::ffff:127.0.0.1","timestamp":"2016-05-16T16:38:11.037Z"}
+{"level":"info","message":"Uploading: report.csv","timestamp":"2016-05-16T16:38:11.048Z"}
+{"level":"info","message":"received request: POST /api/v1/reports from IP: ::ffff:127.0.0.1","timestamp":"2016-05-16T16:39:14.713Z"}
+{"level":"info","message":"Uploading: report.csv","timestamp":"2016-05-16T16:39:14.723Z"}
+{"level":"info","message":"received request: GET /api/v1/reports/parse from IP: ::ffff:127.0.0.1","timestamp":"2016-05-16T16:41:33.464Z"}
+{"level":"info","message":"received request: GET /api/v1/reports/parse from IP: ::ffff:127.0.0.1","timestamp":"2016-05-16T16:42:37.590Z"}
+{"level":"info","message":"received request: GET /api/v1/reports/parse from IP: ::ffff:127.0.0.1","timestamp":"2016-05-16T16:44:45.251Z"}
+{"level":"info","message":"received request: GET /api/v1/reports/parse from IP: ::ffff:127.0.0.1","timestamp":"2016-05-16T16:45:50.670Z"}
+{"level":"info","message":"received request: GET /api/v1/reports/parse from IP: ::ffff:127.0.0.1","timestamp":"2016-05-16T16:46:14.599Z"}
+{"level":"info","message":"received request: GET /api/v1/reports/parse from IP: ::ffff:127.0.0.1","timestamp":"2016-05-16T16:46:52.311Z"}
+{"level":"info","message":"received request: POST /api/v1/reports from IP: ::ffff:127.0.0.1","timestamp":"2016-05-16T16:50:01.045Z"}
+{"level":"info","message":"Uploading: report.csv","timestamp":"2016-05-16T16:50:01.056Z"}
+{"level":"info","message":"received request: POST /api/v1/reports from IP: ::ffff:127.0.0.1","timestamp":"2016-05-16T16:50:19.822Z"}
+{"level":"info","message":"Uploading: report.csv","timestamp":"2016-05-16T16:50:19.834Z"}
+{"level":"info","message":"","timestamp":"2016-05-16T16:50:19.838Z"}
+{"level":"info","message":"received request: POST /api/v1/reports from IP: ::ffff:127.0.0.1","timestamp":"2016-05-16T16:51:42.436Z"}
+{"level":"info","message":"Uploading: report.csv","timestamp":"2016-05-16T16:51:42.449Z"}
+{"level":"info","message":"---------------","timestamp":"2016-05-16T16:51:42.453Z"}
+{"level":"info","message":"received request: POST /api/v1/reports from IP: ::ffff:127.0.0.1","timestamp":"2016-05-16T16:52:09.220Z"}
+{"level":"info","message":"Uploading: report.csv","timestamp":"2016-05-16T16:52:09.231Z"}
+{"level":"info","message":"---------------","timestamp":"2016-05-16T16:52:09.236Z"}
+{"level":"info","message":"received request: POST /api/v1/reports from IP: ::ffff:127.0.0.1","timestamp":"2016-05-16T16:52:24.658Z"}
+{"level":"info","message":"Uploading: report.csv","timestamp":"2016-05-16T16:52:24.670Z"}
+{"level":"info","message":"---------------","timestamp":"2016-05-16T16:52:24.673Z"}
+{"level":"info","message":"received request: POST /api/v1/reports from IP: ::ffff:127.0.0.1","timestamp":"2016-05-16T16:52:50.753Z"}
+{"level":"info","message":"Uploading: report.csv","timestamp":"2016-05-16T16:52:50.765Z"}

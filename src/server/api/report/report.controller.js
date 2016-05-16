@@ -1,8 +1,18 @@
 import Report from '../../db/model/report.model';
 import convert from 'simple-csv-to-json';
+import transform from 'csv-to-json-stream';
 import path from 'path';
+import multer from 'multer';
+import fs from 'fs-extra';
+import reportError from '../../lib/errors/reportError';
+import errors from '../../lib/errors';
+import logger from '../../lib/logger';
 
-// const file = path.resolve(__dirname, '/report.csv');
+const storage = multer.memoryStorage();
+const upload = multer({
+  storage
+});
+const ROOT_DIR = path.join(__dirname, '..', '..', '..', '..');
 
 export const getAll = (req, res, next) => {
   Report.find({}, (err, reports) => {
@@ -12,13 +22,41 @@ export const getAll = (req, res, next) => {
 };
 
 export function parseCSV(req, res, next) {
-  const file = __dirname + '/report.csv';
-  const result = convert.CSVtoJSON(file).then(err => {
-    if (err) {
-      console.log(err);
+  const file = `${ROOT_DIR}/uploads/report.csv`;
+  const result = convert.CSVtoJSON(file);
+  logger.info('---------------', result)
+}
+
+export function uploadReport(req, res, next) {
+  let fstream;
+  req.pipe(req.busboy);
+  req.busboy.on('file', (fieldname, file, filename) => {
+    if (filename.length === 0) {
+      res.sendStatus(400);
+      res.json({
+        message: 'No file selected!'
+      });
     }
-    console.log(result);
-    res.status(200).json(result);
+
+    logger.info(`Uploading: ${filename}`);
+
+    // create 'uploads' folder if it doesn't exist
+    const filePath = path.join(ROOT_DIR, '/uploads');
+    fs.exists(filePath, exists => {
+      if (!exists) {
+        fs.mkdir(filePath);
+      }
+
+      fstream = fs.createWriteStream(path.join(filePath, filename));
+
+      file.pipe(fstream);
+      fstream.on('close', () => {
+        console.log(`Upload Finished of ${filename}`);
+        console.log(file);
+        res.sendStatus(201);
+      });
+      // next(parseCSV());
+    });
   });
 }
 

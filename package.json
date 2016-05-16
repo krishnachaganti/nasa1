@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node src/server/index.js -- nodemon",
+    "start": "babel-node --debug src/server/index.js -- nodemon",
     "lint": "./node_modules/.bin/eslint src/**/*.js",
     "test": "mocha --compilers js:babel-register --timeout 5000 test/.setup.js test/*.spec.js"
   },
@@ -38,13 +38,17 @@
   "dependencies": {
     "body-parser": "^1.15.1",
     "chalk": "^1.1.3",
+    "connect-busboy": "0.0.2",
     "cors": "^2.7.1",
+    "csv-to-json-stream": "0.0.5",
     "ejs": "^2.4.1",
     "errorhandler": "^1.4.3",
     "express": "^4.13.4",
+    "fs-extra": "^0.30.0",
     "method-override": "^2.3.5",
     "mongoose": "^4.4.17",
     "morgan": "^1.7.0",
+    "multer": "^1.1.0",
     "simple-csv-to-json": "^1.0.0",
     "winston": "^2.2.0"
   }
