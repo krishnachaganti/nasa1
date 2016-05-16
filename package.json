@@ -45,6 +45,7 @@
     "errorhandler": "^1.4.3",
     "express": "^4.13.4",
     "fs-extra": "^0.30.0",
+    "imap-simple": "^1.6.1",
     "method-override": "^2.3.5",
     "mongoose": "^4.4.17",
     "morgan": "^1.7.0",
