@@ -24,7 +24,7 @@ export const getAll = (req, res, next) => {
 export function parseCSV(req, res, next) {
   const file = `${ROOT_DIR}/uploads/report.csv`;
   const result = convert.CSVtoJSON(file);
-  logger.info('---------------', result)
+  logger.info('---------------', result);
 }
 
 export function uploadReport(req, res, next) {
@@ -53,8 +53,8 @@ export function uploadReport(req, res, next) {
       fstream.on('close', () => {
         console.log(`Upload Finished of ${filename}`);
         console.log(file);
-        res.sendStatus(201);
       });
+      res.sendStatus(201).end();
       // next(parseCSV());
     });
   });

@@ -2,7 +2,9 @@
 
 const request = require('supertest');
 const expect = require('chai').expect;
-
+import path from 'path';
+const UPL_DIR = path.join(__dirname, '..', '..', 'uploads');
+const file = `${UPL_DIR}/report.csv`;
 import app from '../src/server/app';
 describe('API tests', () => {
   describe('Status check', () => {
@@ -34,6 +36,17 @@ describe('API tests', () => {
           }
           done();
         });
+    });
+  });
+  describe('Uploading a new report', () => {
+    it('returns 201 on a POST to /reports', done => {
+      request(app)
+        .post('/api/v1/reports')
+        .set('Accept', 'application/json')
+        .send(file)
+        .expect(201);
+
+      done();
     });
   });
 });

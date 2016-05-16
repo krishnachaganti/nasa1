@@ -8,6 +8,7 @@
       "node_modules"
     ],
     "watch": [
-      "src/server/"
-    ]
+      "src/server/**/*.js"
+    ],
+    "exec": "babel-node src/server/index.js"
 }

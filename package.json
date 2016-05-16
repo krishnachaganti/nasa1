@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node --debug src/server/index.js -- nodemon",
+    "start": "nodemon --debug",
     "lint": "./node_modules/.bin/eslint src/**/*.js",
     "test": "mocha --compilers js:babel-register --timeout 5000 test/.setup.js test/*.spec.js"
   },

@@ -4,14 +4,17 @@ import Express from 'express';
 import chalk from 'chalk';
 import http from 'http';
 import mongoose from 'mongoose';
-
-import ApiRouter from './api/apiRouter';
-
-import fs from 'fs';
+import fs from 'fs-extra';
 import convert from 'simple-csv-to-json';
 import path from 'path';
-const file = __dirname + '/report.csv';
+
+import logger from './lib/logger';
+import ApiRouter from './api/apiRouter';
+
+const UPL_DIR = path.join(__dirname, '..', '..', 'uploads');
+const file = `${UPL_DIR}/report.csv`;
 const result = convert.CSVtoJSON(file);
+logger.info(result);
 
 mongoose.connect('mongodb://104.236.173.141:27017/splatter');
 const db = mongoose.connection;
@@ -49,15 +52,15 @@ app.use((err, req, res, next) => {
 });
 
 app.server.listen(process.env.PORT || 3000, () => {
-  console.log(`Started on port ${app.server.address().port}`);
+  logger.info(`Started on port ${app.server.address().port}`);
   db.on('error', () => {
-    console.error(chalk.red('MongoDB Connection Error. Please make sure that',
+    logger.error(chalk.red('MongoDB Connection Error. Please make sure that',
        'is running.'));
     process.exit(-1); // eslint-disable-line no-process-exit
   });
 
   db.once('open', callback => {
-    console.info(chalk.green('Connected to MongoDB:'));
+    logger.info(chalk.green('Connected to MongoDB:'));
   });
 });
 
