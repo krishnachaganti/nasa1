@@ -21,12 +21,6 @@ export const getAll = (req, res, next) => {
   });
 };
 
-export function parseCSV(req, res, next) {
-  const file = `${ROOT_DIR}/uploads/report.csv`;
-  const result = convert.CSVtoJSON(file);
-  logger.info('---------------', result);
-}
-
 export function uploadReport(req, res, next) {
   let fstream;
   req.pipe(req.busboy);
@@ -46,12 +40,12 @@ export function uploadReport(req, res, next) {
       if (!exists) {
         fs.mkdir(filePath);
       }
-
-      fstream = fs.createWriteStream(path.join(filePath, filename));
+      const renamedFile = 'report' + - Date.now() + '.csv';
+      fstream = fs.createWriteStream(path.join(filePath, renamedFile));
 
       file.pipe(fstream);
       fstream.on('close', () => {
-        console.log(`Upload Finished of ${filename}`);
+        console.log(`Upload Finished of ${renamedFile}`);
         console.log(file);
       });
       res.sendStatus(201).end();

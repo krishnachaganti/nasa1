@@ -5,6 +5,5 @@ const reportRouter = express.Router();
 
 reportRouter.get('/', controller.getAll);
 reportRouter.post('/', controller.uploadReport);
-reportRouter.get('/parse', controller.parseCSV);
 
 export default reportRouter;

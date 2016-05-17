@@ -55,7 +55,7 @@ export default mailConnect => {
     }).then(attachments => {
       console.log(attachments);
       const parseMe = attachments[0].data;
-      fs.writeFile('uploads/repo' + - Date.now() + '.csv', parseMe, err => { // eslint-disable-line
+      fs.writeFile('uploads/report' + - Date.now() + '.csv', parseMe, err => { // eslint-disable-line
         if (err) {
           throw err;
         }
