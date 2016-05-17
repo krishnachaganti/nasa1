@@ -4,9 +4,7 @@ import path from 'path';
 import logger from '../logger';
 import convert from 'simple-csv-to-json';
 const UPL_DIR = path.join(__dirname, '..', '..', '..', '..', 'uploads');
-// const file = `${UPL_DIR}/report.csv`;
-// const result = convert.CSVtoJSON(file);
-// logger.info(result);
+
 const config = {
   imap: {
     user: 'splatter@axial.agency',
@@ -53,13 +51,12 @@ export default mailConnect => {
       });
       return Promise.all(attachments);
     }).then(attachments => {
-      console.log(attachments);
       const parseMe = attachments[0].data;
       fs.writeFile('uploads/report' + - Date.now() + '.csv', parseMe, err => { // eslint-disable-line
         if (err) {
           throw err;
         }
-        console.log('saved');
+        logger.info('saved');
       });
     });
   });

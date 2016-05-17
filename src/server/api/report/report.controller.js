@@ -1,4 +1,3 @@
-import Report from '../../db/model/report.model';
 import convert from 'simple-csv-to-json';
 import transform from 'csv-to-json-stream';
 import path from 'path';
@@ -8,6 +7,7 @@ import reportError from '../../lib/errors/reportError';
 import errors from '../../lib/errors';
 import logger from '../../lib/logger';
 
+import r from '../../db';
 const storage = multer.memoryStorage();
 const upload = multer({
   storage
@@ -15,10 +15,7 @@ const upload = multer({
 const ROOT_DIR = path.join(__dirname, '..', '..', '..', '..');
 
 export const getAll = (req, res, next) => {
-  Report.find({}, (err, reports) => {
-    if (err) return console.log(err);
-    res.status(200).json(reports);
-  });
+  r.table('reports').run();
 };
 
 export function uploadReport(req, res, next) {
@@ -40,7 +37,7 @@ export function uploadReport(req, res, next) {
       if (!exists) {
         fs.mkdir(filePath);
       }
-      const renamedFile = 'report' + - Date.now() + '.csv';
+      const renamedFile = 'report' + -Date.now() + '.csv'; // eslint-disable-line
       fstream = fs.createWriteStream(path.join(filePath, renamedFile));
 
       file.pipe(fstream);
@@ -49,18 +46,16 @@ export function uploadReport(req, res, next) {
         console.log(file);
       });
       res.sendStatus(201).end();
-      // next(parseCSV());
+    // next(parseCSV());
     });
   });
 }
 
-export function saveReport(req, res, next) {
-  const newReport = new Report();
-
-  newReport.save((err, report) => {
-    if (err) {
-      console.log(err);
-    }
-    res.status(201).json(report);
-  });
+export function saveReport(result, req, res, next) {
+  const personnel = result;
+  const report = {
+    createdAt: Date.now(),
+    personnel
+  };
+  r.table('reports').insert(report).run();
 }

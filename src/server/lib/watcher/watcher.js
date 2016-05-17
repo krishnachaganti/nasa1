@@ -1,9 +1,10 @@
 /* eslint-disable no-shadow */
 import chokidar from 'chokidar';
 import { join } from 'path';
+import fs from 'fs-extra';
 import logger from '../logger';
 import convert from 'simple-csv-to-json';
-
+import { saveReport } from '../../api/report/report.controller';
 const UPL_DIR = join(__dirname, '..', '..', '..', '..', 'uploads');
 const watcher = chokidar.watch(UPL_DIR, {
   ignored: /[\/\\]\./,
@@ -14,7 +15,14 @@ watcher
   .on('add', path => {
     logger.info(`File ${path} has been added`);
     const result = convert.CSVtoJSON(path);
-    logger.info(result);
+    saveReport(result);
+    logger.info('Saved to db!');
+    fs.remove(path, err => {
+      if (err) {
+        return logger.error(err);
+      }
+      logger.info('deleted!');
+    });
   })
   .on('change', path => logger.info(`File ${path} has been changed`))
   .on('unlink', path => logger.info(`File ${path} has been removed`));
