@@ -7,10 +7,10 @@ services:
     stdin_open: true
     volumes:
       - "./tools/data:/data:rw"
-      - "./tools/data/rethinkdb_data:/data/rethinkdb_data:rw"
+      - "./tools/data/rethinkdb:/data/rethinkdb:rw"
       - "./docs/logs/rethinkdb:/var/logs/rethinkdb:rw"
-  rethinkdb:
-    build: ./tools/docker/rethinkdb
+  db:
+    image: strues/rethinkdb
     ports:
      - "8080:8080/tcp"
      - "28015:28015/tcp"
@@ -22,17 +22,8 @@ services:
     volumes_from:
       - data-volumes
     networks:
-      - nasa
-  mongodb:
-    build: ./tools/docker/redis
-    ports:
-     - "6379:6379/tcp"
-    expose:
-      - "6379"
-    volumes_from:
-      - data-volumes
-    networks:
-      - nasa
+      - splat
+
   splatter:
     build: ./
     depends_on:
@@ -41,7 +32,7 @@ services:
       - 3000:3000/tcp
       - 5858:5858/tcp
     networks:
-      - nasa
+      - splat
 networks:
-  nasa:
+  splat:
     driver: bridge

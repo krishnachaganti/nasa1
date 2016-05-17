@@ -9,12 +9,6 @@ const logger = new (winston.Logger)({
       colorize: true,
       showLevel: true,
       prettyPrint: true
-    }),
-    new (winston.transports.File)({
-      filename: path.join(__dirname, '..', '..', '..', '..', 'logs', 'debug.log'),
-      maxsize: 1000000, // 1MB
-      maxFiles: 3,
-      prettyPrint: true
     })
   ],
   exitOnError: false

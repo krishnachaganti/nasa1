@@ -1,17 +1,12 @@
 import convert from 'simple-csv-to-json';
-import transform from 'csv-to-json-stream';
 import path from 'path';
-import multer from 'multer';
 import fs from 'fs-extra';
 import reportError from '../../lib/errors/reportError';
 import errors from '../../lib/errors';
 import logger from '../../lib/logger';
 
 import r from '../../db';
-const storage = multer.memoryStorage();
-const upload = multer({
-  storage
-});
+
 const ROOT_DIR = path.join(__dirname, '..', '..', '..', '..');
 
 export const getAll = (req, res, next) => {

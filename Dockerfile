@@ -1,27 +1,18 @@
-FROM strues/alpine-base
+FROM mhart/alpine-node:6.1.0
 MAINTAINER Steven Truesdell <steven@strues.io>
 
-ENV NODE_VERSION 6.1.0
-ENV NODE_URL https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}.tar.gz
-ENV NODE_DIR /tmp/node-v${NODE_VERSION}
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
 
-RUN echo "http://dl-1.alpinelinux.org/alpine/v3.3/main" >> /etc/apk/repositories; \
-    echo "http://dl-2.alpinelinux.org/alpine/v3.3/main" >> /etc/apk/repositories; \
-    echo "http://dl-3.alpinelinux.org/alpine/v3.3/main" >> /etc/apk/repositories; \
-    echo "http://dl-4.alpinelinux.org/alpine/v3.3/main" >> /etc/apk/repositories; \
-    echo "http://dl-5.alpinelinux.org/alpine/v3.3/main" >> /etc/apk/repositories && \
-    apk add --update linux-headers make gcc g++ python curl libstdc++ libgcc && \
-    curl -o /tmp/node-v${NODE_VERSION}.tar.gz ${NODE_URL} && \
-    cd /tmp && \
-    tar zxvf node-v${NODE_VERSION}.tar.gz && \
-    cd ${NODE_DIR} && \
-    ./configure --without-snapshot --with-intl=none  && \
-    make && \
-    make install && \
-    apk del --update linux-headers make gcc g++ python curl libstdc++ libgcc clang libexecinfo && \
-    rm -rf /tmp/* /var/cache/apk/* /root/.npm /root/.node-gyp ; mkdir -p /app ; \
-	  npm install -g node-gyp
+# Install app dependencies
+COPY package.json /usr/src/app/
+# Bundle app source
+COPY . /usr/src/app
 
-WORKDIR /app
+#install deps, build, remove initial sources, dev deps
+RUN npm i -q && \
+    npm run compile && \
+    npm prune -q --production
+
 EXPOSE 3000
-CMD ["npm", "start"]
+CMD [ "npm", "run", "serve" ]
