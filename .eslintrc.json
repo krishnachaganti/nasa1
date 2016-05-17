@@ -1,3 +1,6 @@
 {
-  "extends": "axial"
+  "extends": "axial",
+  "rules": {
+    "no-console": 0
+  }
 }
