@@ -19,7 +19,7 @@ export default mailConnect => {
   imaps.connect(config).then(connection => {
     return connection.openBox('INBOX').then(() => {
       // Fetch emails from the last 96h
-      const delay = 96 * 3600 * 1000;
+      const delay = 24 * 3600 * 1000;
       let yesterday = new Date();
       yesterday.setTime(Date.now() - delay);
       yesterday = yesterday.toISOString();

@@ -9,9 +9,16 @@ import r from '../../db';
 
 const ROOT_DIR = path.join(__dirname, '..', '..', '..', '..');
 
-export const getAll = (req, res, next) => {
-  r.table('reports').run();
-};
+export function getAll(req, res, next) {
+  r.table('reports')
+    .run()
+    .then(reports => {
+      res.status(200).json(reports);
+    })
+    .error(err => {
+      return res.status(500).json(err);
+    });
+}
 
 export function uploadReport(req, res, next) {
   let fstream;
