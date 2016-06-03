@@ -2,6 +2,8 @@
 import chokidar from 'chokidar';
 import { join } from 'path';
 import fs from 'fs-extra';
+
+
 import logger from '../logger';
 import convert from 'simple-csv-to-json';
 import { saveReport } from '../../api/report/report.controller';
@@ -15,7 +17,13 @@ watcher
   .on('add', path => {
     logger.info(`File ${path} has been added`);
     const result = convert.CSVtoJSON(path);
-    saveReport(result);
+    const toSave = result.map(object => {
+      delete object[''];
+      return object;
+    });
+
+    logger.info(toSave, ' result');
+    saveReport(toSave);
     logger.info('Saved to db!');
     fs.remove(path, err => {
       if (err) {
