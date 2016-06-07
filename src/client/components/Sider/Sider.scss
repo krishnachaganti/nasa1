@@ -1,0 +1,18 @@
+.Sider {
+  position: fixed;
+  left: 0;
+
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+}
+.SiderSquare {
+    background-color: #d8d8d8;
+    border: 1px solid #36393e;
+    display: block;
+    line-height: 48px;
+    text-align: center;
+    transition: background 200ms;
+    width: 50px;
+}

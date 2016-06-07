@@ -3,7 +3,7 @@
 const request = require('supertest');
 const expect = require('chai').expect;
 import path from 'path';
-const UPL_DIR = path.join(__dirname, '..', '..', 'uploads');
+const UPL_DIR = path.join(__dirname, '..', '..');
 const file = `${UPL_DIR}/report.csv`;
 import app from '../src/server/app';
 describe('API tests', () => {

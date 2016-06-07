@@ -6,21 +6,27 @@ import http from 'http';
 import fs from 'fs-extra';
 import convert from 'simple-csv-to-json';
 import path from 'path';
+import imaps from 'imap-simple';
 
-import mailConnect from './lib/imaps';
+const UPL_DIR = path.join(__dirname, '..', '..', 'uploads');
 import logger from './lib/logger';
 import ApiRouter from './api/apiRouter';
 import watcher from './lib/watcher';
-
+const frontend = require('./lib/frontendMiddleware');
+const isDev = process.env.NODE_ENV !== 'production';
 const app = Express();
 app.server = http.createServer(app);
 
 require('./config/express').default(app);
 
 app.use('/api/v1', ApiRouter);
+const webpackConfig = isDev
+  ? require('../../webpack/webpack.dev.babel')
+  : require('../../webpack/webpack.prod.babel');
 
-// Connect to the IMAP server and get attachments.
-mailConnect();
+app.use(frontend(webpackConfig));
+
+
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
@@ -47,7 +53,8 @@ app.use((err, req, res, next) => {
     error: {}
   });
 });
-
+// require('./lib/imap/imap');
+// require('./lib/imap/status.imap');
 app.server.listen(process.env.PORT || 3000, () => {
   logger.info(`Started on port ${app.server.address().port}`);
 });

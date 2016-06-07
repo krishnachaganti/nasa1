@@ -1,0 +1,24 @@
+.toolbar--list {
+  display: inline;
+  list-style-type: none;
+}
+
+.toolbar-left {
+  display: inline;
+
+  label {
+    margin-right: 20px;
+    float: left;
+    position: relative;
+  }
+}
+.toolbar-mid {
+  display: inline;
+
+  label {
+    margin-left: 60px;
+    margin-right: 20px;
+    float: left;
+    position: relative;
+  }
+}

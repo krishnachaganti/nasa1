@@ -1,0 +1,102 @@
+.gridsys {
+	lost-center: 80%;
+	// lost-utility: edit;
+}
+
+.row {
+  lost-utility: clearfix;
+}
+
+.third {
+  lost-column: 1/3 0;
+}
+
+.grid-item {
+  margin-bottom: 20px;
+}
+
+.grid-item-nested {
+	margin-bottom: 10px;
+}
+
+.grid-one div {
+  	lost-column: 1/2;
+}
+
+.grid-two div {
+	lost-column: 1/8 4 5px;
+}
+
+.grid-three div {
+	lost-column: 1/2;
+}
+
+.grid-four div {
+	lost-column: 1/4;
+	&:nth-child(2) {
+		lost-column: 1/2 3;
+	}
+}
+
+.grid-five {
+	width: 100%;
+	height:500px;
+}
+
+.grid-five div {
+	lost-row: 1/4;
+}
+
+.grid-six div {
+	lost-column: 1/3;
+	&:nth-child(1) {
+		lost-align: top-left;
+	}
+	&:nth-child(2) {
+		lost-align: top;
+	}
+	&:nth-child(3) {
+		lost-align: top-right;
+	}
+	&:nth-child(4) {
+		lost-align: left;
+	}
+	&:nth-child(5) {
+		lost-align: center;
+	}
+	&:nth-child(6) {
+		lost-align: right;
+	}
+	&:nth-child(7) {
+		lost-align: bottom-left;
+	}
+	&:nth-child(8) {
+		lost-align: bottom;
+	}
+	&:nth-child(9) {
+		lost-align: bottom-right;
+	}
+}
+
+.grid-seven {
+	height: 400px;
+}
+
+.grid-seven div {
+	lost-waffle: 1/4;
+}
+
+.grid-eight div {
+	lost-column: 1/4;
+	&:last-child {
+		lost-column: 1/2;
+		lost-move: 1/4;
+	}
+}
+
+.grid-nine div {
+	lost-column: 1/4;
+	&:first-child {
+		lost-offset: 1/4 row 0px;
+	}
+}

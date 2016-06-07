@@ -10,17 +10,17 @@ import r from '../../db';
 const ROOT_DIR = path.join(__dirname, '..', '..', '..', '..');
 
 export function getAll(req, res, next) {
-  r.table('reports')
+  r.table('reviews')
     .run()
-    .then(reports => {
-      res.status(200).json(reports);
+    .then(reviews => {
+      res.status(200).json(reviews);
     })
     .error(err => {
       return res.status(500).json(err);
     });
 }
 
-export function uploadReport(req, res, next) {
+export function uploadReview(req, res, next) {
   let fstream;
   req.pipe(req.busboy);
   req.busboy.on('file', (fieldname, file, filename) => {
@@ -53,7 +53,7 @@ export function uploadReport(req, res, next) {
   });
 }
 
-export function saveReport(result, req, res, next) {
+export function saveReview(result, req, res, next) {
   const personnel = result;
   const report = {
     createdAt: Date.now(),
