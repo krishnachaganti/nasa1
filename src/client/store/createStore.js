@@ -36,6 +36,5 @@ export default function configureStore(initialState, history) {
       store.replaceReducer(nextReducer);
     });
   }
-
   return store;
 }

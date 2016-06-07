@@ -1,20 +1,20 @@
 import React, { Component, PropTypes } from 'react';
+import classes from './Card.scss';
 
-class Card extends Component {
+const Card = props => {
+  return (
+        <div className={ classes.cardWrap }>
 
-  render() {
-    const inlineStyles = {
-      width: '375px',
-      height: '200px',
-      backgroundColor: '#FEFFFF'
-    };
-    return (
-      <div>
-        <div className="card__wrap">
-          Card
-          </div>
+            { props.cardImage }
+            { props.cardContent }
+
         </div>
     );
-  }
-}
+};
 export default Card;
+
+Card.propTypes = {
+  children: PropTypes.any,
+  cardContent: PropTypes.object,
+  cardImage: PropTypes.object
+};

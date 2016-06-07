@@ -1,13 +1,14 @@
-
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
-import AppContainer from './containers/AppContainer';
-import HomeContainer from './containers/HomeContainer';
+
+import CoreLayout from './layouts/CoreLayout/CoreLayout';
+import HomeView from './scenes/Home';
+
 
 export default store => {
   return (
-      <Route path="/" component={ AppContainer }>
-        <IndexRoute component={ HomeContainer }></IndexRoute>
+      <Route path="/" component={ CoreLayout }>
+        <IndexRoute component={ HomeView } />
 
       </Route>
     );

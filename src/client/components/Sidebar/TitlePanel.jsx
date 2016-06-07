@@ -16,11 +16,17 @@ const TitlePanel = props => {
   const rootStyle = props.style ? { ...styles.root, ...props.style } : styles.root;
 
   return (
-    <div style={rootStyle}>
-      <div style={styles.header}>{props.title}</div>
-      {props.children}
+    <div style={ rootStyle }>
+      <div style={ styles.header }>{ props.title }</div>
+      { props.children }
     </div>
   );
 };
 
 export default TitlePanel;
+
+TitlePanel.propTypes = {
+  style: React.PropTypes.object,
+  title: React.PropTypes.string,
+  children: React.PropTypes.element
+};

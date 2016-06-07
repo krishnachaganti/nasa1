@@ -53,8 +53,8 @@ app.use((err, req, res, next) => {
     error: {}
   });
 });
-require('./lib/imap/imap');
-require('./lib/imap/status.imap');
+// require('./lib/imap/imap');
+// require('./lib/imap/status.imap');
 app.server.listen(process.env.PORT || 3000, () => {
   logger.info(`Started on port ${app.server.address().port}`);
 });
