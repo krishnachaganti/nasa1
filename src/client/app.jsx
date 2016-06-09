@@ -35,7 +35,7 @@ function onUpdate() {
 ReactDOM.render(
   <Provider store={ store }>
   <MuiThemeProvider muiTheme={ getMuiTheme() }>
-    <div style={ { height: '100%' } }>
+    <div className="layout">
       <Router history={ history } onUpdate={ onUpdate }>
        { routes }
        </Router>

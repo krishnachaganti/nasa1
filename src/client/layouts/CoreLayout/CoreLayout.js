@@ -2,22 +2,26 @@ import React, { Component, PropTypes } from 'react';
 import Header from '../../components/Header';
 import Toolbar from '../../components/Toolbar';
 import Sider from '../../components/Sider';
-import Sidebar from 'react-sidebar';
+import IconButton from 'material-ui/IconButton';
 import { connect } from 'react-redux';
-import SidebarContent from '../../components/Sidebar/SidebarContent';
+import { lightWhite } from 'material-ui/styles/colors';
+import Sidebar from '../../components/Sidebar/Sidebar';
 import Weather from '../../components/Weather';
 import classes from './CoreLayout.scss';
 import '../../styles/core.scss';
-
+import MenuIc from 'material-ui/svg-icons/navigation/menu';
 import { getIotd, fetchWeather } from '../../actions/header';
-
+import { getPeople } from '../../actions/people';
+import * as sidebarActions from '../../actions/sidebar';
+import Loader from '../../components/Loader';
 const styles = {
   contentHeaderMenuLink: {
     textDecoration: 'none',
     color: 'white',
     position: 'absolute',
     top: '20px',
-    left: '30px'
+    left: '30px',
+    zIndex: '1000'
   }
 };
 
@@ -25,19 +29,11 @@ class CoreLayout extends Component {
   static loadAsyncData(dispatch) {
     dispatch(getIotd());
     dispatch(fetchWeather());
+    dispatch(getPeople());
   }
   constructor(props) {
     super(props);
-    this.state = {
-      docked: false,
-      open: false,
-      transitions: true,
-      touch: true,
-      shadow: true,
-      pullRight: false,
-      touchHandleWidth: 20,
-      dragToggleDistance: 30
-    };
+
     this.menuButtonClick = this.menuButtonClick.bind(this);
     this.onSetOpen = this.onSetOpen.bind(this);
   }
@@ -50,30 +46,10 @@ class CoreLayout extends Component {
   }
   menuButtonClick(ev) {
     ev.preventDefault();
-    this.onSetOpen(!this.state.open);
+    this.props.dispatch(sidebarActions.toggleSideBar());
   }
 
   render() {
-    const contentHeader = (
-      <span>
-        { !this.state.docked &&
-         <a onClick={ this.menuButtonClick } href="#" style={ styles.contentHeaderMenuLink }>=</a> }
-      </span>);
-    const sidebar = <SidebarContent />;
-
-    const sidebarProps = {
-      sidebar,
-      docked: this.state.docked,
-      sidebarClassName: 'custom-sidebar-class',
-      open: this.state.open,
-      touch: this.state.touch,
-      shadow: this.state.shadow,
-      pullRight: this.state.pullRight,
-      touchHandleWidth: this.state.touchHandleWidth,
-      dragToggleDistance: this.state.dragToggleDistance,
-      transitions: this.state.transitions,
-      onSetOpen: this.onSetOpen
-    };
     const headerStyle = {
       height: '465px',
       width: '100%',
@@ -81,17 +57,21 @@ class CoreLayout extends Component {
       backgroundSize: 'cover',
       backgroundAttachment: 'fixed'
     };
+
     return (
-      <div>
-        <Sidebar { ...sidebarProps }>
-          <Header title={ contentHeader } headerImage={ headerStyle } weatherWidget={
-            <Weather temperature={ this.props.header.temperature } />
-            }
+      <div className="row">
+          <MenuIc onTouchTap={ this.menuButtonClick } color={ lightWhite } style={ styles.contentHeaderMenuLink } />
+          { this.props.header.loading ? <Loader /> :
+            <Header headerImage={ headerStyle }
+            imageTitle={ this.props.header.title }
+            temperature={ this.props.header.temperature }
           />
+        }
+          <Sidebar />
           <Toolbar />
           <Sider />
           { this.props.children }
-        </Sidebar>
+
       </div>
     );
   }
@@ -99,7 +79,9 @@ class CoreLayout extends Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     header: state.header,
-    loading: state.header.loading
+    loading: state.header.loading,
+    people: state.people,
+    sidebar: state.sidebar
   };
 };
 

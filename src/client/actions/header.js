@@ -65,7 +65,7 @@ const WEATHER_API_KEY = '52f9ae939ba553ccc4981ddf1fcd002f';
 export function fetchWeather(data) {
   return dispatch => {
     dispatch(loadWeather());
-    return axios.get(`http://api.openweathermap.org/data/2.5/weather?zip=32899,us&appid=${WEATHER_API_KEY}`)
+    return axios.get(`http://api.openweathermap.org/data/2.5/weather?zip=32801,us&appid=${WEATHER_API_KEY}`)
       .then(response => {
         if (response.status === 200) {
           dispatch(loadWeatherSuccess(response));

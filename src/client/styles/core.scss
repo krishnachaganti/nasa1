@@ -12,6 +12,7 @@
     height: 100%;
     margin: 0;
     background-color: $body-bg;
+    font-family: $text-font-stack;
   }
   // Make all elements from the DOM inherit from the parent box-sizing
   *,
@@ -20,6 +21,16 @@
     box-sizing: inherit;
   }
 
+.layout {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+.wrap {
+  box-sizing: border-box;
+  max-width: 1200px;
+  margin: 0 auto;
+}
   // Basic styles for links
   a {
     // color: $main-color;

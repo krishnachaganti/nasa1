@@ -5,7 +5,7 @@ const INITIAL_STATE = {
   message: '',
   error: false,
   iotd: '',
-  desc: '',
+  title: '',
   weather: {
     temperature: ''
   }
@@ -22,7 +22,7 @@ export default function header(state = INITIAL_STATE, action) {
       return {
         ...state,
         iotd: action.payload.hdurl,
-        desc: action.payload.explanation,
+        title: action.payload.title,
         loading: false
       };
     case constants.LOAD_IOTD_FAILURE:
@@ -39,7 +39,7 @@ export default function header(state = INITIAL_STATE, action) {
         ...state,
         loading: false,
         weather: action.payload,
-        temperature: ((action.payload.main.temp - 273.15) * 1.8000) + 32.0
+        temperature: Math.round(((action.payload.main.temp - 273.15) * 1.8000) + 32.0)
       };
     case constants.LOAD_WEATHER_FAILURE:
       return {

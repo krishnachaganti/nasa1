@@ -16,7 +16,13 @@ class Toolbar extends Component {
       marginBottom: '25px',
       color: '#fff',
       paddingTop: '25px',
-      paddingBottom: '25px'
+      paddingBottom: '25px',
+      display: 'flex',
+      flexDirection: 'row'
+    };
+    const flex = {
+      width: '80%',
+      margin: '0 auto'
     };
     const theOptionsStyle = {
       color: '#11222D'
@@ -34,7 +40,7 @@ class Toolbar extends Component {
     };
     return (
       <div style={ inlineStyles }>
-        <div className="gridsys">
+        <div style={ flex }>
         <div className="toolbar-left">
           <label>Filter by:</label>
           <Select
@@ -68,6 +74,8 @@ class Toolbar extends Component {
             ] }
             valid
           />
+          </div>
+           <div className="toolbar-left">
           <Select
             dropdownStyle={ select2Style }
             optionsStyle={ theOptionsStyle }
@@ -135,8 +143,8 @@ class Toolbar extends Component {
             />
           </div>
 
-          </div>
         </div>
+          </div>
     );
   }
 }

@@ -1,6 +1,7 @@
+@lost flexbox flex;
 .gridsys {
 	lost-center: 80%;
-	// lost-utility: edit;
+	flex-wrap: wrap;
 }
 
 .row {
@@ -20,7 +21,7 @@
 }
 
 .grid-one div {
-  	lost-column: 1/2;
+  lost-column: 1/2;
 }
 
 .grid-two div {
