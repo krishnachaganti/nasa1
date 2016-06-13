@@ -34,7 +34,9 @@ const PersonCard = props => (
       <CardText>
        { props.person.PositionTitlePLC }
        <br />
-       { props.person.OrgCode }
+       Org Code: { props.person.OrgCode }
+       <br />
+       Kudos:
       </CardText>
       </div>
       </div>

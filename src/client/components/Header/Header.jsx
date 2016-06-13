@@ -67,7 +67,7 @@ export default class Header extends React.Component {
         <div className={ classes.headerTextWrap }>
           <h2 className={ classes.headerText }>Search our Listing of Current Employees and Training Status <br />
           Regarding Treatment of Sensitive Information</h2>
-            <SearchInput style={ search } placeholder="Type to search" />
+          <div className={ classes.searchInput }>{ this.props.searchInput }</div>
         </div>
          <PhotoCamera style={ cameraStyle } color={ white } onTouchTap={ this.handleTouchTap } />
          <Popover open={ this.state.open } anchorEl={ this.state.anchorEl }

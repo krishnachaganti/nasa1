@@ -7,9 +7,6 @@ import HomeView from './scenes/Home';
 
 export default store => {
   return (
-      <Route path="/" component={ CoreLayout }>
-        <IndexRoute component={ HomeView } />
-
-      </Route>
+      <Route path="/" component={ CoreLayout } />
     );
 };

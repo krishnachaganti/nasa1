@@ -73,7 +73,6 @@ class Sidebar extends React.Component {// eslint-disable-line
         <SelectableList style={ sidebarMenuStyle } defaultValue={ sidebar.selectedDrawerMenuListItem } sidebar={ sidebar }
           {...bindActionCreators(sidebarActions, dispatch)}
         >
-          <MenuItem style={ sidebarStyle }>Menu Item</MenuItem>
           <ListItem style={ sidebarMenuStyle } primaryText="Employee Search" value={ 1 } />
           <ListItem style={ sidebarMenuStyle } primaryText="Financial Report" value={ 2 } />
           <ListItem style={ sidebarMenuStyle } primaryText="Task Order Actions" value={ 3 } />

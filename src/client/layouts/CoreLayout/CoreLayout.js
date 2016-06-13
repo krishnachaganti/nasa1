@@ -12,8 +12,14 @@ import '../../styles/core.scss';
 import MenuIc from 'material-ui/svg-icons/navigation/menu';
 import { getIotd, fetchWeather } from '../../actions/header';
 import { getPeople } from '../../actions/people';
+import SearchInput, { createFilter } from 'react-search-input';
 import * as sidebarActions from '../../actions/sidebar';
 import Loader from '../../components/Loader';
+
+import PersonCard from '../../components/PersonCard';
+// import FilterLink from './components/FilterLink';
+import SubToolbar from '../../components/SubToolbar';
+
 const styles = {
   contentHeaderMenuLink: {
     textDecoration: 'none',
@@ -24,7 +30,7 @@ const styles = {
     zIndex: '1000'
   }
 };
-
+const KEYS_TO_FILTERS = ['OrgCode'];
 class CoreLayout extends Component {
   static loadAsyncData(dispatch) {
     dispatch(getIotd());
@@ -36,10 +42,16 @@ class CoreLayout extends Component {
 
     this.menuButtonClick = this.menuButtonClick.bind(this);
     this.onSetOpen = this.onSetOpen.bind(this);
+    this.state = {
+      searchTerm: ''
+    };
   }
 
   componentDidMount(dispatch) {
     this.constructor.loadAsyncData(this.props.dispatch);
+  }
+  searchUpdated(term) {
+    this.setState({ searchTerm: term });
   }
   onSetOpen(open) {
     this.setState({ open });
@@ -57,21 +69,31 @@ class CoreLayout extends Component {
       backgroundSize: 'cover',
       backgroundAttachment: 'fixed'
     };
-
+    const search = {
+      width: '600px',
+      height: '60px'
+    };
+    const filteredPeople = this.props.people.people[0].filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS));
     return (
       <div className="row">
           <MenuIc onTouchTap={ this.menuButtonClick } color={ lightWhite } style={ styles.contentHeaderMenuLink } />
-          { this.props.header.loading ? <Loader /> :
             <Header headerImage={ headerStyle }
             imageTitle={ this.props.header.title }
             temperature={ this.props.header.temperature }
+            people={ this.props.people.people }
+            searchInput={<SearchInput style={ search } className="search-input" onChange={::this.searchUpdated} /> }
           />
-        }
           <Sidebar />
           <Toolbar />
           <Sider />
-          { this.props.children }
+            <div className="wrap">
 
+          <div className="row">
+            { this.props.people.loading ? <Loader /> :
+              filteredPeople.map((p, i) => <PersonCard key={ i } person={ p } />)
+            }
+          </div>
+          </div>
       </div>
     );
   }
