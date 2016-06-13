@@ -36,7 +36,7 @@ const PersonCard = props => (
        <br />
        Org Code: { props.person.OrgCode }
        <br />
-       Kudos:
+       Kudos: { props.kudosCounter }
       </CardText>
       </div>
       </div>

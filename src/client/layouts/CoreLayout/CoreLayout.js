@@ -8,17 +8,18 @@ import { lightWhite } from 'material-ui/styles/colors';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import Weather from '../../components/Weather';
 import classes from './CoreLayout.scss';
-import '../../styles/core.scss';
+
 import MenuIc from 'material-ui/svg-icons/navigation/menu';
 import { getIotd, fetchWeather } from '../../actions/header';
 import { getPeople } from '../../actions/people';
 import SearchInput, { createFilter } from 'react-search-input';
 import * as sidebarActions from '../../actions/sidebar';
 import Loader from '../../components/Loader';
-
+import { increment, decrement } from '../../actions/kudos';
 import PersonCard from '../../components/PersonCard';
-// import FilterLink from './components/FilterLink';
 import SubToolbar from '../../components/SubToolbar';
+import Counter from '../../components/Counter';
+import '../../styles/core.scss';
 
 const styles = {
   contentHeaderMenuLink: {
@@ -60,6 +61,15 @@ class CoreLayout extends Component {
     ev.preventDefault();
     this.props.dispatch(sidebarActions.toggleSideBar());
   }
+  handleIncrement = () => {
+    let { dispatch, count } = this.props;
+    dispatch(increment(count));
+  }
+
+  handleDecrement = () => {
+    let { dispatch, count } = this.props;
+    dispatch(decrement(count));
+  }
 
   render() {
     const headerStyle = {
@@ -90,7 +100,12 @@ class CoreLayout extends Component {
 
           <div className="row">
             { this.props.people.loading ? <Loader /> :
-              filteredPeople.map((p, i) => <PersonCard key={ i } person={ p } />)
+              filteredPeople.map((p, i) => <PersonCard key={ i } person={ p } kudosCounter={
+                <Counter handleIncrement={ ::this.handleIncrement }
+                  handleDecrement={ ::this.handleDecrement }
+                  count={ this.props.kudos.count }
+                />
+              }/>)
             }
           </div>
           </div>
@@ -103,7 +118,8 @@ const mapStateToProps = (state, ownProps) => {
     header: state.header,
     loading: state.header.loading,
     people: state.people,
-    sidebar: state.sidebar
+    sidebar: state.sidebar,
+    kudos: state.kudos
   };
 };
 

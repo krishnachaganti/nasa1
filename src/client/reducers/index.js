@@ -4,14 +4,13 @@ import header from './header';
 import report from './report';
 import people from './people';
 import sidebar from './sidebar';
-import visibilityFilter from './visibilityFilter';
-
+import kudos from './kudos';
 const rootReducer = combineReducers({
   routing,
   header,
   people,
   sidebar,
-  visibilityFilter,
+  kudos,
   report
 });
 

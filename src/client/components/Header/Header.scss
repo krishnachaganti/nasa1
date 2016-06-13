@@ -10,16 +10,16 @@
 }
 
 .headerTextWrap {
-  lost-align: center;
   text-align: center;
 }
 
 .headerText {
-  padding-top: 350px;
+  padding-top: 150px;
   color: #fff;
   font-size: 26px;
+  font-weight: 400;
 }
 
 .searchInput {
-  padding-top: 600px;
+  z-index: 1000;
 }
