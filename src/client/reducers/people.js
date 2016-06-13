@@ -5,8 +5,20 @@ const INITIAL_STATE = {
   message: '',
   error: false,
   reports: '',
-  people: [],
-  person: {}
+  people: [{
+    DoH: '',
+    ITS_016_001: '',
+    LARC_CICT: '',
+    NASAContactName: '',
+    NASAContactPhone: '',
+    OCIMPR: '',
+    OrgCode: '',
+    PersonnelName: '',
+    PositionTitlePLC: '',
+    TO_Name: '',
+    TO_Number: '',
+    TO_TechnicalMonitor: ''
+  }]
 };
 
 export default function people(state = INITIAL_STATE, action) {

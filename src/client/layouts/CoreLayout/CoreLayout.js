@@ -8,7 +8,6 @@ import { lightWhite } from 'material-ui/styles/colors';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import Weather from '../../components/Weather';
 import classes from './CoreLayout.scss';
-
 import MenuIc from 'material-ui/svg-icons/navigation/menu';
 import { getIotd, fetchWeather } from '../../actions/header';
 import { getPeople } from '../../actions/people';
@@ -19,6 +18,8 @@ import { increment, decrement } from '../../actions/kudos';
 import PersonCard from '../../components/PersonCard';
 import SubToolbar from '../../components/SubToolbar';
 import Counter from '../../components/Counter';
+import OrgGroup from '../../scenes/OrgGroup';
+import BossCard from '../../components/BossCard';
 import '../../styles/core.scss';
 
 const styles = {
@@ -44,7 +45,7 @@ class CoreLayout extends Component {
     this.menuButtonClick = this.menuButtonClick.bind(this);
     this.onSetOpen = this.onSetOpen.bind(this);
     this.state = {
-      searchTerm: ''
+      searchTerm: 'IT-A'
     };
   }
 
@@ -62,12 +63,12 @@ class CoreLayout extends Component {
     this.props.dispatch(sidebarActions.toggleSideBar());
   }
   handleIncrement = () => {
-    let { dispatch, count } = this.props;
+    const { dispatch, count } = this.props;
     dispatch(increment(count));
   }
 
   handleDecrement = () => {
-    let { dispatch, count } = this.props;
+    const { dispatch, count } = this.props;
     dispatch(decrement(count));
   }
 
@@ -83,7 +84,7 @@ class CoreLayout extends Component {
       width: '600px',
       height: '60px'
     };
-    const filteredPeople = this.props.people.people[0].filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS));
+    const filteredPeople = this.props.people.people.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS));
     return (
       <div className="row">
           <MenuIc onTouchTap={ this.menuButtonClick } color={ lightWhite } style={ styles.contentHeaderMenuLink } />
@@ -94,20 +95,18 @@ class CoreLayout extends Component {
             searchInput={<SearchInput style={ search } className="search-input" onChange={::this.searchUpdated} /> }
           />
           <Sidebar />
-          <Toolbar />
+          <Toolbar total={ this.props.people.people } />
           <Sider />
             <div className="wrap">
 
-          <div className="row">
-            { this.props.people.loading ? <Loader /> :
-              filteredPeople.map((p, i) => <PersonCard key={ i } person={ p } kudosCounter={
-                <Counter handleIncrement={ ::this.handleIncrement }
-                  handleDecrement={ ::this.handleDecrement }
-                  count={ this.props.kudos.count }
-                />
-              }/>)
-            }
-          </div>
+
+          <OrgGroup boss={
+              <BossCard nasaName="Lisa Barber" position="Boss" orgCode="IT-A"/>
+          } toolbar={ <SubToolbar orgCode="IT-A:" orgTitle="Business Office" /> } orgType="a" />
+          <OrgGroup boss={
+              <BossCard nasaName="Henry Yu" position="Boss" orgCode="IT-B"/>
+            } toolbar={ <SubToolbar orgCode="IT-B:" orgTitle="IT Security Office" /> } orgType="b" />
+          <OrgGroup toolbar={ <SubToolbar orgCode="IT-C:" /> } orgType="c" />
           </div>
       </div>
     );
@@ -128,4 +127,5 @@ CoreLayout.propTypes = {
   dispatch: React.PropTypes.func,
   header: React.PropTypes.object
 };
+
 export default connect(mapStateToProps, null)(CoreLayout);

@@ -5,7 +5,8 @@ import classes from './Weather.scss';
 const monthDay = Moment().format('MMMM D');
 const tmpStyle = {
   fontSize: '2.3em',
-  color: '#fff'
+  color: '#fff',
+  float: 'right'
 };
 const labelTxtSmall = {
   fontSize: '.95em',

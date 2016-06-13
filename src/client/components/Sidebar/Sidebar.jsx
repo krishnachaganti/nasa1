@@ -70,12 +70,12 @@ class Sidebar extends React.Component {// eslint-disable-line
         onRequestChange={ open => { this.handleToggle(); } }
       >
 
-        <SelectableList style={ sidebarMenuStyle } defaultValue={ sidebar.selectedDrawerMenuListItem } sidebar={ sidebar }
+        <SelectableList nestedListStyle={ sidebarMenuStyle } defaultValue={ sidebar.selectedDrawerMenuListItem } sidebar={ sidebar }
           {...bindActionCreators(sidebarActions, dispatch)}
         >
-          <ListItem style={ sidebarMenuStyle } primaryText="Employee Search" value={ 1 } />
-          <ListItem style={ sidebarMenuStyle } primaryText="Financial Report" value={ 2 } />
-          <ListItem style={ sidebarMenuStyle } primaryText="Task Order Actions" value={ 3 } />
+          <MenuItem style={ sidebarMenuStyle } primaryText="Employee Search" value={ 1 } />
+          <MenuItem style={ sidebarMenuStyle } primaryText="Financial Report" value={ 2 } />
+          <MenuItem style={ sidebarMenuStyle } primaryText="Task Order Actions" value={ 3 } />
         </SelectableList>
       </Drawer>
     );

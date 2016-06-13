@@ -43,37 +43,19 @@ class Toolbar extends Component {
         <div className="col-xs">
           <div className="box">
           <Select
-                      dropdownStyle={ selectStyle }
-                      optionsStyle={ theOptionsStyle }
-                      options={ [
-                        {
-                          value: '1',
-                          displayValue: 'IT-A'
-                        },
-                        {
-                          value: '2',
-                          displayValue: 'IT-B'
-                        },
-                        {
-                          value: '3',
-                          displayValue: 'IT-C'
-                        },
-                        {
-                          value: '4',
-                          displayValue: 'IT-D'
-                        },
-                        {
-                          value: '5',
-                          displayValue: 'IT-E'
-                        },
-                        {
-                          value: '6',
-                          displayValue: 'IT-F'
-                        }
-                      ] }
-                      valid
-                    />
-                    </div>
+            dropdownStyle={ selectStyle }
+            optionsStyle={ theOptionsStyle }
+            options={ [
+              { value: '1', displayValue: 'IT-A' },
+              { value: '2', displayValue: 'IT-B' },
+              { value: '3', displayValue: 'IT-C' },
+              { value: '4', displayValue: 'IT-D' },
+              { value: '5', displayValue: 'IT-E' },
+              { value: '6', displayValue: 'IT-F' }
+            ] }
+            valid
+          />
+          </div>
           </div>
            <div className="col-xs">
            <div className="box">
@@ -81,30 +63,12 @@ class Toolbar extends Component {
              dropdownStyle={ select2Style }
              optionsStyle={ theOptionsStyle }
              options={ [
-               {
-                 value: '1',
-                 displayValue: 'IT-A'
-               },
-               {
-                 value: '2',
-                 displayValue: 'IT-B'
-               },
-               {
-                 value: '3',
-                 displayValue: 'IT-C'
-               },
-               {
-                 value: '4',
-                 displayValue: 'IT-D'
-               },
-               {
-                 value: '5',
-                 displayValue: 'IT-E'
-               },
-               {
-                 value: '6',
-                 displayValue: 'IT-F'
-               }
+               { value: '1', displayValue: 'IT-A' },
+               { value: '2', displayValue: 'IT-B' },
+               { value: '3', displayValue: 'IT-C' },
+               { value: '4', displayValue: 'IT-D' },
+               { value: '5', displayValue: 'IT-E' },
+               { value: '6', displayValue: 'IT-F' }
              ] }
              valid
            />
@@ -117,30 +81,12 @@ class Toolbar extends Component {
              dropdownStyle={ selectStyle }
              optionsStyle={ theOptionsStyle }
              options={ [
-               {
-                 value: '1',
-                 displayValue: 'IT-A'
-               },
-               {
-                 value: '2',
-                 displayValue: 'IT-B'
-               },
-               {
-                 value: '3',
-                 displayValue: 'IT-C'
-               },
-               {
-                 value: '4',
-                 displayValue: 'IT-D'
-               },
-               {
-                 value: '5',
-                 displayValue: 'IT-E'
-               },
-               {
-                 value: '6',
-                 displayValue: 'IT-F'
-               }
+               { value: '1', displayValue: 'IT-A' },
+               { value: '2', displayValue: 'IT-B' },
+               { value: '3', displayValue: 'IT-C' },
+               { value: '4', displayValue: 'IT-D' },
+               { value: '5', displayValue: 'IT-E' },
+               { value: '6', displayValue: 'IT-F' }
              ] }
              valid
            />
@@ -148,7 +94,7 @@ class Toolbar extends Component {
           </div>
           <div className="col-xs">
          <div className="box">
-           Total ITSS Personel: 47
+           Total ITSS Personnel: { this.props.total.length }
          </div>
           </div>
         </div>

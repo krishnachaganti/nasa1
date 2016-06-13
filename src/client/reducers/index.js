@@ -5,11 +5,13 @@ import report from './report';
 import people from './people';
 import sidebar from './sidebar';
 import kudos from './kudos';
+import org from './org';
 const rootReducer = combineReducers({
   routing,
   header,
   people,
   sidebar,
+  org,
   kudos,
   report
 });
