@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PersonCard from '../../components/PersonCard';
 import BossCard from '../../components/BossCard';
-import { getITA, getITB, getITC } from '../../actions/org';
+import { getITA, getITB, getITC, getITD } from '../../actions/org';
 import Dialog from 'material-ui/Dialog';
 
 class OrgGroup extends Component {
@@ -10,6 +10,7 @@ class OrgGroup extends Component {
     dispatch(getITA());
     dispatch(getITB());
     dispatch(getITC());
+    dispatch(getITD());
   }
 
   componentDidMount(dispatch) {
@@ -29,6 +30,10 @@ class OrgGroup extends Component {
         break;
       case 'c':
         CardCollection = this.props.org.itc.map((p, i) =>
+              <PersonCard key={ i } person={ p }/>);
+        break;
+      case 'd':
+        CardCollection = this.props.org.itd.map((p, i) =>
               <PersonCard key={ i } person={ p }/>);
         break;
       default:
@@ -55,7 +60,8 @@ const mapStateToProps = (state, ownProps) => {
     org: state.org,
     ita: state.org.ita,
     itb: state.org.itb,
-    itc: state.org.itc
+    itc: state.org.itc,
+    itd: state.org.itd
   };
 };
 

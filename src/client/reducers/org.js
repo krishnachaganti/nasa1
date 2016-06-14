@@ -64,6 +64,23 @@ export default function org(state = INITIAL_STATE, action) {
         ...state,
         error: action.payload
       };
+    case constants.LOAD_ITD:
+      return {
+        ...state,
+        loading: true
+      };
+    case constants.LOAD_ITD_SUCCESS:
+      return {
+        ...state,
+        error: false,
+        loading: false,
+        itd: action.payload
+      };
+    case constants.LOAD_ITD_FAILURE:
+      return {
+        ...state,
+        error: action.payload
+      };
     default:
       return state;
   }

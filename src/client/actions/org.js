@@ -70,11 +70,11 @@ export function getITB(data) {
   };
 }
 
-export const LOAD_ITC = '@@org/LOAD_ITB';
+export const LOAD_ITC = '@@org/LOAD_ITC';
 export const LOAD_ITC_SUCCESS = '@@org/LOAD_ITC_SUCCESS';
 export const LOAD_ITC_FAILURE = '@@org/LOAD_ITC_FAILURE';
 const loadITC = () => ({
-  type: LOAD_ITB
+  type: LOAD_ITC
 });
 
 const loadITCSuccess = response => ({
@@ -101,6 +101,41 @@ export function getITC(data) {
       })
       .catch(err => {
         dispatch(failedToLoadITC(err));
+      });
+  };
+}
+
+export const LOAD_ITD = '@@org/LOAD_ITD';
+export const LOAD_ITD_SUCCESS = '@@org/LOAD_ITD_SUCCESS';
+export const LOAD_ITD_FAILURE = '@@org/LOAD_ITD_FAILURE';
+const loadITD = () => ({
+  type: LOAD_ITD
+});
+
+const loadITDSuccess = response => ({
+  type: LOAD_ITD_SUCCESS,
+  payload: response.data
+});
+
+// Fail receivers
+const failedToLoadITD = data => ({
+  type: LOAD_ITD_FAILURE,
+  data
+});
+
+export function getITD(data) {
+  return dispatch => {
+    dispatch(loadITD());
+    return axios.get('/api/v1/people/itd')
+      .then(response => {
+        if (response.status === 200) {
+          dispatch(loadITDSuccess(response));
+        } else {
+          dispatch(failedToLoadITD('Oops! Something went wrong!'));
+        }
+      })
+      .catch(err => {
+        dispatch(failedToLoadITD(err));
       });
   };
 }

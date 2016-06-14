@@ -101,12 +101,17 @@ class CoreLayout extends Component {
 
 
           <OrgGroup boss={
-              <BossCard nasaName="Lisa Barber" position="Boss" orgCode="IT-A"/>
+              <BossCard nasaName="Lisa Barber" position="Boss" orgCode="IT-A" />
           } toolbar={ <SubToolbar orgCode="IT-A:" orgTitle="Business Office" /> } orgType="a" />
           <OrgGroup boss={
-              <BossCard nasaName="Henry Yu" position="Boss" orgCode="IT-B"/>
+              <BossCard nasaName="Henry Yu" position="Boss" orgCode="IT-B" />
             } toolbar={ <SubToolbar orgCode="IT-B:" orgTitle="IT Security Office" /> } orgType="b" />
-          <OrgGroup toolbar={ <SubToolbar orgCode="IT-C:" /> } orgType="c" />
+          <OrgGroup boss={
+              <BossCard nasaName="Henry Yu" position="Boss" orgCode="IT-C" />
+            } toolbar={ <SubToolbar orgCode="IT-C:" orgTitle="IT Security Office" /> } orgType="c" />
+          <OrgGroup boss={
+              <BossCard nasaName="Henry Yu" position="Boss" orgCode="IT-D" />
+            } toolbar={ <SubToolbar orgCode="IT-D:" orgTitle="IT Security Office" /> } orgType="d" />
           </div>
       </div>
     );
