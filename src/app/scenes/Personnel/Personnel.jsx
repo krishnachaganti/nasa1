@@ -12,7 +12,8 @@ import { getPeople, getITA } from 'state/people/people';
 import * as sidebarActions from 'state/sidebar/sidebar';
 import { Toolbar, Sidebar, Weather, SubToolbar, BossCard } from 'components/index';
 import OrgGroup from './org.OrgGroup';
-import fallbackimg from '../../components/Header/fallback-hero.jpg';
+import fallbackimg from './org.Hero/fallback-hero.jpg';
+import Hero from './org.Hero';
 
 const styles = {
   contentHeaderMenuLink: {

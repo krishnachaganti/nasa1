@@ -7,9 +7,9 @@
   "styles": {},
   "assets": {
     "./src/app/components/BossCard/wendyburger.png": "http://localhost:3001/build/c43d4fdadce3da9400c99928e8342284.png",
-    "./src/app/components/Header/nasalogo.png": "http://localhost:3001/build/b98456da0240730869b3240839c50d56.png",
-    "./src/app/scenes/Home/atm.PersonImage/wendyburger.png": "http://localhost:3001/build/c43d4fdadce3da9400c99928e8342284.png",
-    "./src/app/components/Header/fallback-hero.jpg": "http://localhost:3001/build/baceded3fd6f192f0a9a62fd08e8627d.jpg",
+    "./src/app/scenes/Personnel/atm.PersonImage/wendyburger.png": "http://localhost:3001/build/c43d4fdadce3da9400c99928e8342284.png",
+    "./src/app/scenes/Personnel/org.Hero/fallback-hero.jpg": "http://localhost:3001/build/baceded3fd6f192f0a9a62fd08e8627d.jpg",
+    "./src/app/scenes/Personnel/org.Hero/nasalogo.png": "http://localhost:3001/build/b98456da0240730869b3240839c50d56.png",
     "./src/app/components/BossCard/Card.scss": {
       "_style": ".cardWrap {\n  lost-column: 1/3;\n  background-color: #fff;\n  overflow: hidden;\n}\n\n.cardContent {\n  lost-column: 1/2 1;\n}\n\n.bwrap {\n  opacity: 0;\n}\n\n.bwrap:hover {\n  opacity: 1;\n}\n"
     },

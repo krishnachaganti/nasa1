@@ -6,7 +6,7 @@ import PhotoCamera from 'material-ui/svg-icons/action/camera-enhance';
 import { Popover, PopoverAnimationVertical } from 'material-ui/Popover';
 
 import nasaLogo from './nasalogo.png';
-import Weather from '../../components/Weather';
+import { Weather } from 'components/index';
 // import classes from './Header.scss';
 
 const cameraStyle = {
@@ -59,7 +59,7 @@ export default class Hero extends React.Component {
   };
   render() {
     return (
-      <div style={ this.props.headerImage }>
+      <div style={ this.props.heroImage }>
       <div className="container-fluid">
         <img src={ nasaLogo } style={ logoStyle } />
         <Weather temperature={ this.props.temperature } />
@@ -85,6 +85,6 @@ export default class Hero extends React.Component {
 }
 
 Hero.propTypes = {
-  headerImage: React.PropTypes.object,
+  heroImage: React.PropTypes.object,
   weatherWidget: React.PropTypes.element
 };
