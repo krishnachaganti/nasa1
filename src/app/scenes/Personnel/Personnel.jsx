@@ -10,8 +10,9 @@ import SearchInput, { createFilter } from 'react-search-input';
 import { getIotd, fetchWeather } from 'state/index';
 import { getPeople, getITA } from 'state/people/people';
 import * as sidebarActions from 'state/sidebar/sidebar';
-import { Header, Toolbar, Sidebar, Weather, PersonCard, SubToolbar, BossCard } from 'components/index';
+import { Toolbar, Sidebar, Weather, SubToolbar, BossCard } from 'components/index';
 import OrgGroup from './org.OrgGroup';
+import fallbackimg from '../../components/Header/fallback-hero.jpg';
 
 const styles = {
   contentHeaderMenuLink: {
@@ -24,10 +25,10 @@ const styles = {
   }
 };
 
-class Home extends Component {
+class Personnel extends Component {
   static propTypes = {
     dispatch: React.PropTypes.func,
-    header: React.PropTypes.object
+    hero: React.PropTypes.object
   }
   static readyOnActions(dispatch) {
     return Promise.all([
@@ -48,17 +49,18 @@ class Home extends Component {
     this.setState({ searchTerm: term });
   }
   componentDidMount() {
-    Home.readyOnActions(this.props.dispatch);
+    Personnel.readyOnActions(this.props.dispatch);
   }
   menuButtonClick(ev) {
     ev.preventDefault();
     this.props.dispatch(sidebarActions.toggleSideBar());
   }
   render() {
-    const headerStyle = {
+    const HERO_IMG = this.props.hero.iotd || fallbackimg;
+    const heroStyle = {
       height: '465px',
       width: '100%',
-
+      backgroundImage: 'url(' + HERO_IMG + ')', // eslint-disable-line
       backgroundSize: 'cover',
       backgroundAttachment: 'fixed'
     };
@@ -68,9 +70,9 @@ class Home extends Component {
     };
     return (
       <div>
-        <Helmet title="Home" />
+        <Helmet title="Personnel" />
         <MenuIc onTouchTap={ ::this.menuButtonClick } color={ lightWhite } style={ styles.contentHeaderMenuLink } />
-          <Header headerImage={ headerStyle }
+          <Hero heroImage={ heroStyle }
           />
           <Sidebar />
           <Toolbar total={ this.props.people.people } />
@@ -85,10 +87,10 @@ class Home extends Component {
               } toolbar={ <SubToolbar orgCode="IT-B:" orgTitle="IT Security Office" /> } orgType="b" />
           </Row>
           <Row>
-          <OrgGroup boss={
-              <BossCard nasaName="Henry Yu" position="Boss" orgCode="IT-C" />
-            } toolbar={ <SubToolbar orgCode="IT-C:" orgTitle="IT Security Office" /> } orgType="c" />
-            </Row>
+            <OrgGroup boss={
+                <BossCard nasaName="Henry Yu" position="Boss" orgCode="IT-C" />
+              } toolbar={ <SubToolbar orgCode="IT-C:" orgTitle="IT Security Office" /> } orgType="c" />
+          </Row>
           <Row>
           <OrgGroup boss={
               <BossCard nasaName="Henry Yu" position="Boss" orgCode="IT-D" />
@@ -101,11 +103,11 @@ class Home extends Component {
 
 function mapStateToProps(state) {
   return {
-    header: state.headerReducer,
-    loading: state.headerReducer.loading,
+    hero: state.heroReducer,
+    loading: state.heroReducer.loading,
     people: state.peopleReducer,
     sidebar: state.sidebarReducer
   };
 }
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps)(Personnel);

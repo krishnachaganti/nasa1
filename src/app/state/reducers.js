@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
 import { routerReducer as routing } from 'react-router-redux';
-import headerReducer from './header/header';
+import heroReducer from './hero/hero';
 import peopleReducer from './people/people';
 import sidebarReducer from './sidebar/sidebar';
 import orgReducer from './org/org';
 
 const rootReducer = combineReducers({
-  headerReducer,
+  heroReducer,
   peopleReducer,
   sidebarReducer,
   orgReducer,
