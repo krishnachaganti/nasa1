@@ -1,0 +1,23 @@
+.Sider {
+  position: fixed;
+  left: 0;
+  top: 30%;
+
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  a {
+    color: #000;
+  }
+}
+.SiderSquare {
+    background-color: #D8D8D8;
+    font-weight: 700;
+    display: block;
+    line-height: 48px;
+    text-align: center;
+    transition: background 200ms;
+    width: 50px;
+}
