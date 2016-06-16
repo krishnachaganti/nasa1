@@ -5,6 +5,7 @@ import peopleReducer from './people/people';
 import sidebarReducer from './sidebar/sidebar';
 import orgReducer from './org/org';
 
+
 const rootReducer = combineReducers({
   heroReducer,
   peopleReducer,

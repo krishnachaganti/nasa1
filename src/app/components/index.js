@@ -4,7 +4,6 @@ import Sidebar from './Sidebar';
 import Sider from './Sider';
 import SubToolbar from './SubToolbar';
 import Toolbar from './Toolbar';
-import Weather from './Weather';
 
 export {
   BossCard,
@@ -12,6 +11,5 @@ export {
   Sidebar,
   Sider,
   SubToolbar,
-  Toolbar,
-  Weather
+  Toolbar
 };

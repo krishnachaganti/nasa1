@@ -1,3 +1,8 @@
-body {
-  background-color: #eaeaea;
-}
+@import 'abstracts/variables';
+@import 'abstracts/mixins';
+@import 'base/global';
+@import 'base/typography';
+@import 'layout/flexbox';
+
+@import 'components/hero';
+@import 'components/toolbar';

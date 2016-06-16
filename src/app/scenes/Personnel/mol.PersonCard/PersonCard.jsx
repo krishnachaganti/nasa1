@@ -1,21 +1,24 @@
 import React from 'react';
-import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
+import { CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
+
 import RaisedButton from 'material-ui/RaisedButton';
 import PersonImage from '../atm.PersonImage';
 
-const cardStyle = {
-  marginLeft: '15px',
-  marginRight: '15px',
-  marginTop: '20px',
-  marginBottom: '20px',
-
-  width: '380px'
-};
+// const cardStyle = {
+//   marginLeft: '15px',
+//   marginRight: '15px',
+//   marginTop: '20px',
+//   marginBottom: '20px',
+//   display: 'flex',
+//   flexDirection: 'column',
+//   overflow: 'hidden',
+//   width: '380px'
+// };
 
 const insideCard = {
   display: 'flex',
   flexDirection: 'row',
-  flex: 1
+  flex: '1 1 auto'
 };
 
 const cardImg = {
@@ -47,11 +50,10 @@ class PersonCard extends React.Component {
   }
   render() {
     return (
-        <Card style={ cardStyle }>
-          <div style={ insideCard }>
+          <div style={ insideCard } onTouchTap={ this.props.toggle }>
             <PersonImage style={ cardImg } increaseKudos={ this.props.handleIncrement }
               decreaseKudos={ this.props.handleDecrement }
-            />
+           />
             <div style={ rightSide }>
               <CardTitle title={ this.props.person.PersonnelName } />
               <CardText>
@@ -63,7 +65,6 @@ class PersonCard extends React.Component {
               </CardText>
             </div>
           </div>
-        </Card>
     );
   }
 }

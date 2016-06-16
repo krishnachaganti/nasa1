@@ -11,6 +11,7 @@ import '../styles/main.scss';
 import routes from '../routes.jsx';
 import Html from './Html.jsx';
 import configureStore from '../utils.redux/configureStore';
+
 injectTapEventPlugin();
 const isClient = typeof document !== 'undefined';
 

@@ -59,7 +59,7 @@ export default class Html extends Component {
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta name="apple-mobile-web-app-status-bar-style" content="black" />
           <link rel="shortcut icon" href="/favicon.ico" />
-          <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,300,400italic|Roboto+Condensed:400,300"
+          <link href="https://fonts.googleapis.com/css?family=Titillium+Web:400,300,700"
             rel="stylesheet" type="text/css"
           />
           { this.styles }

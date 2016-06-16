@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { white } from 'material-ui/styles/colors';
 import PhotoCamera from 'material-ui/svg-icons/action/camera-enhance';
 import { Popover, PopoverAnimationVertical } from 'material-ui/Popover';
-
+import Heading from 'shared/atm.Heading';
 import nasaLogo from './nasalogo.png';
-import { Weather } from 'components/index';
+import Weather from '../mol.Weather';
 // import classes from './Header.scss';
 
 const cameraStyle = {
@@ -27,8 +27,7 @@ const logoStyle = {
   height: '63px',
   margin: '0 auto',
   position: 'absolute',
-  left: '50%',
-  right: '50%',
+  left: '43%',
   top: '15px',
   justifyContent: 'center'
 };
@@ -63,11 +62,9 @@ export default class Hero extends React.Component {
       <div className="container-fluid">
         <img src={ nasaLogo } style={ logoStyle } />
         <Weather temperature={ this.props.temperature } />
-        <div >
-          <h2>Search our Listing of Current Employees and Training Status <br />
-          Regarding Treatment of Sensitive Information</h2>
-
-        </div>
+        <Heading size={2} color="#fff" align="center" top="150">
+          Search our Listing of Current Employees and Training Status <br />
+          Regarding Treatment of Sensitive Information</Heading>
          <PhotoCamera style={ cameraStyle } color={ white } onTouchTap={ this.handleTouchTap } />
          <Popover open={ this.state.open } anchorEl={ this.state.anchorEl }
           anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
@@ -76,7 +73,6 @@ export default class Hero extends React.Component {
           onRequestClose={this.handleRequestClose}
           animation={PopoverAnimationVertical}
           >
-
           </Popover>
           </div>
       </div>

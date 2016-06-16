@@ -1,0 +1,21 @@
+.toolbar--list {
+  display: inline;
+  list-style-type: none;
+}
+
+.toolbar-left {
+flex: 1 0 25%;
+}
+.toolbar-mid {
+  display: inline;
+
+  label {
+    margin-left: 60px;
+    margin-right: 20px;
+    float: left;
+    position: relative;
+  }
+}
+.toolbar-right {
+  flex: 1 0 25%;
+}

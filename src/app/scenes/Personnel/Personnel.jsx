@@ -56,6 +56,7 @@ class Personnel extends Component {
     ev.preventDefault();
     this.props.dispatch(sidebarActions.toggleSideBar());
   }
+
   render() {
     const HERO_IMG = this.props.hero.iotd || fallbackimg;
     const heroStyle = {
@@ -73,14 +74,17 @@ class Personnel extends Component {
       <div>
         <Helmet title="Personnel" />
         <MenuIc onTouchTap={ ::this.menuButtonClick } color={ lightWhite } style={ styles.contentHeaderMenuLink } />
-          <Hero heroImage={ heroStyle }
+          <Hero heroImage={ heroStyle } temperature={ this.props.hero.temperature }
           />
           <Sidebar />
           <Toolbar total={ this.props.people.people } />
           <Row>
-            <OrgGroup boss={
+            <OrgGroup people={this.props.people.people} boss={
                 <BossCard nasaName="Lisa Barber" position="Boss" orgCode="IT-A" />
-            } toolbar={ <SubToolbar orgCode="IT-A:" orgTitle="Business Office" /> } orgType="a" />
+              } toolbar={
+                <SubToolbar orgCode="IT-A:" orgTitle="Business Office" />
+              } orgType="a"
+            />
           </Row>
           <Row>
             <OrgGroup boss={

@@ -75,21 +75,7 @@ const INITIAL_STATE = {
   loading: false,
   message: '',
   error: false,
-  reports: '',
-  people: [{
-    DoH: '',
-    ITS_016_001: '',
-    LARC_CICT: '',
-    NASAContactName: '',
-    NASAContactPhone: '',
-    OCIMPR: '',
-    OrgCode: '',
-    PersonnelName: '',
-    PositionTitlePLC: '',
-    TO_Name: '',
-    TO_Number: '',
-    TO_TechnicalMonitor: ''
-  }]
+  people: []
 };
 
 export default function peopleReducer(state = INITIAL_STATE, action) {

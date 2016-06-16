@@ -2,9 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Grid, Row, Col } from 'react-bem-grid';
 import PersonCard from '../mol.PersonCard';
+import CardGroup from 'shared/org.CardGroup';
+import Card from 'shared/atm.Card';
 import { BossCard } from 'components/index';
 import { getITA, getITB, getITC, getITD } from 'state/org/org';
-
+import PersonDetails from '../org.PersonDetails';
+const rowstyle = {
+  flexWrap: 'wrap'
+}
 class OrgGroup extends Component {
 
   static readyOnActions(dispatch) {
@@ -15,6 +20,18 @@ class OrgGroup extends Component {
       dispatch(getITD())
     ]);
   }
+  constructor(props) {
+    super(props);
+    this.state = {
+       display: false
+    };
+  }
+  toggle() {
+    this.setState({
+      display: !this.state.display
+    });
+  }
+
   componentDidMount() {
     OrgGroup.readyOnActions(this.props.dispatch);
   }
@@ -24,19 +41,33 @@ class OrgGroup extends Component {
     switch (this.props.orgType) {
       case 'a':
         CardCollection = this.props.org.ita.map((p, i) =>
-              <PersonCard key={ i } person={ p } />);
+              <Card>
+                <PersonCard toggle={ ::this.toggle } key={ i } person={ p } />
+              </Card>
+
+              );
         break;
       case 'b':
         CardCollection = this.props.org.itb.map((p, i) =>
-              <PersonCard key={ i } person={ p }/>);
+            <Card>
+                <PersonCard key={ i } person={ p } />
+              </Card>
+              );
         break;
       case 'c':
         CardCollection = this.props.org.itc.map((p, i) =>
-              <PersonCard key={ i } person={ p }/>);
+            <Card>
+                <PersonCard key={ i } person={ p } />
+            </Card>
+            );
         break;
       case 'd':
         CardCollection = this.props.org.itd.map((p, i) =>
-              <PersonCard key={ i } person={ p }/>);
+            <Card>
+                <PersonCard key={ i } person={ p } />
+            </Card>
+
+            );
         break;
       default:
         throw new Error('CardCollection is not valid');
@@ -44,16 +75,17 @@ class OrgGroup extends Component {
     return (
       <div>
         { this.props.toolbar }
+        <div className="container-fluid">
         <Row>
           <Col xs>
             { this.props.boss }
           </Col>
         </Row>
-        <Row>
-          <Col xs>
+          <CardGroup>
             { CardCollection }
-          </Col>
-        </Row>
+          </CardGroup>
+          { this.state.display ? <Row>asdf</Row> : null}
+        </div>
       </div>
     );
   }
