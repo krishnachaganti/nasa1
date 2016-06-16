@@ -27,9 +27,7 @@ const PersonImage = props => {
      <IconButton tooltip="Give Kudos" style={ btnColor } onClick={ props.increaseKudos }>
       <ThumbsUp />
      </IconButton>
-     <IconButton tooltip="Remove Kudos" style={ btnColor } onClick={ props.decreaseKudos }>
-      <ThumbsDown />
-     </IconButton>
+
     </div>
       <img src={ WBImg } />
     </div>

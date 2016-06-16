@@ -73,6 +73,7 @@ export default class Hero extends React.Component {
           onRequestClose={this.handleRequestClose}
           animation={PopoverAnimationVertical}
           >
+          { this.props.titleImg }
           </Popover>
           </div>
       </div>

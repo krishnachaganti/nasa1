@@ -1,5 +1,5 @@
 import React from 'react';
-// import classes from './Sider.scss';
+import classes from './Sider.scss';
 
 const Sider = props => {
   return (

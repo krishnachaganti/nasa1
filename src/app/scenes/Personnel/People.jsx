@@ -8,25 +8,19 @@ import MenuIc from 'material-ui/svg-icons/navigation/menu';
 import { Grid, Row, Col } from 'react-bem-grid';
 import SearchInput, { createFilter } from 'react-search-input';
 import { getIotd, fetchWeather } from 'state/index';
-import { getPeople, getITA } from 'state/people/people';
+import { getITA, getITB, getITC, getITD } from 'state/org/org';
+import { getPeople } from 'state/people/people';
 import * as sidebarActions from 'state/sidebar/sidebar';
 import { Toolbar, Sidebar, Weather, SubToolbar, BossCard } from 'components/index';
 import OrgGroup from './org.OrgGroup';
 import fallbackimg from './org.Hero/fallback-hero.jpg';
 import Hero from './org.Hero';
 
-class Personnel extends Component {
+class People extends Component {
   static propTypes = {
-    dispatch: React.PropTypes.func,
-    hero: React.PropTypes.object
+    dispatch: React.PropTypes.func
   }
-  static readyOnActions(dispatch) {
-    return Promise.all([
-      dispatch(getIotd()),
-      dispatch(fetchWeather()),
-      dispatch(getPeople())
-    ]);
-  }
+
   constructor(props) {
     super(props);
 
@@ -38,10 +32,6 @@ class Personnel extends Component {
     };
   }
 
-  componentDidMount() {
-    Personnel.readyOnActions(this.props.dispatch);
-  }
-
   menuButtonClick(ev) {
     ev.preventDefault();
     this.props.dispatch(sidebarActions.toggleSideBar());
@@ -51,49 +41,6 @@ class Personnel extends Component {
     this.setState({
       display: !this.state.display
     });
-  }
-
-  handleFiltering() {
-    this.setState({
-      normal: false
-    })
-  }
-
-  filteredView() {
-    return (
-      <div className="wrap">
-      {this.props.children}
-      </div>
-    )
-  }
-  normalView() {
-    return (
-      <div className="wrap">
-          <Row>
-            <OrgGroup boss={
-                <BossCard nasaName="Lisa Barber" position="Boss" orgCode="IT-A" />
-              } toolbar={
-                <SubToolbar orgCode="IT-A:" orgTitle="Business Office" />
-              } orgType="a" addRow={ ::this.toggle }
-            />
-          </Row>
-          <Row>
-            <OrgGroup boss={
-                <BossCard nasaName="Henry Yu" position="Boss" orgCode="IT-B" />
-              } toolbar={ <SubToolbar orgCode="IT-B:" orgTitle="IT Security Office" /> } orgType="b" addRow={ ::this.toggle } />
-          </Row>
-          <Row>
-            <OrgGroup boss={
-                <BossCard nasaName="Henry Yu" position="Boss" orgCode="IT-C" />
-              } toolbar={ <SubToolbar orgCode="IT-C:" orgTitle="IT Security Office" /> } orgType="c" addRow={ ::this.toggle } />
-          </Row>
-          <Row>
-          <OrgGroup boss={
-              <BossCard nasaName="Henry Yu" position="Boss" orgCode="IT-D" />
-            } toolbar={ <SubToolbar orgCode="IT-D:" orgTitle="IT Security Office" /> } orgType="d" addRow={ ::this.toggle } />
-          </Row>
-      </div>
-    )
   }
   render() {
     const styles = {
@@ -120,14 +67,30 @@ class Personnel extends Component {
     };
 
     return (
-      <div>
-        <Helmet title="Personnel" />
-        <MenuIc onTouchTap={ ::this.menuButtonClick } color={ lightWhite } style={ styles.contentHeaderMenuLink } />
-          <Hero heroImage={ heroStyle } temperature={ this.props.hero.temperature } titleImg={ this.props.hero.title }
-          />
-          <Sidebar />
-          <Toolbar handleFiltering={::this.handleFiltering} total={ this.props.people.people } />
-         {this.props.children}
+      <div className="wrap">
+          <Row>
+            <OrgGroup boss={
+                <BossCard nasaName="Lisa Barber" position="Boss" orgCode="IT-A" />
+              } toolbar={
+                <SubToolbar orgCode="IT-A:" orgTitle="Business Office" />
+              } orgType="a" addRow={ ::this.toggle }
+            />
+          </Row>
+          <Row>
+            <OrgGroup boss={
+                <BossCard nasaName="Henry Yu" position="Boss" orgCode="IT-B" />
+              } toolbar={ <SubToolbar orgCode="IT-B:" orgTitle="IT Security Office" /> } orgType="b" addRow={ ::this.toggle } />
+          </Row>
+          <Row>
+            <OrgGroup boss={
+                <BossCard nasaName="Henry Yu" position="Boss" orgCode="IT-C" />
+              } toolbar={ <SubToolbar orgCode="IT-C:" orgTitle="IT Security Office" /> } orgType="c" addRow={ ::this.toggle } />
+          </Row>
+          <Row>
+          <OrgGroup boss={
+              <BossCard nasaName="Henry Yu" position="Boss" orgCode="IT-D" />
+            } toolbar={ <SubToolbar orgCode="IT-D:" orgTitle="IT Security Office" /> } orgType="d" addRow={ ::this.toggle } />
+          </Row>
       </div>
     );
   }
@@ -142,4 +105,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(Personnel);
+export default connect(mapStateToProps)(People);

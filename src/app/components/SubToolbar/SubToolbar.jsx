@@ -5,7 +5,7 @@ const bold = {
 };
 const SubToolbar = props => {
   return (
-    <div>
+    <div className="subtoolbar">
         <span style={ bold }>{ props.orgCode }</span> { props.orgTitle }
       </div>
   );

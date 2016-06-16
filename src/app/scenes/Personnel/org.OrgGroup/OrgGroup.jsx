@@ -6,7 +6,6 @@ import CardGroup from 'shared/org.CardGroup';
 import Card from 'shared/atm.Card';
 import { BossCard } from 'components/index';
 import { getITA, getITB, getITC, getITD } from 'state/org/org';
-import PersonDetails from '../org.PersonDetails';
 const rowstyle = {
   flexWrap: 'wrap'
 }
@@ -20,18 +19,6 @@ class OrgGroup extends Component {
       dispatch(getITD())
     ]);
   }
-  constructor(props) {
-    super(props);
-    this.state = {
-       display: false
-    };
-  }
-  toggle() {
-    this.setState({
-      display: !this.state.display
-    });
-  }
-
   componentDidMount() {
     OrgGroup.readyOnActions(this.props.dispatch);
   }
@@ -42,9 +29,8 @@ class OrgGroup extends Component {
       case 'a':
         CardCollection = this.props.org.ita.map((p, i) =>
               <Card>
-                <PersonCard toggle={ ::this.toggle } key={ i } person={ p } />
+                <PersonCard toggle={ this.props.addRow } key={ i } person={ p } />
               </Card>
-
               );
         break;
       case 'b':
@@ -66,7 +52,6 @@ class OrgGroup extends Component {
             <Card>
                 <PersonCard key={ i } person={ p } />
             </Card>
-
             );
         break;
       default:
@@ -75,7 +60,6 @@ class OrgGroup extends Component {
     return (
       <div>
         { this.props.toolbar }
-        <div className="container-fluid">
         <Row>
           <Col xs>
             { this.props.boss }
@@ -84,8 +68,6 @@ class OrgGroup extends Component {
           <CardGroup>
             { CardCollection }
           </CardGroup>
-          { this.state.display ? <Row>asdf</Row> : null}
-        </div>
       </div>
     );
   }

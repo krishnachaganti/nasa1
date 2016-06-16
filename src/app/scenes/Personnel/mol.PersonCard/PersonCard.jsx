@@ -43,17 +43,11 @@ class PersonCard extends React.Component {
   handleClose = () => {
     this.setState({ display: false });
   };
-  toggle = () => {
-    this.setState({
-      display: !this.state.display
-    });
-  }
+
   render() {
     return (
           <div style={ insideCard } onTouchTap={ this.props.toggle }>
-            <PersonImage style={ cardImg } increaseKudos={ this.props.handleIncrement }
-              decreaseKudos={ this.props.handleDecrement }
-           />
+            <PersonImage style={ cardImg } increaseKudos={ this.props.handleIncrement } />
             <div style={ rightSide }>
               <CardTitle title={ this.props.person.PersonnelName } />
               <CardText>
