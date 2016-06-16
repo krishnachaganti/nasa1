@@ -3,7 +3,6 @@ import { Route, IndexRoute } from 'react-router';
 import CoreLayout from './shared/tpl.CoreLayout';
 import Personnel from './scenes/Personnel';
 import Error404 from './shared/org.Error404';
-import Filtered from './scenes/Personnel/org.Filtered';
 import People from './scenes/Personnel/People';
 import itA from 'scenes/Personnel/pg.itA';
 import itB from 'scenes/Personnel/pg.itB';
