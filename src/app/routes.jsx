@@ -14,7 +14,7 @@ import TaskOrderListing from 'scenes/TaskOrder/TaskOrderListing';
 export default (
   <Route component={ CoreLayout }>
     <Route path="/" component={ Personnel }>
-    <IndexRoute component={ People } />
+      <IndexRoute component={ People } />
       <Route path="/ita" component={ itA } />
       <Route path="/itb" component={ itB } />
       <Route path="/itc" component={ itC } />

@@ -12,6 +12,7 @@ import * as sidebarActions from 'state/sidebar/sidebar';
 import { getIotd, fetchWeather } from 'state/index';
 import Heading from 'shared/atm.Heading';
 import Textblock from 'shared/atm.Textblock';
+
 const styles = {
   contentHeaderMenuLink: {
     textDecoration: 'none',
@@ -22,6 +23,7 @@ const styles = {
     zIndex: '1000'
   }
 };
+
 const btnStyle = {
   margin: 12,
   color: '#fff'
