@@ -9,7 +9,7 @@ const cardStyle = {
   display: 'flex',
   overflow: 'hidden',
   backgroundColor: '#fff',
-  width: '410px',
+  width: '380px',
   height: '220px'
 }
 const Card = ({ children }) => {

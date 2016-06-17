@@ -20,7 +20,24 @@ flex: 1 0 25%;
   flex: 1 0 25%;
 }
 
-.subtoolbar {
-  height: 40px;
-  background-color: #D8D8D8;
+.toolbar {
+  display: flex;
+
+  height: 90px;
+  background-color: #11222D;
+  color: #fff;
+}
+.toolbar__section {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+}
+.toolbar__col-left {
+  justify-content: flex-start;
+  text-align: start;
+}
+.toolbar__col-right {
+  justify-content: flex-end;
+  text-align: end;
 }
