@@ -2,7 +2,6 @@ import React from 'react';
 import { CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import Portal from 'react-portal';
 import PersonDetails from '../org.PersonDetails';
-import RaisedButton from 'material-ui/RaisedButton';
 import PersonImage from '../atm.PersonImage';
 
 const insideCard = {

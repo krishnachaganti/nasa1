@@ -13,7 +13,7 @@ export const CoreLayout = ({ children }) => (
         { name: 'description', content: 'Splat' }
       ]}
     />
-    <Grid>
+    <Grid fluid>
       { children }
     </Grid>
   </div>

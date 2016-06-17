@@ -1,12 +1,8 @@
 import React, { PropTypes } from 'react';
 import ThumbsUp from 'material-ui/svg-icons/action/thumb-up';
 import IconButton from 'material-ui/IconButton';
-import ThumbsDown from 'material-ui/svg-icons/action/thumb-down';
 import WBImg from './wendyburger.png';
 
-const cardImageStyle = {
-
-};
 const btnWrapper = {
   zIndex: '1100',
   position: 'absolute',
@@ -23,15 +19,18 @@ const btnColor = {
 const PersonImage = props => {
   return (
     <div style={ cardImageStyle }>
-    <div style={ btnWrapper }>
-     <IconButton tooltip="Give Kudos" style={ btnColor } onClick={ props.increaseKudos }>
-      <ThumbsUp />
-     </IconButton>
-
-    </div>
+      <div style={ btnWrapper } className="kudos">
+       <IconButton tooltip="Give Kudos" style={ btnColor } onClick={ props.increaseKudos }>
+        <ThumbsUp />
+       </IconButton>
+      </div>
       <img src={ WBImg } />
     </div>
     );
 };
 
 export default PersonImage;
+
+PersonImage.propTypes = {
+
+};
