@@ -1,19 +1,9 @@
 import React from 'react';
 import { CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
-
+import Portal from 'react-portal';
+import PersonDetails from '../org.PersonDetails';
 import RaisedButton from 'material-ui/RaisedButton';
 import PersonImage from '../atm.PersonImage';
-
-// const cardStyle = {
-//   marginLeft: '15px',
-//   marginRight: '15px',
-//   marginTop: '20px',
-//   marginBottom: '20px',
-//   display: 'flex',
-//   flexDirection: 'column',
-//   overflow: 'hidden',
-//   width: '380px'
-// };
 
 const insideCard = {
   display: 'flex',
@@ -28,25 +18,37 @@ const cardImg = {
 const rightSide = {
   width: '60%'
 };
-const over = {
-  opacity: 0.3
-};
+
 class PersonCard extends React.Component {
-  state = {
-    display: false
-  };
 
-  handleOpen = () => {
-    this.setState({ display: true });
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      isPortalOpened: false,
+      someValue: 'init'
+    };
+  }
 
-  handleClose = () => {
-    this.setState({ display: false });
-  };
+  handleCardClick(e) {
+    const bodyRect = document.body.getBoundingClientRect();
+          const targetRect = e.target.getBoundingClientRect();
+          this.setState({
+            isOpened: true,
+            top: targetRect.top - bodyRect.top,
+            left: targetRect.left - bodyRect.left,
+            width: targetRect.width,
+          });
+  }
+  onClose() {
+    /* eslint no-console: 0 */
+    console.log('Portal closed');
+  }
 
   render() {
+
     return (
-          <div style={ insideCard } onTouchTap={ this.props.toggle }>
+        <div>
+          <div style={ insideCard } onTouchTap={ this.props.toggle } onClick={ ::this.handleCardClick }>
             <PersonImage style={ cardImg } increaseKudos={ this.props.handleIncrement } />
             <div style={ rightSide }>
               <CardTitle title={ this.props.person.PersonnelName } />
@@ -58,7 +60,21 @@ class PersonCard extends React.Component {
                 Kudos: { this.props.count }
               </CardText>
             </div>
+            {' '}
           </div>
+            <Portal
+              closeOnOutsideClick
+              isOpened={this.state.isOpened}
+              onClose={() => { this.setState({ isOpened: false }); this.onClose(); }}
+            >
+              <PersonDetails
+                person={ this.props.person }
+                left={this.state.left}
+                top={this.state.top}
+                width={this.state.width}
+              />
+            </Portal>
+       </div>
     );
   }
 }

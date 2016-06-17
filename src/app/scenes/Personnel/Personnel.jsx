@@ -127,7 +127,7 @@ class Personnel extends Component {
           />
           <Sidebar />
           <Toolbar handleFiltering={::this.handleFiltering} total={ this.props.people.people } />
-         {this.props.children}
+         { this.props.children }
       </div>
     );
   }
