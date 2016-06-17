@@ -21,26 +21,9 @@ class People extends Component {
     dispatch: React.PropTypes.func
   }
 
-  constructor(props) {
-    super(props);
-
-    this.menuButtonClick = this.menuButtonClick.bind(this);
-    this.state = {
-      searchTerm: 'IT-A',
-       display: false,
-       normal: true
-    };
-  }
-
   menuButtonClick(ev) {
     ev.preventDefault();
     this.props.dispatch(sidebarActions.toggleSideBar());
-  }
-
-  toggle() {
-    this.setState({
-      display: !this.state.display
-    });
   }
   render() {
     const styles = {
@@ -73,23 +56,23 @@ class People extends Component {
                 <BossCard nasaName="Lisa Barber" position="Boss" orgCode="IT-A" />
               } toolbar={
                 <SubToolbar orgCode="IT-A:" orgTitle="Business Office" />
-              } orgType="a" addRow={ ::this.toggle }
+              } orgType="a"
             />
           </Row>
           <Row>
             <OrgGroup boss={
                 <BossCard nasaName="Henry Yu" position="Boss" orgCode="IT-B" />
-              } toolbar={ <SubToolbar orgCode="IT-B:" orgTitle="IT Security Office" /> } orgType="b" addRow={ ::this.toggle } />
+              } toolbar={ <SubToolbar orgCode="IT-B:" orgTitle="IT Security Office" /> } orgType="b" />
           </Row>
           <Row>
             <OrgGroup boss={
                 <BossCard nasaName="Henry Yu" position="Boss" orgCode="IT-C" />
-              } toolbar={ <SubToolbar orgCode="IT-C:" orgTitle="IT Security Office" /> } orgType="c" addRow={ ::this.toggle } />
+              } toolbar={ <SubToolbar orgCode="IT-C:" orgTitle="IT Security Office" /> } orgType="c" />
           </Row>
           <Row>
           <OrgGroup boss={
               <BossCard nasaName="Henry Yu" position="Boss" orgCode="IT-D" />
-            } toolbar={ <SubToolbar orgCode="IT-D:" orgTitle="IT Security Office" /> } orgType="d" addRow={ ::this.toggle } />
+            } toolbar={ <SubToolbar orgCode="IT-D:" orgTitle="IT Security Office" /> } orgType="d" />
           </Row>
       </div>
     );

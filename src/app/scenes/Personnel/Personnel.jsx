@@ -27,16 +27,6 @@ class Personnel extends Component {
       dispatch(getPeople())
     ]);
   }
-  constructor(props) {
-    super(props);
-
-    this.menuButtonClick = this.menuButtonClick.bind(this);
-    this.state = {
-      searchTerm: 'IT-A',
-       display: false,
-       normal: true
-    };
-  }
 
   componentDidMount() {
     Personnel.readyOnActions(this.props.dispatch);
