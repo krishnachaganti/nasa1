@@ -10,7 +10,7 @@ import SearchInput, { createFilter } from 'react-search-input';
 import { getIotd, fetchWeather } from 'state/index';
 import { getPeople, getITA } from 'state/people/people';
 import * as sidebarActions from 'state/sidebar/sidebar';
-import { Toolbar, Sidebar, Weather, SubToolbar, BossCard } from 'components/index';
+import { Toolbar, Sidebar, Weather, Sider, SubToolbar, BossCard } from 'components/index';
 import OrgGroup from './org.OrgGroup';
 import fallbackimg from './org.Hero/fallback-hero.jpg';
 import Hero from './org.Hero';
@@ -67,6 +67,7 @@ class Personnel extends Component {
           />
           <Sidebar />
           <Toolbar total={ this.props.people.people } />
+          <Sider />
          { this.props.children }
       </div>
     );

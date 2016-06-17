@@ -18,7 +18,7 @@ const btnColor = {
 
 const PersonImage = props => {
   return (
-    <div style={ cardImageStyle }>
+    <div>
       <div style={ btnWrapper } className="kudos">
        <IconButton tooltip="Give Kudos" style={ btnColor } onClick={ props.increaseKudos }>
         <ThumbsUp />

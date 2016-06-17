@@ -9,6 +9,7 @@ import itB from 'scenes/Personnel/pg.itB';
 import itC from 'scenes/Personnel/pg.itC';
 import itD from 'scenes/Personnel/pg.itD';
 import TaskOrder from 'scenes/TaskOrder';
+import TaskOrderListing from 'scenes/TaskOrder/TaskOrderListing';
 
 export default (
   <Route component={ CoreLayout }>
@@ -19,7 +20,9 @@ export default (
       <Route path="/itc" component={ itC } />
       <Route path="/itd" component={ itD } />
     </Route>
-    <Route path="/taskorder" component={ TaskOrder } />
+    <Route path="/taskorder" component={ TaskOrder }>
+      <IndexRoute component={ TaskOrderListing } />
+    </Route>
     <Route path="*" component={ Error404 } />
   </Route>
 );

@@ -1,21 +1,20 @@
 import React from 'react';
-import classes from './Sider.scss';
 
 const Sider = props => {
   return (
-    <div className={ classes.Sider }>
-    <ul>
-      <li>
-        <a href=""><span className={ classes.SiderSquare }>IT-A</span></a>
-      </li>
-      <li>
-        <a href=""><span className={ classes.SiderSquare }>IT-B</span></a>
-      </li>
-      <li>
-        <a href=""><span className={ classes.SiderSquare }>IT-C</span></a>
-      </li>
-    </ul>
-      </div>
+    <div className="sider">
+      <ul>
+        <li>
+          <a href=""><span className="sider__square">IT-A</span></a>
+        </li>
+        <li>
+          <a href=""><span className="sider__square">IT-B</span></a>
+        </li>
+        <li>
+          <a href=""><span className="sider__square">IT-C</span></a>
+        </li>
+      </ul>
+    </div>
   );
 };
 
