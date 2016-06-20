@@ -5,13 +5,13 @@ import IconButton from 'material-ui/IconButton';
 import { lightWhite } from 'material-ui/styles/colors';
 import MenuIc from 'material-ui/svg-icons/navigation/menu';
 import RaisedButton from 'material-ui/RaisedButton';
-import { Grid, Row, Col } from 'react-bem-grid';
-import { Header, Toolbar, Sidebar, Sider, SubToolbar, BossCard } from 'components/index';
+import { Header, Toolbar, Sidebar, Sider, SubToolbar } from 'components/index';
 import Weather from 'shared/mol.Weather';
 import * as sidebarActions from 'state/sidebar/sidebar';
 import { getIotd, fetchWeather } from 'state/index';
 import Heading from 'shared/atm.Heading';
 import Textblock from 'shared/atm.Textblock';
+import ButtonGroup from './org.ButtonGroup';
 
 const styles = {
   contentHeaderMenuLink: {
@@ -50,11 +50,14 @@ class TaskOrder extends Component {
         <Header menuIcon={
           <MenuIc onTouchTap={ ::this.menuButtonClick } color={ lightWhite } style={ styles.contentHeaderMenuLink } />
           }
-          weatherWidget={<Weather temperature={ this.props.hero.temperature } />}
-          pageTitle={<Heading size={1} color="#fff" align="center" top="150">
-            Task Order Archives
-          </Heading>}
-       />
+          weatherWidget={ <Weather temperature={ this.props.hero.temperature } /> }
+          pageTitle={
+            <Heading size={1} color="#fff" align="center" top="150">
+              Task Order Archives
+            </Heading>
+          }
+          buttonGroup={ <ButtonGroup /> }
+        />
         <Sider />
         <Sidebar />
         <div className="wrap">

@@ -45,6 +45,119 @@ class TaskOrderListing extends Component {
             preparer="Wendy Mizerek-H"
             link="/somewhere"
           />
+          <div className="row center-xs">
+            <div className="col-xs">
+              <RaisedButton label="Load more for IT-A"
+                backgroundColor="#D8D8D8"
+                style={ btnStyle }
+              />
+           </div>
+          </div>
+        </ListGroup>
+        <SubToolbar orgCode="IT-B:" orgTitle="IT Security Office" />
+        <ListGroup>
+          <ListPanel dateCircle="MAR 2016"
+            dateRange="03/01/2016 - 03/31/2016"
+            preparer="Wendy Mizerek-H"
+            link="/somewhere"
+          />
+          <ListPanel dateCircle="MAR 2016"
+            dateRange="03/01/2016 - 03/31/2016"
+            preparer="Wendy Mizerek-H"
+            link="/somewhere"
+          />
+          <div className="row center-xs">
+            <div className="col-xs">
+              <RaisedButton label="Load more for IT-B"
+                backgroundColor="#D8D8D8"
+                style={ btnStyle }
+              />
+           </div>
+          </div>
+        </ListGroup>
+        <SubToolbar orgCode="IT-C:" orgTitle="IT Security Office" />
+        <ListGroup>
+          <ListPanel dateCircle="MAR 2016"
+            dateRange="03/01/2016 - 03/31/2016"
+            preparer="Wendy Mizerek-H"
+            link="/somewhere"
+          />
+          <ListPanel dateCircle="MAR 2016"
+            dateRange="03/01/2016 - 03/31/2016"
+            preparer="Wendy Mizerek-H"
+            link="/somewhere"
+          />
+          <div className="row center-xs">
+            <div className="col-xs">
+              <RaisedButton label="Load more for IT-C"
+                backgroundColor="#D8D8D8"
+                style={ btnStyle }
+              />
+           </div>
+          </div>
+        </ListGroup>
+        <SubToolbar orgCode="IT-D:" orgTitle="IT Security Office" />
+        <ListGroup>
+          <ListPanel dateCircle="MAR 2016"
+            dateRange="03/01/2016 - 03/31/2016"
+            preparer="Wendy Mizerek-H"
+            link="/somewhere"
+          />
+          <ListPanel dateCircle="MAR 2016"
+            dateRange="03/01/2016 - 03/31/2016"
+            preparer="Wendy Mizerek-H"
+            link="/somewhere"
+          />
+          <div className="row center-xs">
+            <div className="col-xs">
+              <RaisedButton label="Load more for IT-D"
+                backgroundColor="#D8D8D8"
+                style={ btnStyle }
+              />
+           </div>
+          </div>
+        </ListGroup>
+        <SubToolbar orgCode="IT-E:" orgTitle="IT Security Office" />
+        <ListGroup>
+          <ListPanel dateCircle="MAR 2016"
+            dateRange="03/01/2016 - 03/31/2016"
+            preparer="Wendy Mizerek-H"
+            link="/somewhere"
+          />
+          <ListPanel dateCircle="MAR 2016"
+            dateRange="03/01/2016 - 03/31/2016"
+            preparer="Wendy Mizerek-H"
+            link="/somewhere"
+          />
+          <div className="row center-xs">
+            <div className="col-xs">
+              <RaisedButton label="Load more for IT-E"
+                backgroundColor="#D8D8D8"
+                style={ btnStyle }
+              />
+           </div>
+          </div>
+        </ListGroup>
+        <SubToolbar orgCode="IT-F:" orgTitle="IT Security Office" />
+        <ListGroup>
+          <ListPanel dateCircle="MAR 2016"
+            dateRange="03/01/2016 - 03/31/2016"
+            preparer="Wendy Mizerek-H"
+            link="/somewhere"
+          />
+          <ListPanel dateCircle="MAR 2016"
+            dateRange="03/01/2016 - 03/31/2016"
+            preparer="Wendy Mizerek-H"
+            link="/somewhere"
+          />
+          <div className="row center-xs">
+            <div className="col-xs">
+              <RaisedButton label="Load more for IT-F"
+                backgroundColor="#D8D8D8"
+                style={ btnStyle }
+              />
+           </div>
+          </div>
         </ListGroup>
       </div>
     );
