@@ -37,7 +37,7 @@ class itA extends Component {
   }
   render() {
     return (
-      <div className="wrap">
+      <div className="wrap wrap__fluid">
          {
             this.props.ita.map(p =>
               <Card>

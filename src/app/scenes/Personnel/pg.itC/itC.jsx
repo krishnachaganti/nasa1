@@ -37,7 +37,7 @@ class itC extends Component {
   }
   render() {
     return (
-      <div className="wrap">
+      <div className="wrap wrap__fluid">
          {
             this.props.itc.map(p =>
               <Card>
