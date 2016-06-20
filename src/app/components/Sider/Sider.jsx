@@ -13,6 +13,15 @@ const Sider = props => {
         <li>
           <a href=""><span className="sider__square">IT-C</span></a>
         </li>
+        <li>
+          <a href=""><span className="sider__square">IT-D</span></a>
+        </li>
+        <li>
+          <a href=""><span className="sider__square">IT-E</span></a>
+        </li>
+         <li>
+          <a href=""><span className="sider__square">IT-F</span></a>
+        </li>
       </ul>
     </div>
   );

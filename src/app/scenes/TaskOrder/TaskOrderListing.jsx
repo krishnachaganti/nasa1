@@ -27,7 +27,11 @@ const styles = {
 };
 const btnStyle = {
   margin: 12,
-  color: '#fff'
+  color: '#fff',
+  textTransform: 'initial'
+};
+const labelSty = {
+  textTransform: 'initial'
 };
 class TaskOrderListing extends Component {
   render() {
@@ -50,6 +54,7 @@ class TaskOrderListing extends Component {
               <RaisedButton label="Load more for IT-A"
                 backgroundColor="#D8D8D8"
                 style={ btnStyle }
+                labelStyle={ labelSty }
               />
            </div>
           </div>
@@ -71,6 +76,7 @@ class TaskOrderListing extends Component {
               <RaisedButton label="Load more for IT-B"
                 backgroundColor="#D8D8D8"
                 style={ btnStyle }
+                labelStyle={ labelSty }
               />
            </div>
           </div>
@@ -92,6 +98,7 @@ class TaskOrderListing extends Component {
               <RaisedButton label="Load more for IT-C"
                 backgroundColor="#D8D8D8"
                 style={ btnStyle }
+                labelStyle={ labelSty }
               />
            </div>
           </div>
@@ -113,6 +120,7 @@ class TaskOrderListing extends Component {
               <RaisedButton label="Load more for IT-D"
                 backgroundColor="#D8D8D8"
                 style={ btnStyle }
+                labelStyle={ labelSty }
               />
            </div>
           </div>
@@ -134,6 +142,7 @@ class TaskOrderListing extends Component {
               <RaisedButton label="Load more for IT-E"
                 backgroundColor="#D8D8D8"
                 style={ btnStyle }
+                labelStyle={ labelSty }
               />
            </div>
           </div>
@@ -155,6 +164,7 @@ class TaskOrderListing extends Component {
               <RaisedButton label="Load more for IT-F"
                 backgroundColor="#D8D8D8"
                 style={ btnStyle }
+                labelStyle={ labelSty }
               />
            </div>
           </div>

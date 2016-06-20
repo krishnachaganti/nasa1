@@ -2,7 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import FlatButton from 'material-ui/FlatButton';
 
 const labelSty = {
-  color: '#fff'
+  color: '#fff',
+  textTransform: 'initial'
 };
 
 const ButtonGroup = (props) => {

@@ -23,7 +23,10 @@ const styles = {
     zIndex: '1000'
   }
 };
-
+const labelSty = {
+  color: '#fff',
+  textTransform: 'initial'
+};
 const btnStyle = {
   margin: 12,
   color: '#fff'
@@ -52,7 +55,7 @@ class TaskOrder extends Component {
           }
           weatherWidget={ <Weather temperature={ this.props.hero.temperature } /> }
           pageTitle={
-            <Heading size={1} color="#fff" align="center" top="150">
+            <Heading size={1} color="#fff" align="center" top="75">
               Task Order Archives
             </Heading>
           }
@@ -73,8 +76,8 @@ class TaskOrder extends Component {
             <div className="col-xs-6">
                 <RaisedButton label="Submit a Task Order"
                   backgroundColor="#043A92"
-                  labelColor="#fff"
                   style={ btnStyle }
+                  labelStyle={ labelSty }
                 />
             </div>
           </div>

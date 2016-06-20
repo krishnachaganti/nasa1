@@ -12,6 +12,7 @@ const logoStyle = {
 const Header = (props) => {
   return (
     <div className="header__main">
+      <div className="container-fluid">
       <div className="row">
         <div className="col-xs">
           { props.menuIcon }
@@ -33,6 +34,7 @@ const Header = (props) => {
           { props.buttonGroup }
           </div>
         </div>
+      </div>
     </div>
   );
 };
