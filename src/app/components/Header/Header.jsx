@@ -5,18 +5,29 @@ const logoStyle = {
   width: '80px',
   height: '63px',
   margin: '0 auto',
-  position: 'absolute',
-  left: '43%',
-  top: '15px',
+  display: 'flex',
   justifyContent: 'center'
 };
 
 const Header = (props) => {
   return (
       <div className="header__main">
-      <img src={ nasalogo } style={ logoStyle } />
-
-      { props.children }
+      <div className="row">
+       <div className="col-xs">
+      { props.menuIcon }
+      </div>
+      <div className="col-xs">
+        <img src={ nasalogo } style={ logoStyle } />
+      </div>
+            <div className="col-xs">
+      { props.weatherWidget }
+          </div>
+      </div>
+      <div className="row">
+      <div className="col-xs">
+        { props.pageTitle }
+        </div>
+      </div>
       </div>
   );
 };

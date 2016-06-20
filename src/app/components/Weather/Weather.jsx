@@ -23,7 +23,7 @@ const weatherList = {
 };
 const Weather = props => {
   return (
-    <div >
+    <div>
     <ul style={weatherList}>
       <li><span style={labelTxtBig}> Kennedy Space Center </span><span style={labelTxtSmall}>{ monthDay }</span></li>
       <li><span style={ tmpStyle }>{ props.temperature } F</span></li>

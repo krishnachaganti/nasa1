@@ -47,14 +47,14 @@ class TaskOrder extends Component {
     return (
       <div>
         <Helmet title="Task Order" />
-        <Header>
+        <Header menuIcon={
           <MenuIc onTouchTap={ ::this.menuButtonClick } color={ lightWhite } style={ styles.contentHeaderMenuLink } />
-          <Weather temperature={ this.props.hero.temperature } />
-
-          <Heading size={1} color="#fff" align="center" top="150">
+          }
+          weatherWidget={<Weather temperature={ this.props.hero.temperature } />}
+          pageTitle={<Heading size={1} color="#fff" align="center" top="150">
             Task Order Archives
-          </Heading>
-        </Header>
+          </Heading>}
+       />
         <Sider />
         <Sidebar />
         <div className="wrap">
