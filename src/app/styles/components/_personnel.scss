@@ -1,0 +1,26 @@
+.card-wrapper {
+  display: inline-block;
+  padding: 1rem;
+}
+
+.card-wrapper-inner {
+  flex-direction: column;
+  display: flex;
+  overflow: hidden;
+  background-color: #fff;
+  width: 380px;
+  height: 220px;
+}
+
+.card-expander {
+  @include transition();
+  position: absolute;
+  top: auto;
+  left: 0;
+  width: 100%;
+  border: 0;
+  background: #fff;
+  padding: 0;
+  height: 0;
+  overflow: hidden;
+}

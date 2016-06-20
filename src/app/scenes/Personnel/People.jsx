@@ -20,11 +20,21 @@ class People extends Component {
   static propTypes = {
     dispatch: React.PropTypes.func
   }
+  static readyOnActions(dispatch) {
+    return Promise.all([
+      dispatch(getPeople())
+    ]);
+  }
+
+  componentDidMount() {
+    People.readyOnActions(this.props.dispatch);
+  }
 
   menuButtonClick(ev) {
     ev.preventDefault();
     this.props.dispatch(sidebarActions.toggleSideBar());
   }
+  
   render() {
     const styles = {
       contentHeaderMenuLink: {
@@ -51,29 +61,22 @@ class People extends Component {
 
     return (
       <div className="wrap">
-          <Row>
-            <OrgGroup boss={
-                <BossCard nasaName="Lisa Barber" position="Boss" orgCode="IT-A" />
-              } toolbar={
-                <SubToolbar orgCode="IT-A:" orgTitle="Business Office" />
-              } orgType="a"
-            />
-          </Row>
-          <Row>
-            <OrgGroup boss={
-                <BossCard nasaName="Henry Yu" position="Boss" orgCode="IT-B" />
-              } toolbar={ <SubToolbar orgCode="IT-B:" orgTitle="IT Security Office" /> } orgType="b" />
-          </Row>
-          <Row>
-            <OrgGroup boss={
-                <BossCard nasaName="Henry Yu" position="Boss" orgCode="IT-C" />
-              } toolbar={ <SubToolbar orgCode="IT-C:" orgTitle="IT Security Office" /> } orgType="c" />
-          </Row>
-          <Row>
-          <OrgGroup boss={
-              <BossCard nasaName="Henry Yu" position="Boss" orgCode="IT-D" />
-            } toolbar={ <SubToolbar orgCode="IT-D:" orgTitle="IT Security Office" /> } orgType="d" />
-          </Row>
+        {
+          Object.keys(this.props.people.people).map((groupName, index) => {
+            const peopleList = this.props.people.people[groupName];
+            const toolBarCode = `${groupName}:`;
+            return (
+              <Row key={index}>
+                <OrgGroup boss={
+                    <BossCard nasaName="Lisa Barber" position="Boss" orgCode={groupName} />
+                  } toolbar={
+                    <SubToolbar orgCode={toolBarCode} orgTitle="Business Office" />
+                  } orgType={groupName} persons={ peopleList }
+                />
+              </Row>
+            );
+          })
+        }
       </div>
     );
   }

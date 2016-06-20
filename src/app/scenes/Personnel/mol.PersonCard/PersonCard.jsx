@@ -1,8 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import Portal from 'react-portal';
 import PersonDetails from '../org.PersonDetails';
 import PersonImage from '../atm.PersonImage';
+import{ loadOpenCards } from 'state/people/people';
 
 const insideCard = {
   display: 'flex',
@@ -23,21 +25,25 @@ class PersonCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isPortalOpened: false,
-      someValue: 'init'
+      isOpened: false,
+      someValue: 'init',
+      personID: props.person.id
     };
   }
 
-  handleCardClick(e) {
+  handleCardClick(e, dispatch) {
     const bodyRect = document.body.getBoundingClientRect();
-          const targetRect = e.target.getBoundingClientRect();
-          this.setState({
-            isOpened: true,
-            top: targetRect.top - bodyRect.top,
-            left: targetRect.left - bodyRect.left,
-            width: targetRect.width,
-          });
+    const targetRect = e.target.getBoundingClientRect();
+    this.setState({
+      isOpened: !this.state.isOpened,
+      top: targetRect.top - bodyRect.top,
+      left: targetRect.left - bodyRect.left,
+      width: targetRect.width,
+    });
+    console.log('got here')
+    this.props.loadOpenCards();
   }
+
   onClose() {
     /* eslint no-console: 0 */
     console.log('Portal closed');
@@ -47,7 +53,7 @@ class PersonCard extends React.Component {
 
     return (
         <div>
-          <div style={ insideCard } onTouchTap={ this.props.toggle } onClick={ ::this.handleCardClick }>
+          <div className="card-body" style={ insideCard } onTouchTap={ this.props.toggle } onClick={ ::this.handleCardClick }>
             <PersonImage style={ cardImg } increaseKudos={ this.props.handleIncrement } />
             <div style={ rightSide }>
               <CardTitle title={ this.props.person.PersonnelName } />
@@ -61,22 +67,29 @@ class PersonCard extends React.Component {
             </div>
             {' '}
           </div>
-            <Portal
+          <PersonDetails person={ this.props.person } isOpened={this.state.isOpened} />
+            {/*<Portal
               closeOnOutsideClick
               isOpened={this.state.isOpened}
               onClose={() => { this.setState({ isOpened: false }); this.onClose(); }}
-            >
-              <PersonDetails
-                person={ this.props.person }
-                left={this.state.left}
-                top={this.state.top}
-                width={this.state.width}
-              />
-            </Portal>
+            >*/}
+            {/*</Portal>*/}
        </div>
     );
   }
 }
+function mapStateToProps(state) {
+  return {
+    people: state.peopleReducer,
+    sidebar: state.sidebarReducer
+  };
+}
+const mapDispatchToProps = dispatch => {
+  return {
+    loadOpenCards: () => {
+      dispatch(loadOpenCards())
+    }
+  }
+}
 
-
-export default PersonCard;
+export default connect(mapStateToProps, mapDispatchToProps)(PersonCard);
