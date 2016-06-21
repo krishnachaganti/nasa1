@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import IconButton from 'material-ui/IconButton';
 import { lightWhite } from 'material-ui/styles/colors';
 import MenuIc from 'material-ui/svg-icons/navigation/menu';
-import { Grid, Row, Col } from 'react-bem-grid';
 import SearchInput, { createFilter } from 'react-search-input';
 import { getIotd, fetchWeather } from 'state/index';
 import { getPeople } from 'state/people/people';
@@ -28,14 +27,18 @@ class Personnel extends Component {
       dispatch(getPeople())
     ]);
   }
+
   componentDidMount() {
     this.constructor.loadAsyncData(this.props.dispatch);
   }
+
   menuButtonClick(ev) {
     ev.preventDefault();
     this.props.dispatch(sidebarActions.toggleSideBar());
   }
+
   render() {
+    const HERO_IMG = this.props.hero.iotd || fallbackimg;
     const styles = {
       contentHeaderMenuLink: {
         textDecoration: 'none',
@@ -44,26 +47,28 @@ class Personnel extends Component {
         top: '20px',
         left: '30px',
         zIndex: '1000'
+      },
+      heroStyle: {
+        height: '465px',
+        width: '100%',
+        backgroundImage: 'url(' + HERO_IMG + ')', // eslint-disable-line
+        backgroundSize: 'cover',
+        backgroundAttachment: 'fixed'
+      },
+      search: {
+        width: '600px',
+        height: '60px'
       }
-    };
-    const HERO_IMG = this.props.hero.iotd || fallbackimg;
-    const heroStyle = {
-      height: '465px',
-      width: '100%',
-      backgroundImage: 'url(' + HERO_IMG + ')', // eslint-disable-line
-      backgroundSize: 'cover',
-      backgroundAttachment: 'fixed'
-    };
-    const search = {
-      width: '600px',
-      height: '60px'
     };
 
     return (
       <div>
         <Helmet title="Personnel" />
         <MenuIc onTouchTap={ ::this.menuButtonClick } color={ lightWhite } style={ styles.contentHeaderMenuLink } />
-          <Hero heroImage={ heroStyle } temperature={ this.props.hero.temperature } titleImg={ this.props.hero.title }
+          <Hero heroImage={ styles.heroStyle }
+            temperature={ this.props.hero.temperature }
+            titleImg={ this.props.hero.title }
+            isLoading={ this.props.hero.loading }
           />
           <Sidebar />
           <Toolbar />

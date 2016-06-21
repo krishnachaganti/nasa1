@@ -3,24 +3,25 @@ import ThumbsUp from 'material-ui/svg-icons/action/thumb-up';
 import IconButton from 'material-ui/IconButton';
 import WBImg from './wendyburger.png';
 
-const btnWrapper = {
-  zIndex: '1100',
-  position: 'absolute',
-  paddingTop: '150px',
-  paddingLeft: '25px',
-  margin: '0 auto'
-};
-const btnColor = {
-  backgroundColor: '#fff',
-  marginRight: '5px',
-  borderRadius: '50%'
-};
-
+const inlineStyles = {
+  btnWrapper : {
+    zIndex: '1100',
+    position: 'absolute',
+    paddingTop: '150px',
+    paddingLeft: '25px',
+    margin: '0 auto'
+  },
+  btnColor: {
+    backgroundColor: '#fff',
+    marginRight: '5px',
+    borderRadius: '50%'
+  }
+}
 const PersonImage = props => {
   return (
     <div>
-      <div style={ btnWrapper } className="kudos">
-       <IconButton tooltip="Give Kudos" style={ btnColor } onClick={ props.increaseKudos }>
+      <div style={ inlineStyles.btnWrapper } className="kudos">
+       <IconButton tooltip="Give Kudos" style={ inlineStyles.btnColor } onClick={ props.increaseKudos }>
         <ThumbsUp />
        </IconButton>
       </div>
@@ -32,5 +33,6 @@ const PersonImage = props => {
 export default PersonImage;
 
 PersonImage.propTypes = {
-
+  inlineStyles: PropTypes.object,
+  increaseKudos: PropTypes.func
 };

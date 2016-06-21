@@ -1,15 +1,15 @@
 import { push } from 'react-router-redux';
 
-export const DONE_LOADING = '@@sidebar/DONE_LOADING';
-export const TOGGLE_SIDE_BAR = '@@sidebar/TOGGLE_SIDE_BAR';
-export const CHANGE_SELECTED_DRAWER_ITEM = '@@sidebar/CHANGE_SELECTED_DRAWER_ITEM';
+const DONE_LOADING = '@@sidebar/DONE_LOADING';
+const TOGGLE_SIDE_BAR = '@@sidebar/TOGGLE_SIDE_BAR';
+const CHANGE_SELECTED_DRAWER_ITEM = '@@sidebar/CHANGE_SELECTED_DRAWER_ITEM';
 
-export const toggleSideBar = () => {
+const toggleSideBar = () => {
   return {
     type: TOGGLE_SIDE_BAR
   };
 };
-export const finishLoading = status => {
+const finishLoading = status => {
   return {
     type: DONE_LOADING
   };
