@@ -10,7 +10,7 @@ import SearchInput, { createFilter } from 'react-search-input';
 import { getIotd, fetchWeather } from 'state/index';
 import * as sidebarActions from 'state/sidebar/sidebar';
 
-import { Toolbar, Sidebar, Weather, SubToolbar, BossCard } from 'components/index';
+import { Toolbar, Sidebar, Weather, SubToolbar, BossCard, Loader } from 'components/index';
 import OrgGroup from './org.OrgGroup';
 import fallbackimg from './org.Hero/fallback-hero.jpg';
 import Hero from './org.Hero';
@@ -57,16 +57,17 @@ class People extends Component {
     return (
       <div className="wrap">
         {
+          this.props.people.loading ? <Loader /> :
           Object.keys(this.props.people.people).map((groupName, index) => {
             const peopleList = this.props.people.people[groupName];
             const toolBarCode = `${groupName}:`;
             return (
-              <div className="row" key={index}>
+              <div className="row" key={ index }>
                 <OrgGroup boss={
-                    <BossCard nasaName="Lisa Barber" position="Boss" orgCode={groupName} />
+                    <BossCard nasaName="Lisa Barber" position="Boss" orgCode={ groupName } />
                   } toolbar={
-                    <SubToolbar orgCode={toolBarCode} orgTitle="Business Office" />
-                  } orgType={groupName} persons={ peopleList }
+                    <SubToolbar orgCode={ toolBarCode } orgTitle="Business Office" />
+                  } orgType={ groupName } persons={ peopleList }
                 />
               </div>
             );
