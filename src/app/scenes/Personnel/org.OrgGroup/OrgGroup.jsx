@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Grid, Row, Col } from 'react-bem-grid';
 import PersonCard from '../mol.PersonCard';
 import CardGroup from 'shared/org.CardGroup';
 import Card from 'shared/atm.Card';
@@ -19,11 +18,11 @@ const OrgGroup = (props) => {
     return (
       <div>
         { props.toolbar }
-        <Row>
-          <Col xs>
+        <div className="row">
+          <div className="col-xs">
             { props.boss }
-          </Col>
-        </Row>
+          </div>
+        </div>
           <CardGroup>
             {
               props.persons.map((p, i, props) => {

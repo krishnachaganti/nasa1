@@ -7,7 +7,6 @@ import Card from 'shared/atm.Card';
 import IconButton from 'material-ui/IconButton';
 import { lightWhite } from 'material-ui/styles/colors';
 import MenuIc from 'material-ui/svg-icons/navigation/menu';
-import { Grid, Row, Col } from 'react-bem-grid';
 import SearchInput, { createFilter } from 'react-search-input';
 import { getIotd, fetchWeather } from 'state/index';
 import { getITA } from 'state/org/org';

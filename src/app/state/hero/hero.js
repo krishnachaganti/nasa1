@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-export const LOAD_IOTD = '@@hero/LOAD_IOTD';
-export const LOAD_IOTD_SUCCESS = '@@hero/LOAD_IOTD_SUCCESS';
-export const LOAD_IOTD_FAILURE = '@@hero/LOAD_IOTD_FAILURE';
-export const LOAD_WEATHER = '@@hero/LOAD_WEATHER';
-export const LOAD_WEATHER_SUCCESS = '@@hero/LOAD_WEATHER_SUCCESS';
-export const LOAD_WEATHER_FAILURE = '@@hero/LOAD_WEATHER_FAILURE';
+const LOAD_IOTD = '@@hero/LOAD_IOTD';
+const LOAD_IOTD_SUCCESS = '@@hero/LOAD_IOTD_SUCCESS';
+const LOAD_IOTD_FAILURE = '@@hero/LOAD_IOTD_FAILURE';
+const LOAD_WEATHER = '@@hero/LOAD_WEATHER';
+const LOAD_WEATHER_SUCCESS = '@@hero/LOAD_WEATHER_SUCCESS';
+const LOAD_WEATHER_FAILURE = '@@hero/LOAD_WEATHER_FAILURE';
 
 const loadIotd = () => ({
   type: LOAD_IOTD
@@ -17,7 +17,6 @@ const loadIotdSuccess = (response) => ({
   payload: response.data
 });
 
-// Fail receivers
 const failedToLoadIotd = (data) => ({
   type: LOAD_IOTD_FAILURE,
   loading: false,

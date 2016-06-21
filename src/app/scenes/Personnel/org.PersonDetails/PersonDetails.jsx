@@ -1,13 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
-import { Grid, Row, Col } from 'react-bem-grid';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 export default class PersonDetails extends Component {
   constructor(props) {
-    super();
+    super(props);
     this.state = {
       personID: props.personID
     };
+    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
   }
 
   render() {
