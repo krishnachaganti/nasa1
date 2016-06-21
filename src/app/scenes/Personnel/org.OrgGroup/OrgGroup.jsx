@@ -27,7 +27,7 @@ const OrgGroup = (props) => {
             {
               props.persons.map((p, i, props) => {
                 return (
-                  <Card key={p.id}>
+                  <Card key={p.id} personID={p.id}>
                     <PersonCard person={p} />
                   </Card>
                 );

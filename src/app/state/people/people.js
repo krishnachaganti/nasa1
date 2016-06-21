@@ -3,10 +3,6 @@ import axios from 'axios';
 export const LOAD_PEOPLE = '@@people/LOAD_PEOPLE';
 export const LOAD_PEOPLE_SUCCESS = '@@people/LOAD_PEOPLE_SUCCESS';
 export const LOAD_PEOPLE_FAILURE = '@@people/LOAD_PEOPLE_FAILURE';
-export const OPEN_CARD = '@@people/OPEN_CARD';
-export const CLOSE_CARD = '@@people/CLOSE_CARD';
-export const CLOSE_ALL_CARDS = '@@people/CLOSE_ALL_CARDS';
-export const SET_CARD = 'SET_CARD';
 
 export const SET_FILTER = '@@people/SET_FILTER';
 export const SET_FILTER_SUCCESS = '@@people/SET_FILTER_SUCCESS';
@@ -45,10 +41,6 @@ export function getPeople(data) {
   };
 }
 
-export function loadOpenCards() {
-  return { type: SET_CARD };
-};
-
 export const setFilter = (value) => ({
   type: SET_FILTER,
   filter: value
@@ -59,8 +51,6 @@ const INITIAL_STATE = {
   message: '',
   error: false,
   people: {},
-  // openCards: { 123, 234, 345, 456, 567 }
-  openCards: new Set(),
   filter: ''
 };
 
@@ -95,25 +85,6 @@ export default function peopleReducer(state = INITIAL_STATE, action) {
         ...state,
         filter: action.filter
       }
-    case SET_CARD:
-      return Object.assign({}, state, {openCards: new Set([1])});
-    case OPEN_CARD:
-      return {
-        ...state,
-        openCards: new Set(state.openCards.add(action.personID))
-      };
-    case CLOSE_CARD:
-      const newSet = new Set(state.openCards);
-      newSet.delete(action.personID);
-      return {
-        ...state,
-        openCards: newSet
-      };
-    case CLOSE_ALL_CARDS:
-      return {
-        ...state,
-        openCards: new Set()
-      };
     default:
       return state;
   }

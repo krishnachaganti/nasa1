@@ -2,13 +2,24 @@ import React, { Component, PropTypes } from 'react';
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { connect } from 'react-redux';
+
+function mapStateToProps(state) {
+  return {
+    card: state.card
+  };
+}
+
+@connect(mapStateToProps)
 export default class PersonDetails extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      personID: props.personID
-    };
+  constructor() {
+    super();
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+  }
+
+  shouldOpen() {
+    return this.props.personID === this.props.card.personID
+      && this.props.card.isCardOpen;
   }
 
   render() {
@@ -19,8 +30,9 @@ export default class PersonDetails extends Component {
       display: 'inline-block'
     };
     const expanderStyle = {
-      height: this.props.isOpened ? '500px' : 0
+      height: this.shouldOpen() ? '500px' : 0
     };
+
     const renderTable = (
       <Table>
         <TableHeader>
@@ -51,55 +63,55 @@ export default class PersonDetails extends Component {
     );
     return (
        <ReactCSSTransitionGroup transitionName="card-expander" transitionEnterTimeout={500} transitionLeaveTimeout={300}>
-       <div className="card-expander" key="expander" ref="expander" style={ expanderStyle }>
-        <div className="row">
-          <ul style={ listStyle }>
-            <li style={ listItemStyle }>
-              <strong>Position Title</strong><br />
-              { this.props.person.PositionTitlePLC }
-            </li>
-            <li style={ listItemStyle }>
-              <strong>Date of Hire</strong> <br />
-              { this.props.person.DoH }
-            </li>
-          </ul>
+         <div className="card-expander" key="expander" style={ expanderStyle }>
+          <div className="row">
+            <ul style={ listStyle }>
+              <li style={ listItemStyle }>
+                <strong>Position Title</strong><br />
+                { this.props.person.PositionTitlePLC }
+              </li>
+              <li style={ listItemStyle }>
+                <strong>Date of Hire</strong> <br />
+                { this.props.person.DoH }
+              </li>
+            </ul>
+          </div>
+          <div className="row">
+            <ul style={ listStyle }>
+              <li style={ listItemStyle }>
+                <strong>Org Code</strong> <br />
+                { this.props.person.OrgCode }
+              </li>
+              <li style={ listItemStyle }>
+                <strong>Task Order #</strong><br />
+                { this.props.person.TO_Number }
+              </li>
+              <li style={ listItemStyle }>
+                <strong>Task Order Name</strong><br />
+                { this.props.person.TO_Name }
+              </li>
+            </ul>
+          </div>
+          <div className="row">
+            <ul style={ listStyle }>
+              <li style={ listItemStyle }>
+                <strong>Task Order Technical Monitor</strong> <br />
+                { this.props.person.TO_TechnicalMonitor }<br />
+              </li>
+              <li style={ listItemStyle }>
+                <strong>NASA Contact</strong><br />
+                { this.props.person.NASAContactName }<br />
+              </li>
+              <li style={ listItemStyle }>
+                <strong>NASA Contact Phone # </strong><br />
+                { this.props.person.NASAContactPhone }
+              </li>
+            </ul>
+          </div>
+          <div className="row">
+          { renderTable }
+          </div>
         </div>
-        <div className="row">
-          <ul style={ listStyle }>
-            <li style={ listItemStyle }>
-              <strong>Org Code</strong> <br />
-              { this.props.person.OrgCode }
-            </li>
-            <li style={ listItemStyle }>
-              <strong>Task Order #</strong><br />
-              { this.props.person.TO_Number }
-            </li>
-            <li style={ listItemStyle }>
-              <strong>Task Order Name</strong><br />
-              { this.props.person.TO_Name }
-            </li>
-          </ul>
-        </div>
-        <div className="row">
-          <ul style={ listStyle }>
-            <li style={ listItemStyle }>
-              <strong>Task Order Technical Monitor</strong> <br />
-              { this.props.person.TO_TechnicalMonitor }<br />
-            </li>
-            <li style={ listItemStyle }>
-              <strong>NASA Contact</strong><br />
-              { this.props.person.NASAContactName }<br />
-            </li>
-            <li style={ listItemStyle }>
-              <strong>NASA Contact Phone # </strong><br />
-              { this.props.person.NASAContactPhone }
-            </li>
-          </ul>
-        </div>
-        <div className="row">
-        { renderTable }
-        </div>
-      </div>
        </ReactCSSTransitionGroup>
     );
   }

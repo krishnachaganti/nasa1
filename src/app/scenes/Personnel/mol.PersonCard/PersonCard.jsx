@@ -4,7 +4,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import PersonDetails from '../org.PersonDetails';
 import PersonImage from '../atm.PersonImage';
-import { toggleCardFn } from 'scenes/Personnel/state/card';
+import { toggleCard } from 'scenes/Personnel/state/card';
 import { bindActionCreators } from 'redux';
 
 const inlineStyle = {
@@ -31,7 +31,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators({ toggleCardFn }, dispatch)
+    actions: bindActionCreators({ toggleCard }, dispatch)
   };
 }
 
@@ -49,10 +49,10 @@ class PersonCard extends Component {
 
   handleClickage() {
     this.setState({
-        isOpened: !this.state.isOpened,
-      });
+      isOpened: !this.state.isOpened,
+    });
     const persn = this.props.person.id;
-    this.props.actions.toggleCardFn(persn)
+    this.props.actions.toggleCard(persn)
   }
 
   render() {
