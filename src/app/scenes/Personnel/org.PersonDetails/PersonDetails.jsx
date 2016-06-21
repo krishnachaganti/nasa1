@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 export default class PersonDetails extends Component {
   constructor(props) {
     super(props);
@@ -50,7 +50,8 @@ export default class PersonDetails extends Component {
       </Table>
     );
     return (
-       <div className="card-expander" ref="expander" style={expanderStyle}>
+       <ReactCSSTransitionGroup transitionName="card-expander" transitionEnterTimeout={500} transitionLeaveTimeout={300}>
+       <div className="card-expander" key="expander" ref="expander" style={ expanderStyle }>
         <div className="row">
           <ul style={ listStyle }>
             <li style={ listItemStyle }>
@@ -99,6 +100,7 @@ export default class PersonDetails extends Component {
         { renderTable }
         </div>
       </div>
+       </ReactCSSTransitionGroup>
     );
   }
 
