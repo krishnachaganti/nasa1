@@ -26,9 +26,7 @@ const inlineStyles = {
     width: '80px',
     height: '63px',
     margin: '0 auto',
-    position: 'absolute',
-    left: '43%',
-    top: '15px',
+    display: 'flex',
     justifyContent: 'center'
   }
 }
@@ -61,14 +59,30 @@ export default class Hero extends React.Component {
     return (
       <div style={ this.props.heroImage }>
       <div className="container-fluid">
-        <img src={ nasaLogo } style={ inlineStyles.logoStyle } />
-        <Weather temperature={ this.props.temperature } />
+        <div className="row">
+          <div className="col-xs">
 
-        <Heading size={ 2 } color="#fff" align="center" top="150">
+          </div>
+          <div className="col-xs">
+            <img src={ nasaLogo } style={ inlineStyles.logoStyle } />
+          </div>
+          <div className="col-xs">
+            <Weather temperature={ this.props.temperature } />
+          </div>
+        </div>
+        <div className="row center-xs">
+          <div className="col-xs">
+          <Heading size={ 2 } color="#fff" align="center" top="150">
           Search our Listing of Current Employees and Training Status <br />
           Regarding Treatment of Sensitive Information</Heading>
+          </div>
+        </div>
 
-         <PhotoCamera style={ inlineStyles.cameraStyle } color={ white } onTouchTap={ this.handleTouchTap } />
+
+
+                <div className="row center-xs">
+         <div className="col-xs-6">
+                  <PhotoCamera style={ inlineStyles.cameraStyle } color={ white } onTouchTap={ this.handleTouchTap } />
 
          <Popover open={ this.state.open } anchorEl={ this.state.anchorEl }
             anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
@@ -80,7 +94,9 @@ export default class Hero extends React.Component {
             { this.props.titleImg }
           </Popover>
           </div>
+        </div>
       </div>
+    </div>
     );
   }
 }

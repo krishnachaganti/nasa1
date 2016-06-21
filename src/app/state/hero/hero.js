@@ -98,7 +98,7 @@ export default function heroReducer(state = INITIAL_STATE, action) {
     case LOAD_IOTD_SUCCESS:
       return {
         ...state,
-        iotd: action.payload.hdurl,
+        iotd: action.payload.url,
         title: action.payload.title,
         loading: false
       };
