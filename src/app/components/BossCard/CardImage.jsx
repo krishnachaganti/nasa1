@@ -23,14 +23,6 @@ const btnColor = {
 const CardImage = props => {
   return (
     <div style={ cardImageStyle }>
-    <div style={ btnWrapper } className={ classes.bwrap }>
-     <IconButton tooltip="Give Kudos" style={ btnColor } onClick={ props.increaseKudos }>
-      <ThumbsUp />
-     </IconButton>
-     <IconButton tooltip="Remove Kudos" style={ btnColor } onClick={ props.decreaseKudos }>
-      <ThumbsDown />
-     </IconButton>
-    </div>
       <img src={ WBImg } className={ classes.cardImg } />
     </div>
     );

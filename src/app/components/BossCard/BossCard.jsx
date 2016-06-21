@@ -42,7 +42,6 @@ const BossCard = props => (
        <br />
        Org Code: { props.orgCode }
        <br />
-       Kudos: { props.count }
       </CardText>
       </div>
       </div>
