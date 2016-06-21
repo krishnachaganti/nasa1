@@ -3,11 +3,9 @@ import { connect } from 'react-redux';
 import { Grid, Row, Col } from 'react-bem-grid';
 import PersonCard from '../mol.PersonCard';
 import CardGroup from 'shared/org.CardGroup';
-
 import Card from 'shared/atm.Card';
 import { BossCard } from 'components/index';
-import { getITA, getITB, getITC, getITD } from 'state/org/org';
-import { getPeople } from 'state/people/people';
+
 const rowstyle = {
   flexWrap: 'wrap'
 }
@@ -17,44 +15,20 @@ const buttonStyles = {
       marginBottom: 10,
     };
 
-class OrgGroup extends Component {
-
-  // static readyOnActions(dispatch) {
-  //   return Promise.all([
-  //     dispatch(getITA()),
-  //     dispatch(getITB()),
-  //     dispatch(getITC()),
-  //     dispatch(getITD())
-  //   ]);
-  // }
-  //
-  // componentDidMount() {
-  //   OrgGroup.readyOnActions(this.props.dispatch);
-  // }
-  // static readyOnActions(dispatch) {
-  //   return Promise.all([
-  //     dispatch(getPeople())
-  //   ]);
-  // }
-  //
-  // componentDidMount() {
-  //   OrgGroup.readyOnActions(this.props.dispatch);
-  // }
-
-  render() {
+const OrgGroup = (props) => {
     return (
       <div>
-        { this.props.toolbar }
+        { props.toolbar }
         <Row>
           <Col xs>
-            { this.props.boss }
+            { props.boss }
           </Col>
         </Row>
           <CardGroup>
             {
-              this.props.persons.map((p, i) => {
+              props.persons.map((p, i, props) => {
                 return (
-                  <Card key={i}>
+                  <Card key={p.id}>
                     <PersonCard person={p} />
                   </Card>
                 );
@@ -63,16 +37,6 @@ class OrgGroup extends Component {
           </CardGroup>
       </div>
     );
-  }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    people: state.peopleReducer
-  };
-};
-
-OrgGroup.propTypes = {
-
-};
-export default connect(mapStateToProps, null)(OrgGroup);
+export default OrgGroup;

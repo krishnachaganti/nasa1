@@ -6,7 +6,7 @@ export default class PersonDetails extends Component {
   constructor(props) {
     super();
     this.state = {
-      personID: props.person.id
+      personID: props.personID
     };
   }
 

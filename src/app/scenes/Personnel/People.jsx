@@ -15,26 +15,28 @@ import { Toolbar, Sidebar, Weather, SubToolbar, BossCard } from 'components/inde
 import OrgGroup from './org.OrgGroup';
 import fallbackimg from './org.Hero/fallback-hero.jpg';
 import Hero from './org.Hero';
+import { toggleCardFn } from 'scenes/Personnel/state/card';
 
+function mapStateToProps(state) {
+  return {
+    loading: state.peopleReducer.loading,
+    people: state.peopleReducer,
+    sidebar: state.sidebarReducer,
+    card: state.card
+  };
+}
+
+@connect(mapStateToProps)
 class People extends Component {
   static propTypes = {
     dispatch: React.PropTypes.func
-  }
-  static readyOnActions(dispatch) {
-    return Promise.all([
-      dispatch(getPeople())
-    ]);
-  }
-
-  componentDidMount() {
-    People.readyOnActions(this.props.dispatch);
   }
 
   menuButtonClick(ev) {
     ev.preventDefault();
     this.props.dispatch(sidebarActions.toggleSideBar());
   }
-  
+
   render() {
     const styles = {
       contentHeaderMenuLink: {
@@ -46,14 +48,7 @@ class People extends Component {
         zIndex: '1000'
       }
     };
-    const HERO_IMG = this.props.hero.iotd || fallbackimg;
-    const heroStyle = {
-      height: '465px',
-      width: '100%',
-      backgroundImage: 'url(' + HERO_IMG + ')', // eslint-disable-line
-      backgroundSize: 'cover',
-      backgroundAttachment: 'fixed'
-    };
+
     const search = {
       width: '600px',
       height: '60px'
@@ -81,14 +76,4 @@ class People extends Component {
     );
   }
 }
-
-function mapStateToProps(state) {
-  return {
-    hero: state.heroReducer,
-    loading: state.heroReducer.loading,
-    people: state.peopleReducer,
-    sidebar: state.sidebarReducer
-  };
-}
-
-export default connect(mapStateToProps)(People);
+export default People;

@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
-import Portal from 'react-portal';
 import PersonDetails from '../org.PersonDetails';
 import PersonImage from '../atm.PersonImage';
-import{ loadOpenCards } from 'state/people/people';
+import { toggleCardFn } from 'scenes/Personnel/state/card';
+import { bindActionCreators } from 'redux';
 
 const insideCard = {
   display: 'flex',
@@ -20,8 +20,19 @@ const rightSide = {
   width: '60%'
 };
 
-class PersonCard extends React.Component {
+function mapStateToProps(state) {
+  return {
+    card: state.card,
+    people: state.peopleReducer
+  };
+}
 
+function mapDispatchToProps(dispatch) {
+  return { actions: bindActionCreators({ toggleCardFn }, dispatch) };
+}
+
+@connect(mapStateToProps, mapDispatchToProps)
+class PersonCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,30 +41,18 @@ class PersonCard extends React.Component {
       personID: props.person.id
     };
   }
-
-  handleCardClick(e, dispatch) {
-    const bodyRect = document.body.getBoundingClientRect();
-    const targetRect = e.target.getBoundingClientRect();
-    this.setState({
+handleClickage() {
+  this.setState({
       isOpened: !this.state.isOpened,
-      top: targetRect.top - bodyRect.top,
-      left: targetRect.left - bodyRect.left,
-      width: targetRect.width,
     });
-    console.log('got here')
-    this.props.loadOpenCards();
-  }
-
-  onClose() {
-    /* eslint no-console: 0 */
-    console.log('Portal closed');
-  }
+  const persn = this.props.person.id;
+  this.props.actions.toggleCardFn(persn)
+}
 
   render() {
-
     return (
         <div>
-          <div className="card-body" style={ insideCard } onTouchTap={ this.props.toggle } onClick={ ::this.handleCardClick }>
+          <div className="card-body" style={ insideCard } onClick={ ::this.handleClickage }>
             <PersonImage style={ cardImg } increaseKudos={ this.props.handleIncrement } />
             <div style={ rightSide }>
               <CardTitle title={ this.props.person.PersonnelName } />
@@ -65,31 +64,10 @@ class PersonCard extends React.Component {
                 Kudos: { this.props.count }
               </CardText>
             </div>
-            {' '}
           </div>
-          <PersonDetails person={ this.props.person } isOpened={this.state.isOpened} />
-            {/*<Portal
-              closeOnOutsideClick
-              isOpened={this.state.isOpened}
-              onClose={() => { this.setState({ isOpened: false }); this.onClose(); }}
-            >*/}
-            {/*</Portal>*/}
+          <PersonDetails person={ this.props.person } personID={this.props.person.id} isOpened={ this.state.isOpened } />
        </div>
     );
+      }
   }
-}
-function mapStateToProps(state) {
-  return {
-    people: state.peopleReducer,
-    sidebar: state.sidebarReducer
-  };
-}
-const mapDispatchToProps = dispatch => {
-  return {
-    loadOpenCards: () => {
-      dispatch(loadOpenCards())
-    }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(PersonCard);
+export default PersonCard;

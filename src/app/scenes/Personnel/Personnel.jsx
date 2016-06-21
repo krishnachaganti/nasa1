@@ -21,15 +21,15 @@ class Personnel extends Component {
     hero: React.PropTypes.object
   }
 
-  static readyOnActions(dispatch) {
+  static loadAsyncData(dispatch) {
     return Promise.all([
       dispatch(getIotd()),
-      dispatch(fetchWeather())
+      dispatch(fetchWeather()),
+      dispatch(getPeople())
     ]);
   }
-
   componentDidMount() {
-    Personnel.readyOnActions(this.props.dispatch);
+    this.constructor.loadAsyncData(this.props.dispatch);
   }
   menuButtonClick(ev) {
     ev.preventDefault();
@@ -66,7 +66,7 @@ class Personnel extends Component {
           <Hero heroImage={ heroStyle } temperature={ this.props.hero.temperature } titleImg={ this.props.hero.title }
           />
           <Sidebar />
-          <Toolbar total={ this.props.people.people } />
+          <Toolbar />
           <Sider />
          { this.props.children }
       </div>
@@ -77,7 +77,7 @@ class Personnel extends Component {
 function mapStateToProps(state) {
   return {
     hero: state.heroReducer,
-    loading: state.heroReducer.loading,
+    loading: state.peopleReducer.loading,
     people: state.peopleReducer,
     sidebar: state.sidebarReducer
   };

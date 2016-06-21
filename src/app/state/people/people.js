@@ -1,12 +1,13 @@
 import axios from 'axios';
 
-export const LOAD_PEOPLE = '@@report/LOAD_PEOPLE';
-export const LOAD_PEOPLE_SUCCESS = '@@report/LOAD_PEOPLE_SUCCESS';
-export const LOAD_PEOPLE_FAILURE = '@@report/LOAD_PEOPLE_FAILURE';
-export const OPEN_CARD = '@@report/OPEN_CARD';
-export const CLOSE_CARD = '@@report/CLOSE_CARD';
-export const CLOSE_ALL_CARDS = '@@report/CLOSE_ALL_CARDS';
+export const LOAD_PEOPLE = '@@people/LOAD_PEOPLE';
+export const LOAD_PEOPLE_SUCCESS = '@@people/LOAD_PEOPLE_SUCCESS';
+export const LOAD_PEOPLE_FAILURE = '@@people/LOAD_PEOPLE_FAILURE';
+export const OPEN_CARD = '@@people/OPEN_CARD';
+export const CLOSE_CARD = '@@people/CLOSE_CARD';
+export const CLOSE_ALL_CARDS = '@@people/CLOSE_ALL_CARDS';
 export const SET_CARD = 'SET_CARD';
+
 const loadPerson = () => ({
   type: LOAD_PEOPLE
 });
@@ -36,40 +37,6 @@ export function getPeople(data) {
       })
       .catch(err => {
         dispatch(failedToLoadPeople(err));
-      });
-  };
-}
-
-export const LOAD_ITA = '@@report/LOAD_ITA';
-export const LOAD_ITA_SUCCESS = '@@report/LOAD_ITA_SUCCESS';
-export const LOAD_ITA_FAILURE = '@@report/LOAD_ITA_FAILURE';
-const loadITA = () => ({
-  type: LOAD_ITA
-});
-
-const loadITASuccess = response => ({
-  type: LOAD_ITA_SUCCESS,
-  payload: response.data
-});
-
-// Fail receivers
-const failedToLoadITA = data => ({
-  type: LOAD_ITA_FAILURE,
-  data
-});
-export function getITA(data) {
-  return dispatch => {
-    dispatch(loadITA());
-    return axios.get('/api/v1/people/ita')
-      .then(response => {
-        if (response.status === 200) {
-          dispatch(loadITASuccess(response));
-        } else {
-          dispatch(failedToLoadITA('Oops! Something went wrong!'));
-        }
-      })
-      .catch(err => {
-        dispatch(failedToLoadITA(err));
       });
   };
 }
@@ -113,7 +80,7 @@ export default function peopleReducer(state = INITIAL_STATE, action) {
         error: action.payload
       };
     case SET_CARD:
-      return Object.assign(state, {openCards: new Set([1])});
+      return Object.assign({}, state, {openCards: new Set([1])});
     case OPEN_CARD:
       return {
         ...state,

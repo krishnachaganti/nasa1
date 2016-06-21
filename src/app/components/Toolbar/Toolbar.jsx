@@ -14,7 +14,7 @@ class Toolbar extends Component {
     };
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
   }
-
+//  { this.props.total.length }
   handleChange = (event, index, value) => this.setState({value});
   render() {
 
@@ -31,7 +31,7 @@ class Toolbar extends Component {
           </SelectField>
         </div>
          <div className="toolbar__col-right col-sm-offset-3 col-sm-3">
-              Total ITSS Personnel: { this.props.total.length }
+              Total ITSS Personnel:
           </div>
         </div>
       </div>
