@@ -8,6 +8,10 @@ export const CLOSE_CARD = '@@people/CLOSE_CARD';
 export const CLOSE_ALL_CARDS = '@@people/CLOSE_ALL_CARDS';
 export const SET_CARD = 'SET_CARD';
 
+export const SET_FILTER = '@@people/SET_FILTER';
+export const SET_FILTER_SUCCESS = '@@people/SET_FILTER_SUCCESS';
+export const SET_FILTER_FAIL = '@@people/SET_FILTER_FAIL';
+
 const loadPerson = () => ({
   type: LOAD_PEOPLE
 });
@@ -45,13 +49,19 @@ export function loadOpenCards() {
   return { type: SET_CARD };
 };
 
+export const setFilter = (value) => ({
+  type: SET_FILTER,
+  filter: value
+});
+
 const INITIAL_STATE = {
   loading: false,
   message: '',
   error: false,
   people: {},
   // openCards: { 123, 234, 345, 456, 567 }
-  openCards: new Set()
+  openCards: new Set(),
+  filter: ''
 };
 
 export default function peopleReducer(state = INITIAL_STATE, action) {
@@ -74,11 +84,17 @@ export default function peopleReducer(state = INITIAL_STATE, action) {
         loading: false,
         people: newPeople
       };
+    //
     case LOAD_PEOPLE_FAILURE:
       return {
         ...state,
         error: action.payload
       };
+    case SET_FILTER:
+      return {
+        ...state,
+        filter: action.filter
+      }
     case SET_CARD:
       return Object.assign({}, state, {openCards: new Set([1])});
     case OPEN_CARD:

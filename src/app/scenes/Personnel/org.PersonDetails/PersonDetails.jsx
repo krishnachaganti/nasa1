@@ -19,7 +19,7 @@ export default class PersonDetails extends Component {
       display: 'inline-block'
     };
     const expanderStyle = {
-      height: this.props.isOpened ? 'auto' : 0
+      height: this.props.isOpened ? '500px' : 0
     };
     const renderTable = (
       <Table>

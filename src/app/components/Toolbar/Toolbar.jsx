@@ -1,10 +1,26 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { Link } from 'react-router';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import Select from 'shared/atm.Select';
+import { setFilter } from 'state/people/people';
 
+function mapStateToProps(state) {
+  return {
+    filter: state.peopleReducer.filter
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators({ setFilter }, dispatch)
+  }
+}
+
+@connect(mapStateToProps, mapDispatchToProps)
 class Toolbar extends Component {
   constructor(props) {
     super(props);
@@ -14,23 +30,28 @@ class Toolbar extends Component {
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
   }
 //  { this.props.total.length }
-  handleChange = (event, index, value) => this.setState({value});
+  handleChange = (event, index, value) => {
+    this.props.actions.setFilter(value)
+    this.setState({value});
+  }
   render() {
 
     return (
       <div className="toolbar row">
       <div className="toolbar__section">
         <div className="toolbar__col-left col-sm-6">
-          <SelectField value={this.state.value}onChange={this.handleChange}>
-            <MenuItem value={ 1 }><Link to="ita">IT-A</Link></MenuItem>
-            <MenuItem value={ 2 }><Link to="itb">IT-B</Link></MenuItem>
-            <MenuItem value={ 3 }><Link to="itc">IT-C</Link></MenuItem>
-            <MenuItem value={ 4 }><Link to="itd">IT-D</Link></MenuItem>
-            <MenuItem value={ 5 }><Link to="ite">IT-E</Link></MenuItem>
+          <SelectField value={ this.state.value } onChange={this.handleChange}>
+            <MenuItem value="IT-A">IT-A</MenuItem>
+            <MenuItem value="IT-B">IT-B</MenuItem>
+            <MenuItem value="IT-C">IT-C</MenuItem>
+            <MenuItem value="IT-D">IT-D</MenuItem>
+            <MenuItem value="IT-E">IT-E</MenuItem>
+            <MenuItem value="IT-F">IT-F</MenuItem>
+            <MenuItem value="IT-G">IT-G</MenuItem>
           </SelectField>
         </div>
          <div className="toolbar__col-right col-sm-offset-3 col-sm-3">
-              Total ITSS Personnel:
+
           </div>
         </div>
       </div>

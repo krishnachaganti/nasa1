@@ -9,7 +9,7 @@ import MenuIc from 'material-ui/svg-icons/navigation/menu';
 import SearchInput, { createFilter } from 'react-search-input';
 import { getIotd, fetchWeather } from 'state/index';
 import * as sidebarActions from 'state/sidebar/sidebar';
-
+import { setFilter } from 'state/people/people';
 import { Toolbar, Sidebar, Weather, SubToolbar, BossCard, Loader } from 'components/index';
 import OrgGroup from './org.OrgGroup';
 import fallbackimg from './org.Hero/fallback-hero.jpg';
@@ -20,6 +20,7 @@ function mapStateToProps(state) {
   return {
     loading: state.peopleReducer.loading,
     people: state.peopleReducer,
+    filter: state.peopleReducer.filter,
     sidebar: state.sidebarReducer,
     card: state.card
   };
@@ -53,24 +54,27 @@ class People extends Component {
       width: '600px',
       height: '60px'
     };
-
     return (
       <div className="wrap">
         {
           this.props.people.loading ? <Loader /> :
-          Object.keys(this.props.people.people).map((groupName, index) => {
+          Object.keys(this.props.people.people).sort().map((groupName, index) => {
             const peopleList = this.props.people.people[groupName];
             const toolBarCode = `${groupName}:`;
-            return (
-              <div className="row" key={ index }>
-                <OrgGroup boss={
-                    <BossCard nasaName="Lisa Barber" position="Boss" orgCode={ groupName } />
-                  } toolbar={
-                    <SubToolbar orgCode={ toolBarCode } orgTitle="Business Office" />
-                  } orgType={ groupName } persons={ peopleList }
-                />
-              </div>
-            );
+            if (!this.props.filter || groupName === this.props.filter) {
+              return (
+                <div className="row" key={ index }>
+                  <OrgGroup boss={
+                      <BossCard nasaName="Lisa Barber" position="Boss" orgCode={ groupName } />
+                    } toolbar={
+                      <SubToolbar orgCode={ toolBarCode } orgTitle="Business Office" />
+                    } orgType={ groupName } persons={ peopleList }
+                  />
+                </div>
+              );
+            } else {
+              return '';
+            }
           })
         }
       </div>
