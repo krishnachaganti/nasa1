@@ -31,7 +31,7 @@ const cssLoader = [
 ].join('&');
 
 const babelLoaderConfiguration = {
-  cacheDirectory: true,
+  cacheDirectory: false,
   plugins: [
     ['transform-runtime', { polyfill: false, regenerator: false }],
     'transform-decorators-legacy',

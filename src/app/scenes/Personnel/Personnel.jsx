@@ -8,7 +8,7 @@ import MenuIc from 'material-ui/svg-icons/navigation/menu';
 import { Grid, Row, Col } from 'react-bem-grid';
 import SearchInput, { createFilter } from 'react-search-input';
 import { getIotd, fetchWeather } from 'state/index';
-import { getPeople, getITA } from 'state/people/people';
+import { getPeople } from 'state/people/people';
 import * as sidebarActions from 'state/sidebar/sidebar';
 import { Toolbar, Sidebar, Weather, Sider, SubToolbar, BossCard } from 'components/index';
 import OrgGroup from './org.OrgGroup';
@@ -20,16 +20,16 @@ class Personnel extends Component {
     dispatch: React.PropTypes.func,
     hero: React.PropTypes.object
   }
-  static readyOnActions(dispatch) {
+
+  static loadAsyncData(dispatch) {
     return Promise.all([
       dispatch(getIotd()),
       dispatch(fetchWeather()),
       dispatch(getPeople())
     ]);
   }
-
   componentDidMount() {
-    Personnel.readyOnActions(this.props.dispatch);
+    this.constructor.loadAsyncData(this.props.dispatch);
   }
   menuButtonClick(ev) {
     ev.preventDefault();
@@ -66,7 +66,7 @@ class Personnel extends Component {
           <Hero heroImage={ heroStyle } temperature={ this.props.hero.temperature } titleImg={ this.props.hero.title }
           />
           <Sidebar />
-          <Toolbar total={ this.props.people.people } />
+          <Toolbar />
           <Sider />
          { this.props.children }
       </div>
@@ -77,7 +77,7 @@ class Personnel extends Component {
 function mapStateToProps(state) {
   return {
     hero: state.heroReducer,
-    loading: state.heroReducer.loading,
+    loading: state.peopleReducer.loading,
     people: state.peopleReducer,
     sidebar: state.sidebarReducer
   };

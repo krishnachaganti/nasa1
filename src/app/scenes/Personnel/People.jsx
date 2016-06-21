@@ -15,7 +15,18 @@ import { Toolbar, Sidebar, Weather, SubToolbar, BossCard } from 'components/inde
 import OrgGroup from './org.OrgGroup';
 import fallbackimg from './org.Hero/fallback-hero.jpg';
 import Hero from './org.Hero';
+import { toggleCardFn } from 'scenes/Personnel/state/card';
 
+function mapStateToProps(state) {
+  return {
+    loading: state.peopleReducer.loading,
+    people: state.peopleReducer,
+    sidebar: state.sidebarReducer,
+    card: state.card
+  };
+}
+
+@connect(mapStateToProps)
 class People extends Component {
   static propTypes = {
     dispatch: React.PropTypes.func
@@ -25,6 +36,7 @@ class People extends Component {
     ev.preventDefault();
     this.props.dispatch(sidebarActions.toggleSideBar());
   }
+
   render() {
     const styles = {
       contentHeaderMenuLink: {
@@ -36,14 +48,7 @@ class People extends Component {
         zIndex: '1000'
       }
     };
-    const HERO_IMG = this.props.hero.iotd || fallbackimg;
-    const heroStyle = {
-      height: '465px',
-      width: '100%',
-      backgroundImage: 'url(' + HERO_IMG + ')', // eslint-disable-line
-      backgroundSize: 'cover',
-      backgroundAttachment: 'fixed'
-    };
+
     const search = {
       width: '600px',
       height: '60px'
@@ -51,41 +56,24 @@ class People extends Component {
 
     return (
       <div className="wrap">
-          <Row>
-            <OrgGroup boss={
-                <BossCard nasaName="Lisa Barber" position="Boss" orgCode="IT-A" />
-              } toolbar={
-                <SubToolbar orgCode="IT-A:" orgTitle="Business Office" />
-              } orgType="a"
-            />
-          </Row>
-          <Row>
-            <OrgGroup boss={
-                <BossCard nasaName="Henry Yu" position="Boss" orgCode="IT-B" />
-              } toolbar={ <SubToolbar orgCode="IT-B:" orgTitle="IT Security Office" /> } orgType="b" />
-          </Row>
-          <Row>
-            <OrgGroup boss={
-                <BossCard nasaName="Henry Yu" position="Boss" orgCode="IT-C" />
-              } toolbar={ <SubToolbar orgCode="IT-C:" orgTitle="IT Security Office" /> } orgType="c" />
-          </Row>
-          <Row>
-          <OrgGroup boss={
-              <BossCard nasaName="Henry Yu" position="Boss" orgCode="IT-D" />
-            } toolbar={ <SubToolbar orgCode="IT-D:" orgTitle="IT Security Office" /> } orgType="d" />
-          </Row>
+        {
+          Object.keys(this.props.people.people).map((groupName, index) => {
+            const peopleList = this.props.people.people[groupName];
+            const toolBarCode = `${groupName}:`;
+            return (
+              <Row key={index}>
+                <OrgGroup boss={
+                    <BossCard nasaName="Lisa Barber" position="Boss" orgCode={groupName} />
+                  } toolbar={
+                    <SubToolbar orgCode={toolBarCode} orgTitle="Business Office" />
+                  } orgType={groupName} persons={ peopleList }
+                />
+              </Row>
+            );
+          })
+        }
       </div>
     );
   }
 }
-
-function mapStateToProps(state) {
-  return {
-    hero: state.heroReducer,
-    loading: state.heroReducer.loading,
-    people: state.peopleReducer,
-    sidebar: state.sidebarReducer
-  };
-}
-
-export default connect(mapStateToProps)(People);
+export default People;

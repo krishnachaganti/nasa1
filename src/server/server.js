@@ -9,7 +9,7 @@ import webpack from 'webpack';
 import logger from './lib/logger';
 import ApiRouter from './api/apiRouter';
 import watcher from './lib/watcher';
-
+import renderReact from './lib/ssr/renderReact';
 const dev = require('webpack-dev-middleware');
 const hot = require('webpack-hot-middleware');
 const config = require('../../tools/webpack/wp.dev.config.js');
@@ -55,7 +55,7 @@ if (!process.env.NODE_ENV) {
   app.use(hot(compiler));
 }
 app.use('/api/v1', ApiRouter);
-app.get('*', require('../app').serverMiddleware);
+app.get('*', renderReact);
 
 app.server.listen(port, (err) => {
   if (err) {

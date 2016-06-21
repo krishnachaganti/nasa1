@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
-import Portal from 'react-portal';
 import PersonDetails from '../org.PersonDetails';
 import PersonImage from '../atm.PersonImage';
+import { toggleCardFn } from 'scenes/Personnel/state/card';
+import { bindActionCreators } from 'redux';
 
 const insideCard = {
   display: 'flex',
@@ -18,36 +20,39 @@ const rightSide = {
   width: '60%'
 };
 
-class PersonCard extends React.Component {
+function mapStateToProps(state) {
+  return {
+    card: state.card,
+    people: state.peopleReducer
+  };
+}
 
+function mapDispatchToProps(dispatch) {
+  return { actions: bindActionCreators({ toggleCardFn }, dispatch) };
+}
+
+@connect(mapStateToProps, mapDispatchToProps)
+class PersonCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isPortalOpened: false,
-      someValue: 'init'
+      isOpened: false,
+      someValue: 'init',
+      personID: props.person.id
     };
   }
-
-  handleCardClick(e) {
-    const bodyRect = document.body.getBoundingClientRect();
-          const targetRect = e.target.getBoundingClientRect();
-          this.setState({
-            isOpened: true,
-            top: targetRect.top - bodyRect.top,
-            left: targetRect.left - bodyRect.left,
-            width: targetRect.width,
-          });
-  }
-  onClose() {
-    /* eslint no-console: 0 */
-    console.log('Portal closed');
-  }
+handleClickage() {
+  this.setState({
+      isOpened: !this.state.isOpened,
+    });
+  const persn = this.props.person.id;
+  this.props.actions.toggleCardFn(persn)
+}
 
   render() {
-
     return (
         <div>
-          <div style={ insideCard } onTouchTap={ this.props.toggle } onClick={ ::this.handleCardClick }>
+          <div className="card-body" style={ insideCard } onClick={ ::this.handleClickage }>
             <PersonImage style={ cardImg } increaseKudos={ this.props.handleIncrement } />
             <div style={ rightSide }>
               <CardTitle title={ this.props.person.PersonnelName } />
@@ -59,24 +64,10 @@ class PersonCard extends React.Component {
                 Kudos: { this.props.count }
               </CardText>
             </div>
-            {' '}
           </div>
-            <Portal
-              closeOnOutsideClick
-              isOpened={this.state.isOpened}
-              onClose={() => { this.setState({ isOpened: false }); this.onClose(); }}
-            >
-              <PersonDetails
-                person={ this.props.person }
-                left={this.state.left}
-                top={this.state.top}
-                width={this.state.width}
-              />
-            </Portal>
+          <PersonDetails person={ this.props.person } personID={this.props.person.id} isOpened={ this.state.isOpened } />
        </div>
     );
+      }
   }
-}
-
-
 export default PersonCard;
