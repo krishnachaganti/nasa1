@@ -19,4 +19,4 @@ export default (store) => {
       <Route path="*" component={ Error404 } />
     </Route>
   );
-}
+};

@@ -4,7 +4,7 @@ const DONE_LOADING = '@@sidebar/DONE_LOADING';
 const TOGGLE_SIDE_BAR = '@@sidebar/TOGGLE_SIDE_BAR';
 const CHANGE_SELECTED_DRAWER_ITEM = '@@sidebar/CHANGE_SELECTED_DRAWER_ITEM';
 
-const toggleSideBar = () => {
+export const toggleSideBar = () => {
   return {
     type: TOGGLE_SIDE_BAR
   };

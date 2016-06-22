@@ -168,6 +168,28 @@ class TaskOrderListing extends Component {
            </div>
           </div>
         </ListGroup>
+        <SubToolbar orgCode="IT-G:" orgTitle="IT Security Office" />
+        <ListGroup>
+          <ListPanel dateCircle="MAR 2016"
+            dateRange="03/01/2016 - 03/31/2016"
+            preparer="Wendy Mizerek-H"
+            link="/somewhere"
+          />
+          <ListPanel dateCircle="MAR 2016"
+            dateRange="03/01/2016 - 03/31/2016"
+            preparer="Wendy Mizerek-H"
+            link="/somewhere"
+          />
+          <div className="row center-xs">
+            <div className="col-xs">
+              <RaisedButton label="Load more for IT-G"
+                backgroundColor="#D8D8D8"
+                style={ btnStyle }
+                labelStyle={ labelSty }
+              />
+           </div>
+          </div>
+        </ListGroup>
       </div>
     );
   }

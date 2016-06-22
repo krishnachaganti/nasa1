@@ -12,17 +12,8 @@ import { getIotd, fetchWeather } from 'state/index';
 import Heading from 'shared/atm.Heading';
 import Textblock from 'shared/atm.Textblock';
 import ButtonGroup from './org.ButtonGroup';
-
-const styles = {
-  contentHeaderMenuLink: {
-    textDecoration: 'none',
-    color: 'white',
-    position: 'absolute',
-    top: '20px',
-    left: '30px',
-    zIndex: '1000'
-  }
-};
+import fallbackimg from '../Personnel/org.Hero/fallback-hero.jpg';
+import Hero from '../Personnel/org.Hero';
 const labelSty = {
   color: '#fff',
   textTransform: 'initial'
@@ -34,23 +25,46 @@ const btnStyle = {
 class TaskOrder extends Component {
   static readyOnActions(dispatch) {
     return Promise.all([
-      dispatch(fetchWeather())
+      dispatch(fetchWeather()),
+      dispatch(getIotd())
     ]);
   }
 
   componentDidMount() {
     TaskOrder.readyOnActions(this.props.dispatch);
   }
-  menuButtonClick(ev) {
+  menuButtonClick(ev, dispatch) {
     ev.preventDefault();
     this.props.dispatch(sidebarActions.toggleSideBar());
   }
 
   render() {
+    const HERO_IMG = this.props.hero.iotd || fallbackimg;
+    const styles = {
+      contentHeaderMenuLink: {
+        textDecoration: 'none',
+        color: 'white',
+        position: 'absolute',
+        top: '20px',
+        left: '30px',
+        zIndex: '1000'
+      },
+      heroStyle: {
+        height: '465px',
+        width: '100%',
+        backgroundImage: 'url(' + HERO_IMG + ')', // eslint-disable-line
+        backgroundSize: 'cover',
+        backgroundAttachment: 'fixed'
+      },
+      search: {
+        width: '600px',
+        height: '60px'
+      }
+    };
     return (
       <div>
         <Helmet title="Task Order" />
-        <Header menuIcon={
+        <Header heroImage={ styles.heroStyle } menuIcon={
           <MenuIc onTouchTap={ ::this.menuButtonClick } color={ lightWhite } style={ styles.contentHeaderMenuLink } />
           }
           weatherWidget={ <Weather temperature={ this.props.hero.temperature } /> }

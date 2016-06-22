@@ -20,7 +20,7 @@ const inlineStyle = {
   rightSide: {
     width: '60%'
   }
-}
+};
 
 function mapStateToProps(state) {
   return {
@@ -49,10 +49,10 @@ class PersonCard extends Component {
 
   handleClickage() {
     this.setState({
-      isOpened: !this.state.isOpened,
+      isOpened: !this.state.isOpened
     });
     const persn = this.props.person.id;
-    this.props.actions.toggleCard(persn)
+    this.props.actions.toggleCard(persn);
   }
 
   render() {
@@ -71,7 +71,7 @@ class PersonCard extends Component {
               </CardText>
             </div>
           </div>
-          <PersonDetails person={ this.props.person } personID={this.props.person.id} isOpened={ this.state.isOpened } />
+          <PersonDetails person={ this.props.person } closeExpand={ ::this.handleClickage } personID={this.props.person.id} isOpened={ this.state.isOpened } />
        </div>
     );
   }

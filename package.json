@@ -8,7 +8,7 @@
   "homepage": "",
   "betterScripts": {
     "start:server": {
-      "command": "nodemon",
+      "command": "nodemon --debug",
       "env": {
         "NODE_PATH": "src",
         "NODE_ENV": "development"

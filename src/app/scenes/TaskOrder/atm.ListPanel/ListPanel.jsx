@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames';
 import { Link } from 'react-router';
+import Heading from 'shared/atm.Heading';
 
 const dateCirStyle = {
   backgroundColor: '#043A92',
@@ -9,7 +10,9 @@ const dateCirStyle = {
   width: '70px',
   height: '70px',
   textAlign: 'center',
-  alignItems: 'center'
+  alignItems: 'center',
+  paddingTop: '1.1em',
+  lineHeight: '14px'
 };
 const ListPanel = (props) => {
   return (
@@ -20,14 +23,14 @@ const ListPanel = (props) => {
         </div>
       </div>
       <div className="col-md-3">
-      Period Covered <br />
+      <strong>Period Covered</strong> <br />
       { props.dateRange }
       </div>
-      <div className="col-md-4">
-        Name of Preparer <br />
+      <div className="col-md-5">
+        <strong>Name of Preparer</strong> <br />
         { props.preparer }
       </div>
-      <div className="col-md-3">
+      <div className="col-md-2">
         <Link to={ props.link }>View Full Report</Link>
       </div>
     </div>

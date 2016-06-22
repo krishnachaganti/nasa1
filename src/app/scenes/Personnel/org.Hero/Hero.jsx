@@ -29,7 +29,7 @@ const inlineStyles = {
     display: 'flex',
     justifyContent: 'center'
   }
-}
+};
 
 @connect(state => ({ hero: state.heroReducer }))
 export default class Hero extends React.Component {
@@ -77,12 +77,9 @@ export default class Hero extends React.Component {
           Regarding Treatment of Sensitive Information</Heading>
           </div>
         </div>
-
-
-
-                <div className="row center-xs">
+        <div className="row center-xs">
          <div className="col-xs-6">
-                  <PhotoCamera style={ inlineStyles.cameraStyle } color={ white } onTouchTap={ this.handleTouchTap } />
+            <PhotoCamera style={ inlineStyles.cameraStyle } color={ white } onTouchTap={ this.handleTouchTap } />
 
          <Popover open={ this.state.open } anchorEl={ this.state.anchorEl }
             anchorOrigin={{ horizontal: 'left', vertical: 'top' }}

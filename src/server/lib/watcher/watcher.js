@@ -25,12 +25,12 @@ watcher
     logger.info(toSave, ' result');
     saveReport(toSave);
     logger.info('Saved to db!');
-    fs.remove(path, err => {
-      if (err) {
-        return logger.error(err);
-      }
-      logger.info('deleted!');
-    });
+    // fs.remove(path, err => {
+    //   if (err) {
+    //     return logger.error(err);
+    //   }
+    //   logger.info('deleted!');
+    // });
   })
   .on('change', path => logger.info(`File ${path} has been changed`))
   .on('unlink', path => logger.info(`File ${path} has been removed`));

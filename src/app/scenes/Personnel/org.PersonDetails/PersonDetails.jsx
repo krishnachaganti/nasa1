@@ -3,6 +3,8 @@ import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowCol
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { connect } from 'react-redux';
+import CloseIcn from 'material-ui/svg-icons/navigation/close';
+import IconButton from 'material-ui/IconButton';
 
 function mapStateToProps(state) {
   return {
@@ -75,6 +77,9 @@ export default class PersonDetails extends Component {
                 { this.props.person.DoH }
               </li>
             </ul>
+            <IconButton onClick={ this.props.closeExpand } tooltip="Dismiss">
+            <CloseIcn />
+            </IconButton>
           </div>
           <div className="row">
             <ul style={ listStyle }>
@@ -121,6 +126,5 @@ export default class PersonDetails extends Component {
 PersonDetails.propTypes = {
   top: React.PropTypes.number,
   left: React.PropTypes.number,
-  width: React.PropTypes.number,
-  closePortal: React.PropTypes.func,
+  width: React.PropTypes.number
 };

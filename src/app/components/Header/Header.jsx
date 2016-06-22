@@ -11,7 +11,7 @@ const logoStyle = {
 
 const Header = (props) => {
   return (
-    <div className="header__main">
+    <div className="header__main" style={ props.heroImage }>
       <div className="container-fluid">
       <div className="row">
         <div className="col-xs">
