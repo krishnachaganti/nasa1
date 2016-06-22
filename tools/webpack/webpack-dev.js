@@ -7,7 +7,7 @@ export default function(compiler, options) {
   const webpackDevMiddlewareOptions = {
     ...options,
     quiet: QUIET_MODE,
-    noInfo: QUIET_MODE,
+    noInfo: true,
     stats: {
       colors: true
     },

@@ -37,6 +37,7 @@ const People = (props) => {
             if (!props.filter || groupName === props.filter) {
               return (
                 <div className="row" key={ index }>
+
                   <OrgGroup boss={
                       <BossCard nasaName="Lisa Barber" position="Boss" orgCode={ groupName } />
                     } toolbar={

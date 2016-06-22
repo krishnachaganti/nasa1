@@ -22,6 +22,9 @@ const Sider = props => {
          <li>
           <a href=""><span className="sider__square">IT-F</span></a>
         </li>
+          <li>
+          <a href=""><span className="sider__square">IT-G</span></a>
+        </li>
       </ul>
     </div>
   );

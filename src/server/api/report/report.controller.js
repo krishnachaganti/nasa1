@@ -29,6 +29,16 @@ export function getPersonnel(req, res, next) {
       return res.status(500).json(err);
     });
 }
+export function getFile(req, res, next, fileId) {
+  r.table('files').get(fileId).pluck('file', 'filename')
+    .run()
+    .then(data => {
+      res.status(200).json(data);
+    })
+    .error(err => {
+      return res.status(500).json(err);
+    });
+}
 export function uploadReport(req, res, next) {
   let fstream;
   req.pipe(req.busboy);

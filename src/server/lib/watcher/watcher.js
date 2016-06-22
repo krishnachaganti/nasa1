@@ -22,7 +22,7 @@ watcher
       return object;
     });
 
-    logger.info(toSave, ' result');
+    // logger.info(toSave, ' result');
     saveReport(toSave);
     logger.info('Saved to db!');
     // fs.remove(path, err => {

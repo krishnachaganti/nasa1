@@ -6,4 +6,5 @@ const reportRouter = express.Router();
 reportRouter.get('/', controller.getAll);
 reportRouter.post('/', controller.uploadReport);
 reportRouter.get('/people', controller.getPersonnel);
+reportRouter.get('/file/:id', controller.getFile);
 export default reportRouter;

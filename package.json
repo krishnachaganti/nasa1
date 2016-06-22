@@ -55,7 +55,6 @@
     "cors": "^2.7.1",
     "crypto": "0.0.3",
     "debug": "^2.2.0",
-    "dotenv": "^2.0.0",
     "ejs": "^2.4.2",
     "errorhandler": "^1.4.3",
     "express": "^4.14.0",
@@ -132,5 +131,5 @@
     "webpack": "^2.1.0-beta.13",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.10.0"
-    }
+  }
 }

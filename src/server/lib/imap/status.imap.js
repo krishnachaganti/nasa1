@@ -18,6 +18,7 @@ const statusMailCfg = {
   }
 };
 export default mailStatusConnect => {
+  logger.verbose('mail status')
   imaps.connect(statusMailCfg).then(connection => {
     return connection.openBox('INBOX').then(() => {
       // Fetch emails from the last 96h
