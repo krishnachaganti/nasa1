@@ -7,14 +7,16 @@ import People from './scenes/Personnel/People';
 import TaskOrder from 'scenes/TaskOrder';
 import TaskOrderListing from 'scenes/TaskOrder/TaskOrderListing';
 
-export default (
-  <Route component={ CoreLayout }>
-    <Route path="/" component={ Personnel }>
-      <IndexRoute component={ People } />
+export default (store) => {
+  return (
+    <Route component={ CoreLayout }>
+      <Route path="/" component={ Personnel }>
+        <IndexRoute component={ People } />
+      </Route>
+      <Route path="/taskorder" component={ TaskOrder }>
+        <IndexRoute component={ TaskOrderListing } />
+      </Route>
+      <Route path="*" component={ Error404 } />
     </Route>
-    <Route path="/taskorder" component={ TaskOrder }>
-      <IndexRoute component={ TaskOrderListing } />
-    </Route>
-    <Route path="*" component={ Error404 } />
-  </Route>
-);
+  );
+}

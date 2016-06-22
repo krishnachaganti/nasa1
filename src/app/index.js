@@ -9,7 +9,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import preRenderMiddleware from 'app/utils.render/preRenderMiddleware';
-import routes from './routes.jsx';
+import createRoutes from './routes.jsx';
 import configureStore from 'app/utils.redux/configureStore';
 import './styles/main.scss';
 const initialState = window.__INITIAL_STATE__;
@@ -31,11 +31,11 @@ function onUpdate() {
   const { state: { components, params } } = this;
   preRenderMiddleware(store.dispatch, components, params);
 }
-
+const routes = createRoutes(store);
 const root = (
 <Provider store={ store }>
   <MuiThemeProvider muiTheme={ getMuiTheme() }>
-    <Router history={ history } onUpdate={ onUpdate }>
+    <Router history={ history } onUpdate={ onUpdate } key={ Math.random() }>
         { routes }
     </Router>
   </MuiThemeProvider>

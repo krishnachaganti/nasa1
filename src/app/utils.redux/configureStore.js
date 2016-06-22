@@ -8,7 +8,7 @@ export default function configureStore(initialState, history) {
   const middleware = [thunkMiddleware];
   const reactRouterReduxMiddleware = routerMiddleware(history);
 
-  middleware.push(reactRouterReduxMiddleware, createLogger());
+  middleware.push(reactRouterReduxMiddleware);
 
   const store = createStore(
     rootReducer,

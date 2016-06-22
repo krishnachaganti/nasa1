@@ -7,10 +7,11 @@ import { Router, match, createMemoryHistory, RouterContext } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import preRenderMiddleware from 'app/utils.render/preRenderMiddleware';
-import routes from 'app/routes';
+import createRoutes from 'app/routes';
 import configureStore from 'app/utils.redux/configureStore';
 import Helmet from 'react-helmet';
 import Html from 'app/utils.render/Html';
+import { LOAD_PEOPLE } from 'state/people/people';
 
 export default (req, res, next) => {
   if (__DEV__) {
@@ -21,6 +22,7 @@ export default (req, res, next) => {
   const location = memHistory.createLocation(url);
 
   const store = configureStore(memHistory, {});
+  const routes = createRoutes(store)
   const history = syncHistoryWithStore(memHistory, store);
 
   function hydrateOnClient() {
@@ -46,7 +48,7 @@ export default (req, res, next) => {
         props.params
       )
       .then(() => {
-        const initialState = store.getState();
+        const state = store.getState();
         const root = (
         <Provider store={store}>
           <MuiThemeProvider muiTheme={ getMuiTheme() }>
@@ -54,16 +56,14 @@ export default (req, res, next) => {
           </MuiThemeProvider>
         </Provider>
         );
-
-        const state = store.getState();
         const head = Helmet.rewind();
         const HtmlComponent = (
-        <Html
-          assets={webpackIsomorphicTools.assets()}
-          content={renderToString(root)}
-          head={head}
-          state={state}
-        />
+          <Html
+            assets={ webpackIsomorphicTools.assets() }
+            content={ renderToString(root) }
+            head={ head }
+            state={ state }
+          />
         );
         global.navigator = {
           userAgent: req.headers['user-agent']
