@@ -11,7 +11,7 @@ export default (store) => {
   return (
     <Route component={ CoreLayout }>
       <Route path="/" component={ Personnel }>
-        <IndexRoute component={ People } />
+        <IndexRoute component={ Personnel } />
       </Route>
       <Route path="/taskorder" component={ TaskOrder }>
         <IndexRoute component={ TaskOrderListing } />

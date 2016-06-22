@@ -64,7 +64,8 @@ export default class PersonDetails extends Component {
       </Table>
     );
     return (
-       <ReactCSSTransitionGroup transitionName="card-expander" transitionEnterTimeout={500} transitionLeaveTimeout={300}>
+       <ReactCSSTransitionGroup transitionName="card-expander"
+          transitionEnterTimeout={ 500 } transitionLeaveTimeout={ 300 }>
          <div className="card-expander" key="expander" style={ expanderStyle }>
           <div className="row">
             <ul style={ listStyle }>

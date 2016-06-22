@@ -1,8 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
-
-import IconButton from 'material-ui/IconButton';
 import { lightWhite } from 'material-ui/styles/colors';
 import MenuIc from 'material-ui/svg-icons/navigation/menu';
 import SearchInput, { createFilter } from 'react-search-input';
@@ -13,7 +11,20 @@ import { Toolbar, Sidebar, Weather, Sider, SubToolbar, BossCard } from 'componen
 import OrgGroup from './org.OrgGroup';
 import fallbackimg from './org.Hero/fallback-hero.jpg';
 import Hero from './org.Hero';
+import People from './People';
 
+const mapStateToProps = (state) => {
+  return {
+    hero: state.heroReducer,
+    loading: state.peopleReducer.loading,
+    people: state.peopleReducer,
+    filter: state.peopleReducer.filter,
+    sidebar: state.sidebarReducer,
+    card: state.card
+  };
+};
+
+@connect(mapStateToProps)
 class Personnel extends Component {
   static propTypes = {
     dispatch: React.PropTypes.func,
@@ -73,19 +84,10 @@ class Personnel extends Component {
           <Sidebar />
           <Toolbar />
           <Sider />
-         { this.props.children }
+         <People people={ this.props.people } loading={ this.props.loading } />
       </div>
     );
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    hero: state.heroReducer,
-    loading: state.peopleReducer.loading,
-    people: state.peopleReducer,
-    sidebar: state.sidebarReducer
-  };
-}
-
-export default connect(mapStateToProps)(Personnel);
+export default Personnel;

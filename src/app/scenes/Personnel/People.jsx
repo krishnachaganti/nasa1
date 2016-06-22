@@ -2,10 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import IconButton from 'material-ui/IconButton';
-import { lightWhite } from 'material-ui/styles/colors';
-import MenuIc from 'material-ui/svg-icons/navigation/menu';
-
 import SearchInput, { createFilter } from 'react-search-input';
 import { getIotd, fetchWeather } from 'state/index';
 import * as sidebarActions from 'state/sidebar/sidebar';
@@ -16,52 +12,29 @@ import fallbackimg from './org.Hero/fallback-hero.jpg';
 import Hero from './org.Hero';
 import { toggleCardFn } from 'scenes/Personnel/state/card';
 
-function mapStateToProps(state) {
-  return {
-    loading: state.peopleReducer.loading,
-    people: state.peopleReducer,
-    filter: state.peopleReducer.filter,
-    sidebar: state.sidebarReducer,
-    card: state.card
-  };
-}
-
-@connect(mapStateToProps)
-class People extends Component {
-  constructor(props) {
-    super(props);
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
-  menuButtonClick(ev) {
-    ev.preventDefault();
-    this.props.dispatch(sidebarActions.toggleSideBar());
-  }
-
-  render() {
-    const styles = {
-      contentHeaderMenuLink: {
-        textDecoration: 'none',
-        color: 'white',
-        position: 'absolute',
-        top: '20px',
-        left: '30px',
-        zIndex: '1000'
-      }
-    };
-
-    const search = {
+const People = (props) => {
+  const styles = {
+    contentHeaderMenuLink: {
+      textDecoration: 'none',
+      color: 'white',
+      position: 'absolute',
+      top: '20px',
+      left: '30px',
+      zIndex: '1000'
+    },
+    search: {
       width: '600px',
       height: '60px'
-    };
-    return (
+    }
+  };
+  return (
       <div className="wrap">
         {
-          this.props.people.loading ? <Loader /> :
-          Object.keys(this.props.people.people).sort().map((groupName, index) => {
-            const peopleList = this.props.people.people[groupName];
+         props.loading ? <Loader /> :
+          Object.keys(props.people.people).sort().map((groupName, index) => {
+            const peopleList = props.people.people[groupName];
             const toolBarCode = `${groupName}:`;
-            if (!this.props.filter || groupName === this.props.filter) {
+            if (!props.filter || groupName === props.filter) {
               return (
                 <div className="row" key={ index }>
                   <OrgGroup boss={
@@ -79,11 +52,6 @@ class People extends Component {
         }
       </div>
     );
-  }
-}
-
-People.propTypes = {
-  dispatch: React.PropTypes.func
-}
+};
 
 export default People;
