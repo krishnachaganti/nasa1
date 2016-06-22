@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { connect } from 'react-redux';
@@ -36,38 +35,52 @@ export default class PersonDetails extends Component {
     };
 
     const renderTable = (
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHeaderColumn>Trainings</TableHeaderColumn>
-            <TableHeaderColumn>Date</TableHeaderColumn>
-            <TableHeaderColumn>Status</TableHeaderColumn>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          <TableRow>
-            <TableRowColumn>ITS_016_001</TableRowColumn>
-            <TableRowColumn>{ this.props.person.ITS_016_001 }</TableRowColumn>
-            <TableRowColumn>
-              { this.props.person.ITS_016_001 ? <span>Completed</span> : <span>Not Complete</span> }
-            </TableRowColumn>
-          </TableRow>
-          <TableRow>
-            <TableRowColumn>LARC_CICT</TableRowColumn>
-            <TableRowColumn>{ this.props.person.LARC_CICT }</TableRowColumn>
-            <TableRowColumn>
-              { this.props.person.LARC_CICT ? <span>Completed</span> : <span>Not Complete</span> }
-            </TableRowColumn>
-          </TableRow>
-          <TableRow>
-            <TableRowColumn>OCIMPR</TableRowColumn>
-            <TableRowColumn>{ this.props.person.OCIMPR }</TableRowColumn>
-            <TableRowColumn>
-              { this.props.person.OCIMPR ? <span>Completed</span> : <span>Not Complete</span> }
-            </TableRowColumn>
-          </TableRow>
-        </TableBody>
-      </Table>
+      <section className="faux-table">
+          <div className="row">
+            <div className="col-md-3">
+                <strong>Trainings</strong>
+            </div>
+            <div className="col-md-3">
+                <strong>Date</strong>
+            </div>
+            <div className="col-md-6">
+                <strong>Status </strong>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-3">
+                ITS_016_001
+            </div>
+            <div className="col-md-3">
+                LARC_CICT
+            </div>
+            <div className="col-md-6">
+                OCIMPR
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-3">
+                { this.props.person.ITS_016_001 }
+            </div>
+            <div className="col-md-3">
+                { this.props.person.LARC_CICT }
+            </div>
+            <div className="col-md-6">
+                { this.props.person.OCIMPR }
+            </div>
+          </div>
+           <div className="row">
+            <div className="col-md-3">
+               { this.props.person.ITS_016_001 ? <span>Completed</span> : <span>Not Complete</span> }
+            </div>
+            <div className="col-md-3">
+            { this.props.person.LARC_CICT ? <span>Completed</span> : <span>Not Complete</span> }
+             </div>
+            <div className="col-md-6">
+               { this.props.person.OCIMPR ? <span>Completed</span> : <span>Not Complete</span> }
+            </div>
+          </div>
+        </section>
     );
     return (
        <ReactCSSTransitionGroup transitionName="card-expander"
@@ -117,9 +130,7 @@ export default class PersonDetails extends Component {
                 { this.props.person.NASAContactPhone }
             </div>
           </div>
-          <div className="row">
           { renderTable }
-          </div>
            </div>
         </div>
        </ReactCSSTransitionGroup>
