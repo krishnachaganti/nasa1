@@ -51,11 +51,11 @@ const INITIAL_STATE = {
   message: '',
   error: false,
   people: {},
+  count: 0,
   filter: ''
 };
 
 export default function peopleReducer(state = INITIAL_STATE, action) {
-
   switch (action.type) {
     case LOAD_PEOPLE:
       return {
@@ -66,13 +66,14 @@ export default function peopleReducer(state = INITIAL_STATE, action) {
       const newPeople = {};
       action.payload.map(person => {
         !newPeople[person.OrgCode] && (newPeople[person.OrgCode] = []);
-        newPeople[person.OrgCode].push(person);
+        return newPeople[person.OrgCode].push(person);
       });
       return {
         ...state,
         error: false,
         loading: false,
-        people: newPeople
+        people: newPeople,
+        count: action.payload.length
       };
     //
     case LOAD_PEOPLE_FAILURE:
@@ -84,7 +85,7 @@ export default function peopleReducer(state = INITIAL_STATE, action) {
       return {
         ...state,
         filter: action.filter
-      }
+      };
     default:
       return state;
   }

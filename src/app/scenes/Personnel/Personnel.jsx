@@ -82,7 +82,7 @@ class Personnel extends Component {
             isLoading={ this.props.hero.loading }
           />
           <Sidebar />
-          <Toolbar />
+          <Toolbar people={ this.props.people } />
           <Sider />
          <People people={ this.props.people } loading={ this.props.loading } />
       </div>

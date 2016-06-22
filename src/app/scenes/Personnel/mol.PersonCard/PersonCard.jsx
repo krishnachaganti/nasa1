@@ -1,11 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import { CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
+import { bindActionCreators } from 'redux';
+import { CardTitle, CardText } from 'material-ui/Card';
 import PersonDetails from '../org.PersonDetails';
 import PersonImage from '../atm.PersonImage';
 import { toggleCard } from 'scenes/Personnel/state/card';
-import { bindActionCreators } from 'redux';
 
 const inlineStyle = {
   insideCard: {
@@ -71,7 +71,11 @@ class PersonCard extends Component {
               </CardText>
             </div>
           </div>
-          <PersonDetails person={ this.props.person } closeExpand={ ::this.handleClickage } personID={this.props.person.id} isOpened={ this.state.isOpened } />
+          <PersonDetails person={ this.props.person }
+              closeExpand={ ::this.handleClickage }
+              personID={this.props.person.id}
+              isOpened={ this.state.isOpened }
+            />
        </div>
     );
   }

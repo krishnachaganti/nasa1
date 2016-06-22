@@ -40,7 +40,7 @@ const People = (props) => {
                   <OrgGroup boss={
                       <BossCard nasaName="Lisa Barber" position="Boss" orgCode={ groupName } />
                     } toolbar={
-                      <SubToolbar orgCode={ toolBarCode } orgTitle="Business Office" />
+                      <SubToolbar orgCode={ toolBarCode } orgLength={ peopleList.length } orgTitle="Business Office" />
                     } orgType={ groupName } persons={ peopleList }
                   />
                 </div>

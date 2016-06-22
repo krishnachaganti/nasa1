@@ -11,13 +11,13 @@ import { setFilter } from 'state/people/people';
 function mapStateToProps(state) {
   return {
     filter: state.peopleReducer.filter
-  }
+  };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators({ setFilter }, dispatch)
-  }
+  };
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -31,11 +31,11 @@ class Toolbar extends Component {
   }
 //  { this.props.total.length }
   handleChange = (event, index, value) => {
-    this.props.actions.setFilter(value)
-    this.setState({value});
+    this.props.actions.setFilter(value);
+    this.setState({ value });
   }
-  render() {
 
+  render() {
     return (
       <div className="toolbar row">
       <div className="toolbar__section">
@@ -51,7 +51,7 @@ class Toolbar extends Component {
           </SelectField>
         </div>
          <div className="toolbar__col-right col-sm-offset-3 col-sm-3">
-
+            Total ITSS Personnel: { this.props.people.count }
           </div>
         </div>
       </div>
