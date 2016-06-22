@@ -52,29 +52,29 @@ export default class PersonDetails extends Component {
                 ITS_016_001
             </div>
             <div className="col-md-3">
-                LARC_CICT
+               { this.props.person.ITS_016_001 }
             </div>
             <div className="col-md-6">
-                OCIMPR
+                { this.props.person.ITS_016_001 ? <span>Completed</span> : <span>Not Complete</span> }
             </div>
           </div>
           <div className="row">
             <div className="col-md-3">
-                { this.props.person.ITS_016_001 }
+                LARC_CICT
             </div>
             <div className="col-md-3">
                 { this.props.person.LARC_CICT }
             </div>
             <div className="col-md-6">
-                { this.props.person.OCIMPR }
+               { this.props.person.LARC_CICT ? <span>Completed</span> : <span>Not Complete</span> }
             </div>
           </div>
            <div className="row">
             <div className="col-md-3">
-               { this.props.person.ITS_016_001 ? <span>Completed</span> : <span>Not Complete</span> }
+               OCIMPR
             </div>
             <div className="col-md-3">
-            { this.props.person.LARC_CICT ? <span>Completed</span> : <span>Not Complete</span> }
+            { this.props.person.OCIMPR }
              </div>
             <div className="col-md-6">
                { this.props.person.OCIMPR ? <span>Completed</span> : <span>Not Complete</span> }
@@ -108,7 +108,7 @@ export default class PersonDetails extends Component {
                 { this.props.person.OrgCode }
             </div>
             <div className="col-md-3">
-                              <strong>Task Order #</strong><br />
+                <strong>Task Order #</strong><br />
                 { this.props.person.TO_Number }
             </div>
             <div className="col-md-6">
