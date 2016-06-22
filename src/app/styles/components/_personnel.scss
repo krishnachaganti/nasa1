@@ -27,12 +27,24 @@
 }
 
 .person-details__wrap {
-  padding: 2rem;
-
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 .faux-table {
   margin-top: 40px;
+}
+
+.row__padding {
+  padding-top: 25px;
+}
+.row__pad {
+  vertical-align: middle;
+  height: 55px;
+  margin-top: 2px;
+  align-items: center;
 }
 .card-wrapper {
   @include transition();

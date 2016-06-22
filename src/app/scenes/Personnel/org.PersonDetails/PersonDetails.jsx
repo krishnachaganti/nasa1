@@ -33,7 +33,19 @@ export default class PersonDetails extends Component {
     const expanderStyle = {
       height: this.shouldOpen() ? '500px' : 0
     };
-
+    const icnBtnStyle = {
+      float: 'right'
+    };
+    const topRowStyle = {
+      marginTop: '5px',
+      backgroundColor: this.props.person.ITS_016_001 ? '#CFE8B5' : '#F7F4BE'
+    };
+    const midRowStyle = {
+      backgroundColor: this.props.person.ITS_016_001 ? '#CFE8B5' : '#F7F4BE'
+    };
+    const botRowStyle = {
+      backgroundColor: this.props.person.ITS_016_001 ? '#CFE8B5' : '#F7F4BE'
+    };
     const renderTable = (
       <section className="faux-table">
           <div className="row">
@@ -47,7 +59,7 @@ export default class PersonDetails extends Component {
                 <strong>Status </strong>
             </div>
           </div>
-          <div className="row">
+          <div className="row row__pad" style={ topRowStyle }>
             <div className="col-md-3">
                 ITS_016_001
             </div>
@@ -58,7 +70,7 @@ export default class PersonDetails extends Component {
                 { this.props.person.ITS_016_001 ? <span>Completed</span> : <span>Not Complete</span> }
             </div>
           </div>
-          <div className="row">
+          <div className="row row__pad" style={ midRowStyle }>
             <div className="col-md-3">
                 LARC_CICT
             </div>
@@ -69,7 +81,7 @@ export default class PersonDetails extends Component {
                { this.props.person.LARC_CICT ? <span>Completed</span> : <span>Not Complete</span> }
             </div>
           </div>
-           <div className="row">
+           <div className="row row__pad" style={ botRowStyle }>
             <div className="col-md-3">
                OCIMPR
             </div>
@@ -86,8 +98,8 @@ export default class PersonDetails extends Component {
        <ReactCSSTransitionGroup transitionName="card-expander"
           transitionEnterTimeout={ 500 } transitionLeaveTimeout={ 300 }>
          <div className="card-expander" key="expander" style={ expanderStyle }>
-         <div className="person-details__wrap">
-          <div className="row">
+         <div className="wrap">
+          <div className="row row__padding">
             <div className="col-md-3">
               <strong>Position Title</strong><br />
               { this.props.person.PositionTitlePLC }
@@ -97,12 +109,12 @@ export default class PersonDetails extends Component {
               { this.props.person.DoH }
             </div>
             <div className="col-md-offset-3 col-md-3">
-              <IconButton onClick={ this.props.closeExpand } tooltip="Dismiss">
+              <IconButton onClick={ this.props.closeExpand } tooltip="Dismiss" style={ icnBtnStyle }>
                 <CloseIcn />
               </IconButton>
             </div>
           </div>
-          <div className="row">
+          <div className="row row__padding">
             <div className="col-md-3">
                 <strong>Org Code</strong> <br />
                 { this.props.person.OrgCode }
@@ -116,7 +128,7 @@ export default class PersonDetails extends Component {
                 { this.props.person.TO_Name }
             </div>
           </div>
-          <div className="row">
+          <div className="row row__padding">
             <div className="col-md-3">
                 <strong>Task Order Technical Monitor</strong> <br />
                 { this.props.person.TO_TechnicalMonitor }<br />
