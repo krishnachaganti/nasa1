@@ -20,8 +20,8 @@ const config = {
     authTimeout: 3000
   }
 };
-
-imaps.connect(config).then(connection => {
+export default mailConnect => {
+  imaps.connect(config).then(connection => {
   return connection.openBox('INBOX').then(() => {
     // Fetch emails from the last 96h
     const delay = 24 * 3600 * 1000;
@@ -72,3 +72,4 @@ imaps.connect(config).then(connection => {
     });
   });
 });
+};

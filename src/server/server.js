@@ -5,7 +5,7 @@ import fs from 'fs-extra';
 import convert from 'simple-csv-to-json';
 import path from 'path';
 import imaps from 'imap-simple';
-
+import mailStatusConnect from './lib/imap/status.imap';
 import webpack from 'webpack';
 import logger from './lib/logger';
 import ApiRouter from './api/apiRouter';
@@ -48,7 +48,7 @@ if (!process.env.NODE_ENV) {
     stats: {
       colors: true,
       hash: false,
-      timings: true,
+      timings: false,
       chunks: false,
       chunkModules: false,
       modules: false
@@ -57,7 +57,8 @@ if (!process.env.NODE_ENV) {
   app.use(hot(compiler));
 }
 // require('./lib/imap/imap');
-require('./lib/imap/status.imap');
+// require('./lib/imap/status.imap');
+mailStatusConnect();
 app.use('/api/v1', ApiRouter);
 app.get('*', renderReact);
 

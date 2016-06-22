@@ -7,8 +7,8 @@ import fs from 'fs-extra';
 import logger from '../logger';
 import convert from 'simple-csv-to-json';
 import { saveReport } from '../../api/report/report.controller';
-const UPL_DIR = join(__dirname, '..', '..', '..', '..', 'uploads');
-const watcher = chokidar.watch(UPL_DIR, {
+const TMP_DIR = join(__dirname, '..', '..', '..', '..', 'tmp');
+const watcher = chokidar.watch(TMP_DIR, {
   ignored: /[\/\\]\./,
   persistent: true
 });
