@@ -48,17 +48,23 @@ export default class PersonDetails extends Component {
           <TableRow>
             <TableRowColumn>ITS_016_001</TableRowColumn>
             <TableRowColumn>{ this.props.person.ITS_016_001 }</TableRowColumn>
-            <TableRowColumn>Completed</TableRowColumn>
+            <TableRowColumn>
+              { this.props.person.ITS_016_001 ? <span>Completed</span> : <span>Not Complete</span> }
+            </TableRowColumn>
           </TableRow>
           <TableRow>
             <TableRowColumn>LARC_CICT</TableRowColumn>
             <TableRowColumn>{ this.props.person.LARC_CICT }</TableRowColumn>
-            <TableRowColumn>Completed</TableRowColumn>
+            <TableRowColumn>
+              { this.props.person.LARC_CICT ? <span>Completed</span> : <span>Not Complete</span> }
+            </TableRowColumn>
           </TableRow>
           <TableRow>
             <TableRowColumn>OCIMPR</TableRowColumn>
             <TableRowColumn>{ this.props.person.OCIMPR }</TableRowColumn>
-            <TableRowColumn>Completed</TableRowColumn>
+            <TableRowColumn>
+              { this.props.person.OCIMPR ? <span>Completed</span> : <span>Not Complete</span> }
+            </TableRowColumn>
           </TableRow>
         </TableBody>
       </Table>
@@ -67,56 +73,54 @@ export default class PersonDetails extends Component {
        <ReactCSSTransitionGroup transitionName="card-expander"
           transitionEnterTimeout={ 500 } transitionLeaveTimeout={ 300 }>
          <div className="card-expander" key="expander" style={ expanderStyle }>
+         <div className="person-details__wrap">
           <div className="row">
-            <ul style={ listStyle }>
-              <li style={ listItemStyle }>
-                <strong>Position Title</strong><br />
-                { this.props.person.PositionTitlePLC }
-              </li>
-              <li style={ listItemStyle }>
-                <strong>Date of Hire</strong> <br />
-                { this.props.person.DoH }
-              </li>
-            </ul>
-            <IconButton onClick={ this.props.closeExpand } tooltip="Dismiss">
-            <CloseIcn />
-            </IconButton>
+            <div className="col-md-3">
+              <strong>Position Title</strong><br />
+              { this.props.person.PositionTitlePLC }
+            </div>
+            <div className="col-md-3">
+              <strong>Date of Hire</strong> <br />
+              { this.props.person.DoH }
+            </div>
+            <div className="col-md-offset-3 col-md-3">
+              <IconButton onClick={ this.props.closeExpand } tooltip="Dismiss">
+                <CloseIcn />
+              </IconButton>
+            </div>
           </div>
           <div className="row">
-            <ul style={ listStyle }>
-              <li style={ listItemStyle }>
+            <div className="col-md-3">
                 <strong>Org Code</strong> <br />
                 { this.props.person.OrgCode }
-              </li>
-              <li style={ listItemStyle }>
-                <strong>Task Order #</strong><br />
+            </div>
+            <div className="col-md-3">
+                              <strong>Task Order #</strong><br />
                 { this.props.person.TO_Number }
-              </li>
-              <li style={ listItemStyle }>
-                <strong>Task Order Name</strong><br />
+            </div>
+            <div className="col-md-6">
+                    <strong>Task Order Name</strong><br />
                 { this.props.person.TO_Name }
-              </li>
-            </ul>
+            </div>
           </div>
           <div className="row">
-            <ul style={ listStyle }>
-              <li style={ listItemStyle }>
+            <div className="col-md-3">
                 <strong>Task Order Technical Monitor</strong> <br />
                 { this.props.person.TO_TechnicalMonitor }<br />
-              </li>
-              <li style={ listItemStyle }>
+            </div>
+            <div className="col-md-3">
                 <strong>NASA Contact</strong><br />
-                { this.props.person.NASAContactName }<br />
-              </li>
-              <li style={ listItemStyle }>
+                { this.props.person.NASAContactName }
+            </div>
+            <div className="col-md-6">
                 <strong>NASA Contact Phone # </strong><br />
                 { this.props.person.NASAContactPhone }
-              </li>
-            </ul>
+            </div>
           </div>
           <div className="row">
           { renderTable }
           </div>
+           </div>
         </div>
        </ReactCSSTransitionGroup>
     );

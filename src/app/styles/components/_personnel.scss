@@ -26,6 +26,11 @@
   z-index: 2;
 }
 
+.person-details__wrap {
+  padding: 2rem;
+
+}
+
 .card-wrapper {
   @include transition();
 }
