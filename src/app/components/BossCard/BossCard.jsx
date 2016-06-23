@@ -9,6 +9,7 @@ import CardImage from './CardImage';
 import classes from './Card.scss';
 import BossDetails from 'scenes/Personnel/org.BossDetails/BossDetails';
 import BossImg from './BossImg';
+import PersonImage from 'scenes/Personnel/atm.PersonImage';
 const cardStyle = {
   marginLeft: '15px',
   marginRight: '15px',
@@ -31,7 +32,8 @@ const rightSide = {
   width: '60%'
 };
 const bossimgstyle = {
-  float: 'right'
+  float: 'right',
+  marginLeft: '-60px'
 };
 const inlineStyle = {
   insideCard: {
@@ -81,14 +83,15 @@ class BossCard extends React.Component {
   }
   render() {
     return(
-           <div>
-          <div className="card-body" style={ inlineStyle.insideCard } onClick={ ::this.handleClickage }>
-              <div style={ bossimgstyle }>
-              <BossImg />
+           <div className="card-wrapper">
+                         <div style={ bossimgstyle }>
+                <BossImg />
               </div>
-                <div style={ insideCard }>
-                  <CardImage style={ inlineStyle.cardImg }/>
-                  <div style={ rightSide }>
+           <div className="card-wrapper-inner">
+           <div className="card-body" style={ inlineStyle.insideCard } onClick={ ::this.handleClickage }>
+
+              <PersonImage style={ inlineStyle.cardImg } increaseKudos={ this.props.handleIncrement } />
+                <div style={ inlineStyle.rightSide }>
                   <CardTitle title={ this.props.nasaName } />
                   <CardText>
                    { this.props.position }
@@ -96,8 +99,8 @@ class BossCard extends React.Component {
                    Org Code: { this.props.orgCode }
                    <br />
                   </CardText>
-                  </div>
-                  </div>
+                </div>
+              </div>
               </div>
               <BossDetails
                   closeExpand={ ::this.handleClickage }

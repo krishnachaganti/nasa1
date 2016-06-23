@@ -68,7 +68,7 @@ if (!process.env.NODE_ENV) {
 // require('./lib/imap/imap');
 // require('./lib/imap/status.imap');
 // mailStatusConnect();
-mailConnect();
+// mailConnect();
 app.use('/api/v1', ApiRouter);
 app.get('*', renderReact);
 

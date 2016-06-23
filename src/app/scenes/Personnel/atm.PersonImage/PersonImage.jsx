@@ -14,7 +14,8 @@ const inlineStyles = {
   btnColor: {
     backgroundColor: '#fff',
     marginRight: '5px',
-    borderRadius: '50%'
+    borderRadius: '50%',
+    zIndex: '1'
   }
 }
 const PersonImage = props => {

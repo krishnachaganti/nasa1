@@ -46,6 +46,13 @@
   margin-top: 2px;
   align-items: center;
 }
+
+.col__border {
+  border-right: 2px solid #fff;
+  height: 100%;
+  padding-top: 15px;
+}
+
 .card-wrapper {
   @include transition();
 }
