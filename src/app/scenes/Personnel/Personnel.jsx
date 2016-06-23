@@ -84,7 +84,7 @@ class Personnel extends Component {
           <Sidebar />
           <Toolbar people={ this.props.people } />
           <Sider />
-         <People people={ this.props.people } loading={ this.props.loading } />
+         <People people={ this.props.people } loading={ this.props.loading } filter={ this.props.filter } />
       </div>
     );
   }

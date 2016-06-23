@@ -41,10 +41,10 @@ export default class PersonDetails extends Component {
       backgroundColor: this.props.person.ITS_016_001 ? '#CFE8B5' : '#F7F4BE'
     };
     const midRowStyle = {
-      backgroundColor: this.props.person.ITS_016_001 ? '#CFE8B5' : '#F7F4BE'
+      backgroundColor: this.props.person.LARC_CICT ? '#CFE8B5' : '#F7F4BE'
     };
     const botRowStyle = {
-      backgroundColor: this.props.person.ITS_016_001 ? '#CFE8B5' : '#F7F4BE'
+      backgroundColor: this.props.person.OCIMPR ? '#CFE8B5' : '#F7F4BE'
     };
     const renderTable = (
       <section className="faux-table">

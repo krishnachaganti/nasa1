@@ -38,7 +38,7 @@ export const routeToIndex = (index) => {
           title = 'Financial Report';
           break;
         case 3:
-          path = '/';
+          path = '/taskorder';
           title = 'Task Order Actions';
           break;
         default:
