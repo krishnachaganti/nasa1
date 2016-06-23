@@ -6,7 +6,7 @@ import convert from 'simple-csv-to-json';
 import path from 'path';
 import imaps from 'imap-simple';
 import mailConnect from './lib/imap/imap';
-import mailStatusConnect from './lib/imap/status.imap';
+// import mailStatusConnect from './lib/imap/status.imap';
 import webpack from 'webpack';
 import logger from './lib/logger';
 import ApiRouter from './api/apiRouter';

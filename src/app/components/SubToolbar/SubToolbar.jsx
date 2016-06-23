@@ -10,7 +10,8 @@ const inline = {
 const SubToolbar = props => {
   return (
     <div className="subtoolbar">
-      <span style={ bold }>{ props.orgCode }</span> { props.orgTitle }<span style={ inline }>Headcount: { props.orgLength }</span>
+      <span style={ bold }>{ props.orgCode }</span> { props.orgTitle }
+      { props.orgLength ? <span style={ inline }>Headcount: { props.orgLength }</span> : null }
     </div>
   );
 };

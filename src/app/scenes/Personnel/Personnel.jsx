@@ -7,6 +7,7 @@ import SearchInput, { createFilter } from 'react-search-input';
 import { getIotd, fetchWeather } from 'state/index';
 import { getPeople } from 'state/people/people';
 import * as sidebarActions from 'state/sidebar/sidebar';
+import { getNcontact } from 'state/ncontacts/ncontacts';
 import { Toolbar, Sidebar, Weather, Sider, SubToolbar, BossCard } from 'components/index';
 import OrgGroup from './org.OrgGroup';
 import fallbackimg from './org.Hero/fallback-hero.jpg';
@@ -20,6 +21,7 @@ const mapStateToProps = (state) => {
     people: state.peopleReducer,
     filter: state.peopleReducer.filter,
     sidebar: state.sidebarReducer,
+    nasaContacts: state.nasaContacts,
     card: state.card
   };
 };
@@ -35,7 +37,8 @@ class Personnel extends Component {
     return Promise.all([
       dispatch(getIotd()),
       dispatch(fetchWeather()),
-      dispatch(getPeople())
+      dispatch(getPeople()),
+      dispatch(getNcontact())
     ]);
   }
 

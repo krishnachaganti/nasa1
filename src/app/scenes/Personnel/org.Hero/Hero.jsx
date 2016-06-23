@@ -75,6 +75,7 @@ export default class Hero extends React.Component {
           <Heading size={ 2 } color="#fff" align="center" top="150">
           Search our Listing of Current Employees and Training Status <br />
           Regarding Treatment of Sensitive Information</Heading>
+          { this.props.searchField }
           </div>
         </div>
         <div className="row center-xs">
