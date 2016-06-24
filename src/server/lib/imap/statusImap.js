@@ -97,11 +97,13 @@ export default mailStatusConnect => {
         const extracted = data.key.split('_');
         const fileData = {
           location: data.Location,
-          key: extracted[5],
-          orgCode: extracted[0],
-          preparer: extracted[1] + ' ' + extracted[2],
-          periodStart: extracted[3],
-          periodEnd: extracted[4]
+          key: extracted[7],
+          month: extracted[0],
+          year: extracted[1],
+          orgCode: extracted[2],
+          preparer: extracted[3] + ' ' + extracted[4],
+          periodStart: extracted[5],
+          periodEnd: extracted[6]
         };
         logger.info('saving to s3');
         r.table('status_reports').insert(fileData).run();

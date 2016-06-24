@@ -21,9 +21,9 @@
 Webmail URL: https://mail.nasaupdate.com/mail
 
 Performance survey and status report pdf files **must** have the following name format:
-> OrgCode_firstName_lastName_periodStart_periodEnd_survey.pdf  
+> MonthAbrv_Year_OrgCode_firstName_lastName_periodStart_periodEnd_survey.pdf  
  
-> IT-A_John_Doe_06-01-2016_06-30-2016_survey.pdf
+> MAR_2016_IT-A_John_Doe_06-01-2016_06-30-2016_survey.pdf
 
 ## AWS
 A bucket, access key id and access key secret are necessary.
