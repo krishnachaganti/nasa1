@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import IconButton from 'material-ui/IconButton';
 import { lightWhite } from 'material-ui/styles/colors';
 import MenuIc from 'material-ui/svg-icons/navigation/menu';
@@ -14,7 +15,7 @@ import Textblock from 'shared/atm.Textblock';
 import ButtonGroup from './org.ButtonGroup';
 import fallbackimg from '../Personnel/org.Hero/fallback-hero.jpg';
 import Hero from '../Personnel/org.Hero';
-import { fetchReports } from './state/report';
+import { fetchReports, setFilter } from './state/report';
 import TaskOrderListing from './TaskOrderListing';
 
 const labelSty = {
@@ -25,6 +26,21 @@ const btnStyle = {
   margin: 12,
   color: '#fff'
 };
+
+
+function mapStateToProps(state) {
+  return {
+    filter: state.report.filter
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators({ setFilter }, dispatch)
+  };
+}
+
+@connect(mapStateToProps, mapDispatchToProps)
 class TaskOrder extends Component {
   static readyOnActions(dispatch) {
     return Promise.all([
@@ -41,7 +57,9 @@ class TaskOrder extends Component {
     ev.preventDefault();
     this.props.dispatch(sidebarActions.toggleSideBar());
   }
-
+  handleFilter = (event, index, value) => {
+    this.props.actions.setFilter(value);
+  }
   render() {
     const HERO_IMG = this.props.hero.iotd || fallbackimg;
     const styles = {
@@ -77,7 +95,7 @@ class TaskOrder extends Component {
               Task Order Archives
             </Heading>
           }
-          buttonGroup={ <ButtonGroup /> }
+          buttonGroup={ <ButtonGroup filterAct={ ::this.handleFilter } /> }
         />
         <Sider />
         <Sidebar />

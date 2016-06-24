@@ -9,12 +9,13 @@ const labelSty = {
 const ButtonGroup = (props) => {
   return (
     <div className="buttongroup">
-      <FlatButton label="IT-A" labelStyle={ labelSty } />
-      <FlatButton label="IT-B" labelStyle={ labelSty } />
-      <FlatButton label="IT-C" labelStyle={ labelSty } />
-      <FlatButton label="IT-D" labelStyle={ labelSty } />
-      <FlatButton label="IT-E" labelStyle={ labelSty } />
-      <FlatButton label="IT-F" labelStyle={ labelSty } />
+      <FlatButton label="IT-A" value="IT-A" onTouchTap={ props.filterAct } labelStyle={ labelSty } />
+      <FlatButton label="IT-B" value="IT-B" onTouchTap={ props.filterAct } labelStyle={ labelSty } />
+      <FlatButton label="IT-C" value="IT-C" onTouchTap={ props.filterAct } labelStyle={ labelSty } />
+      <FlatButton label="IT-D" value="IT-D" onTouchTap={ props.filterAct } labelStyle={ labelSty } />
+      <FlatButton label="IT-E" value="IT-E" onTouchTap={ props.filterAct } labelStyle={ labelSty } />
+      <FlatButton label="IT-F" value="IT-F" onTouchTap={ props.filterAct } labelStyle={ labelSty } />
+      <FlatButton label="IT-G" value="IT-G" onTouchTap={ props.filterAct } labelStyle={ labelSty } />
     </div>
   );
 };

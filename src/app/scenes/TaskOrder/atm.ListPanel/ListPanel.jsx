@@ -24,14 +24,14 @@ const ListPanel = (props) => {
       </div>
       <div className="col-md-3">
       <strong>Period Covered</strong> <br />
-      { props.dateRange }
+      { props.file.periodStart } - { props.file.periodEnd }
       </div>
       <div className="col-md-5">
         <strong>Name of Preparer</strong> <br />
-        { props.preparer }
+        { props.file.preparer }
       </div>
       <div className="col-md-2">
-        <Link to={ props.link }>View Full Report</Link>
+        <a href={ props.file.location }>View Full Report</a>
       </div>
     </div>
   );

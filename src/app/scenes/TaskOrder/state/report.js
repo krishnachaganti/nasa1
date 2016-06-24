@@ -3,6 +3,7 @@ import axios from 'axios';
 const FETCH_REPORTS = 'taskorder/@@report/FETCH_REPORTS';
 const FETCH_REPORTS_SUCCESS = 'taskorder/@@report/FETCH_REPORTS_SUCCESS';
 const FETCH_REPORTS_FAIL = 'taskorder/@@report/FETCH_REPORTS_FAIL';
+const SET_FILTER = 'SET_FILTER';
 
 const _fetchReports = () => ({
   type: FETCH_REPORTS
@@ -37,9 +38,15 @@ export function fetchReports(data) {
   };
 }
 
+export const setFilter = (value) => ({
+  type: SET_FILTER,
+  filter: value
+});
+
 const INITIAL_STATE = {
   loading: false,
   error: false,
+  filter: '',
   files: {}
 };
 
@@ -67,6 +74,11 @@ export default function report(state = INITIAL_STATE, action) {
         ...state,
         error: action.payload,
         loading: false
+      };
+    case SET_FILTER:
+      return {
+        ...state,
+        filter: action.filter
       };
     default:
       return state;
