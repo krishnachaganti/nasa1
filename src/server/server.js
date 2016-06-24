@@ -1,10 +1,8 @@
+global.__ENVIRONMENT__ = process.env.NODE_ENV || 'default';
+require('dotenv').config({ silent: true });
 import Express from 'express';
-import chalk from 'chalk';
 import http from 'http';
-import fs from 'fs-extra';
-import convert from 'simple-csv-to-json';
 import path from 'path';
-import imaps from 'imap-simple';
 // import mailConnect from './lib/imap/imap';
 import mailStatusConnect from './lib/imap/statusImap';
 // import mailSurveyConnect from './lib/imap/surveyImap';
@@ -14,14 +12,10 @@ import ApiRouter from './api/apiRouter';
 import watcher from './lib/watcher';
 import renderReact from './lib/ssr/renderReact';
 
-const dev = require('webpack-dev-middleware');
-const hot = require('webpack-hot-middleware');
-const config = require('../../tools/webpack/wp.dev.config.js');
-const UPL_DIR = path.join(__dirname, '..', '..', 'uploads');
 const port = process.env.PORT || 3000;
 const app = Express();
 app.server = http.createServer(app);
-global.__ENVIRONMENT__ = process.env.NODE_ENV || 'default';
+
 require('./config/express').default(app);
 // Otherwise errors thrown in Promise routines will be silently swallowed.
 // (e.g. any error during rendering the app server-side!)
@@ -42,35 +36,26 @@ app.get('/favicon.ico', (req, res) => {
 
 app.use(Express.static(path.resolve(__dirname, 'dist')));
 
+// Webpack Dev Server and Hot Reloading
 if (!process.env.NODE_ENV) {
-  const compiler = webpack(config);
+  const dev = require('webpack-dev-middleware');
+  const hot = require('webpack-hot-middleware');
+  const wpconfig = require('../../tools/webpack/wp.dev.config.js');
+  const compiler = webpack(wpconfig);
 
   app.use(dev(compiler, {
-    publicPath: config.output.publicPath,
-    stats: {
-      colors: true,
-      hash: false,
-      version: false,
-      timings: false,
-      assets: false,
-      chunks: false,
-      modules: false,
-      reasons: false,
-      children: false,
-      source: false,
-      errors: false,
-      errorDetails: false,
-      warnings: false,
-      publicPath: false
-    }
+    publicPath: wpconfig.output.publicPath
   }));
   app.use(hot(compiler));
 }
 
+// Three different IMAP services
 mailStatusConnect();
 // mailConnect();
 // mailSurveyConnect();
+
 app.use('/api/v1', ApiRouter);
+// Send everything thats not /api/v1 to React
 app.get('*', renderReact);
 
 app.server.listen(port, (err) => {

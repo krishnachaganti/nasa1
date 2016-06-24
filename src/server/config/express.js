@@ -8,6 +8,7 @@ import morgan from 'morgan';
 import requestLogger from '../lib/logger/requestLogger';
 import responseLogger from '../lib/logger/responseLogger';
 const VIEWS_DIR = path.join(__dirname, '..', 'views');
+
 export default app => {
   const env = app.get('env');
   app.use(compression());

@@ -1,5 +1,5 @@
 import express from 'express';
-import * as controller from './taskOrder.controller';
+import * as controller from './survey.controller';
 
 const surveyRouter = express.Router();
 

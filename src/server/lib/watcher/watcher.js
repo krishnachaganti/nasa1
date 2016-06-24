@@ -2,11 +2,10 @@
 import chokidar from 'chokidar';
 import { join } from 'path';
 import fs from 'fs-extra';
-
-
-import logger from '../logger';
 import convert from 'simple-csv-to-json';
+import logger from '../logger';
 import { saveReport } from '../../api/report/report.controller';
+
 const TMP_DIR = join(__dirname, '..', '..', '..', '..', 'tmp');
 const watcher = chokidar.watch(TMP_DIR, {
   ignored: /[\/\\]\./,
@@ -25,12 +24,12 @@ watcher
     // logger.info(toSave, ' result');
     saveReport(toSave);
     logger.info('Saved to db!');
-    // fs.remove(path, err => {
-    //   if (err) {
-    //     return logger.error(err);
-    //   }
-    //   logger.info('deleted!');
-    // });
+    fs.remove(path, err => {
+      if (err) {
+        return logger.error(err);
+      }
+      logger.info('deleted!');
+    });
   })
   .on('change', path => logger.info(`File ${path} has been changed`))
   .on('unlink', path => logger.info(`File ${path} has been removed`));
