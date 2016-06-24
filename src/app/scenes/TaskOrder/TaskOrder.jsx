@@ -14,6 +14,9 @@ import Textblock from 'shared/atm.Textblock';
 import ButtonGroup from './org.ButtonGroup';
 import fallbackimg from '../Personnel/org.Hero/fallback-hero.jpg';
 import Hero from '../Personnel/org.Hero';
+import { fetchReports } from './state/report';
+import TaskOrderListing from './TaskOrderListing';
+
 const labelSty = {
   color: '#fff',
   textTransform: 'initial'
@@ -26,7 +29,8 @@ class TaskOrder extends Component {
   static readyOnActions(dispatch) {
     return Promise.all([
       dispatch(fetchWeather()),
-      dispatch(getIotd())
+      dispatch(getIotd()),
+      dispatch(fetchReports())
     ]);
   }
 
@@ -96,7 +100,7 @@ class TaskOrder extends Component {
             </div>
           </div>
           </div>
-          { this.props.children }
+          <TaskOrderListing reports={ this.props.report } loading={ this.props.loading } />
         </div>
       </div>
     );
@@ -105,8 +109,8 @@ class TaskOrder extends Component {
 function mapStateToProps(state) {
   return {
     hero: state.heroReducer,
-    loading: state.heroReducer.loading,
-    people: state.peopleReducer,
+    loading: state.report.loading,
+    report: state.report,
     sidebar: state.sidebarReducer
   };
 }

@@ -14,7 +14,7 @@ export default (store) => {
         <IndexRoute component={ Personnel } />
       </Route>
       <Route path="/taskorder" component={ TaskOrder }>
-        <IndexRoute component={ TaskOrderListing } />
+        <IndexRoute component={ TaskOrder } />
       </Route>
       <Route path="*" component={ Error404 } />
     </Route>

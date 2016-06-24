@@ -5,8 +5,9 @@ import fs from 'fs-extra';
 import convert from 'simple-csv-to-json';
 import path from 'path';
 import imaps from 'imap-simple';
-import mailConnect from './lib/imap/imap';
-// import mailStatusConnect from './lib/imap/status.imap';
+// import mailConnect from './lib/imap/imap';
+import mailStatusConnect from './lib/imap/statusImap';
+// import mailSurveyConnect from './lib/imap/surveyImap';
 import webpack from 'webpack';
 import logger from './lib/logger';
 import ApiRouter from './api/apiRouter';
@@ -65,10 +66,10 @@ if (!process.env.NODE_ENV) {
   }));
   app.use(hot(compiler));
 }
-// require('./lib/imap/imap');
-// require('./lib/imap/status.imap');
-// mailStatusConnect();
+
+mailStatusConnect();
 // mailConnect();
+// mailSurveyConnect();
 app.use('/api/v1', ApiRouter);
 app.get('*', renderReact);
 

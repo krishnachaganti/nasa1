@@ -14,12 +14,9 @@ const imaps = require('imap-simple');
 const UPL_DIR = path.join(__dirname, '..', '..', '..', '..', 'uploads/status');
 const config = {
   imap: {
-    user: 'status@nasaupdate.com',
-    password: 'u7d%8(KcbPE5u-8L',
-    // host: 'mail.nasaupdate.com',
-    // user: 'reports@nasaupdate.com',
-    // password: 'kcDs.}bJ^Cg}5k?u',
-    host: 'mail.nasaupdate.com',
+    user: process.env.STATUS_MAIL_USER,
+    password: process.env.STATUS_MAIL_PASSWORD,
+    host: process.env.MAIL_HOST,
     port: 993,
     tls: true,
     authTimeout: 3000
@@ -50,7 +47,7 @@ const multerOptions = {
   })
 };
 const uploadFiles = multer(multerOptions);
-export default mailConnect => {
+export default mailStatusConnect => {
   imaps.connect(config).then(connection => {
     return connection.openBox('INBOX').then(() => {
       // Fetch emails from the last 96h
@@ -97,19 +94,19 @@ export default mailConnect => {
       };
       s3.upload(params, (err, data) => {
         logger.info(err, data);
+        const extracted = data.key.split('_');
         const fileData = {
           location: data.Location,
-          key: data.key
+          key: extracted[5],
+          orgCode: extracted[0],
+          preparer: extracted[1] + ' ' + extracted[2],
+          periodStart: extracted[3],
+          periodEnd: extracted[4]
         };
-        r.table('files').insert(fileData).run();
+        logger.info('saving to s3');
+        r.table('status_reports').insert(fileData).run();
       });
-      // r.table('files').insert(storage).run();
-      fs.writeFile(UPL_DIR + '/report' + - Date.now() + '.pdf', parseMe, err => { // eslint-disable-line
-        if (err) {
-          throw err;
-        }
-        logger.info('saved');
+        logger.info('saved to status_reports ', fileData);
       });
     });
-  });
 };

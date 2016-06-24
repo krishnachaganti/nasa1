@@ -1,24 +1,29 @@
-
 import fs from 'fs-extra';
 import inspect from 'util';
 import r from '../../db';
 import path from 'path';
 import logger from '../logger';
-import convert from 'simple-csv-to-json';
-const TMP_DIR = path.join(__dirname, '..', '..', '..', '..', 'tmp');
+import AWS from 'aws-sdk';
 const imaps = require('imap-simple');
 
 const config = {
   imap: {
-    user: process.env.REPORT_MAIL_USER,
-    password: process.env.REPORT_MAIL_PASSWORD,
+    user: process.env.SURVEY_MAIL_USER,
+    password: process.env.SURVEY_MAIL_PASSWORD,
     host: process.env.MAIL_HOST,
     port: 993,
     tls: true,
     authTimeout: 3000
   }
 };
-export default mailConnect => {
+
+const s3 = new AWS.S3({
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  region: 'us-west-1'
+});
+
+export default mailSurveyConnect => {
   imaps.connect(config).then(connection => {
     return connection.openBox('INBOX').then(() => {
       // Fetch emails from the last 96h
@@ -35,6 +40,7 @@ export default mailConnect => {
       // retrieve only the headers of the messages
       return connection.search(searchCriteria, fetchOptions);
     }).then(messages => {
+      logger.info(messages);
       let attachments = [];
 
       messages.forEach(message => {
@@ -57,17 +63,26 @@ export default mailConnect => {
     }).then(attachments => {
       const parseMe = attachments[0].data;
       // const csvString = parseMe.toString().replace(/(,|\s)*(\n|\r|$)/g, '$2');
-      const storage = {
-        file: attachments[0].data,
-        fileName: 'Report'
+      const params = {
+        Bucket: 'boldr',
+        Key: attachments[0].filename,
+        Body: attachments[0].data
       };
-      r.table('files').insert(storage).run();
-      fs.writeFile(TMP_DIR + '/report' + - Date.now() + '.csv', parseMe, err => { // eslint-disable-line
-        if (err) {
-          throw err;
-        }
-        logger.info('saved');
+      s3.upload(params, (err, data) => {
+        logger.info(err, data);
+        const extracted = data.key.split('_');
+        const fileData = {
+          location: data.Location,
+          key: extracted[5],
+          orgCode: extracted[0],
+          preparer: extracted[1] + ' ' + extracted[2],
+          periodStart: extracted[3],
+          periodEnd: extracted[4]
+        };
+        logger.info('saving to s3');
+        r.table('status_reports').insert(fileData).run();
+      });
+        logger.info('saved to status_reports ', fileData);
       });
     });
-  });
 };
