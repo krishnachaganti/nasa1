@@ -29,21 +29,20 @@ const ListGroup = (props) => {
                   <ListPanel key={ i }
                       monthAbrv={ rf.month }
                       year={ rf.year }
-                      dateCircle="MAR 2016"
                       file={ rf }
                     />
                 );
               })
       }
-          <div className="row center-xs">
-            <div className="col-xs">
-              <RaisedButton label={ bLabel }
-                backgroundColor="#D8D8D8"
-                style={ styles.btnStyle }
-                labelStyle={ styles.labelStyle }
-              />
-           </div>
-          </div>
+      <div className="row center-xs">
+        <div className="col-xs">
+          <RaisedButton label={ bLabel }
+            backgroundColor="#D8D8D8"
+            style={ styles.btnStyle }
+            labelStyle={ styles.labelStyle }
+          />
+       </div>
+      </div>
     </section>
   );
 };

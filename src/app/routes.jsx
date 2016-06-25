@@ -3,9 +3,7 @@ import { Route, IndexRoute } from 'react-router';
 import CoreLayout from './shared/tpl.CoreLayout';
 import Personnel from './scenes/Personnel';
 import Error404 from './shared/org.Error404';
-import People from './scenes/Personnel/People';
 import TaskOrder from 'scenes/TaskOrder';
-import TaskOrderListing from 'scenes/TaskOrder/TaskOrderListing';
 
 export default (store) => {
   return (

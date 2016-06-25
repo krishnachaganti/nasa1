@@ -1,16 +1,15 @@
 import React, { Component, PropTypes } from 'react';
-import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import SearchInput, { createFilter } from 'react-search-input';
+
+import Loader from 'shared/atm.Loader';
+import SubToolbar from 'shared/atm.SubToolbar';
+import { OrgGroup, BossCard, Hero } from 'scenes/Personnel/components';
+import fallbackimg from '../org.Hero/fallback-hero.jpg';
+import { toggleCardFn } from 'scenes/Personnel/state/card';
 import { getIotd, fetchWeather } from 'state/index';
 import * as sidebarActions from 'state/sidebar/sidebar';
 import { setFilter } from 'state/people/people';
-import { Toolbar, Sidebar, Weather, SubToolbar, BossCard, Loader } from 'components/index';
-import OrgGroup from './org.OrgGroup';
-import fallbackimg from './org.Hero/fallback-hero.jpg';
-import Hero from './org.Hero';
-import { toggleCardFn } from 'scenes/Personnel/state/card';
 
 const People = (props) => {
   const styles = {
@@ -37,7 +36,6 @@ const People = (props) => {
             if (!props.filter || groupName === props.filter) {
               return (
                 <div className="row" key={ index }>
-
                   <OrgGroup boss={
                       <BossCard nasaName="Lisa Barber" position="Boss" contactID={ index } orgCode={ groupName } />
                     } toolbar={

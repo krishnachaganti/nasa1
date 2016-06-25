@@ -3,16 +3,15 @@ import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { lightWhite } from 'material-ui/styles/colors';
 import MenuIc from 'material-ui/svg-icons/navigation/menu';
-import SearchInput, { createFilter } from 'react-search-input';
 import { getIotd, fetchWeather } from 'state/index';
 import { getPeople } from 'state/people/people';
 import * as sidebarActions from 'state/sidebar/sidebar';
 import { getNcontact } from 'state/ncontacts/ncontacts';
-import { Toolbar, Sidebar, Weather, Sider, SubToolbar, BossCard } from 'components/index';
-import OrgGroup from './org.OrgGroup';
-import fallbackimg from './org.Hero/fallback-hero.jpg';
-import Hero from './org.Hero';
-import People from './People';
+import Sidebar from 'shared/org.Sidebar';
+import Sider from 'shared/atm.Sider';
+import Toolbar from 'shared/mol.Toolbar';
+import fallbackimg from './components/org.Hero/fallback-hero.jpg';
+import { People, Hero, OrgGroup } from 'scenes/Personnel/components';
 
 const mapStateToProps = (state) => {
   return {

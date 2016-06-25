@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PersonCard from '../mol.PersonCard';
+import PersonCard from '../org.PersonCard';
 import CardGroup from 'shared/org.CardGroup';
 import Card from 'shared/atm.Card';
-import { BossCard } from 'components/index';
 
 const rowstyle = {
   flexWrap: 'wrap'

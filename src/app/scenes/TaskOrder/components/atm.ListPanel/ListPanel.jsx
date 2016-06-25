@@ -38,8 +38,4 @@ const ListPanel = (props) => {
   );
 };
 
-ListPanel.propTypes = {
-
-};
-
 export default ListPanel;

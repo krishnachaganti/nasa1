@@ -6,17 +6,18 @@ import IconButton from 'material-ui/IconButton';
 import { lightWhite } from 'material-ui/styles/colors';
 import MenuIc from 'material-ui/svg-icons/navigation/menu';
 import RaisedButton from 'material-ui/RaisedButton';
-import { Header, Toolbar, Sidebar, Sider, SubToolbar } from 'components/index';
+import Sider from 'shared/atm.Sider';
+import Sidebar from 'shared/org.Sidebar';
+import Toolbar from 'shared/mol.Toolbar';
 import Weather from 'shared/mol.Weather';
+import Heading from 'shared/atm.Heading';
+import SubToolbar from 'shared/atm.SubToolbar';
+import Textblock from 'shared/atm.Textblock';
+
 import * as sidebarActions from 'state/sidebar/sidebar';
 import { getIotd, fetchWeather } from 'state/index';
-import Heading from 'shared/atm.Heading';
-import Textblock from 'shared/atm.Textblock';
-import ButtonGroup from './org.ButtonGroup';
-import fallbackimg from '../Personnel/org.Hero/fallback-hero.jpg';
-import Hero from '../Personnel/org.Hero';
 import { fetchReports, setFilter } from './state/report';
-import TaskOrderListing from './TaskOrderListing';
+import { TaskOrderListing, Header, ButtonGroup } from 'scenes/TaskOrder/components';
 
 const labelSty = {
   color: '#fff',

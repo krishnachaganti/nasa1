@@ -5,14 +5,15 @@ import IconButton from 'material-ui/IconButton';
 import { lightWhite } from 'material-ui/styles/colors';
 import MenuIc from 'material-ui/svg-icons/navigation/menu';
 
-import { Toolbar, Sidebar, SubToolbar, BossCard, Loader } from 'components/index';
+import Loader from 'shared/atm.Loader';
 import Weather from 'shared/mol.Weather';
-import * as sidebarActions from 'state/sidebar/sidebar';
-import { getIotd, fetchWeather } from 'state/index';
+
+import SubToolbar from 'shared/atm.SubToolbar';
 import Heading from 'shared/atm.Heading';
 import Textblock from 'shared/atm.Textblock';
-import ListGroup from './org.ListGroup';
-import ListPanel from './atm.ListPanel';
+import * as sidebarActions from 'state/sidebar/sidebar';
+import { getIotd, fetchWeather } from 'state/index';
+import { ListPanel, ListGroup } from 'scenes/TaskOrder/components';
 
 const styles = {
   contentHeaderMenuLink: {

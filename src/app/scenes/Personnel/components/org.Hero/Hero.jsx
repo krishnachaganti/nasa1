@@ -4,8 +4,9 @@ import { connect } from 'react-redux';
 import { white } from 'material-ui/styles/colors';
 import PhotoCamera from 'material-ui/svg-icons/action/camera-enhance';
 import { Popover, PopoverAnimationVertical } from 'material-ui/Popover';
-import Heading from 'shared/atm.Heading';
+
 import nasaLogo from './nasalogo.png';
+import Heading from 'shared/atm.Heading';
 import Weather from 'shared/mol.Weather';
 
 const inlineStyles = {

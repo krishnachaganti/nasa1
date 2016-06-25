@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { bindActionCreators } from 'redux';
 import { CardTitle, CardText } from 'material-ui/Card';
-import PersonDetails from '../org.PersonDetails';
-import PersonImage from '../atm.PersonImage';
+
+import { PersonDetails, PersonImage } from '../index';
 import { toggleCard } from 'scenes/Personnel/state/card';
 
 const inlineStyle = {
