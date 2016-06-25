@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PersonCard from '../org.PersonCard';
 import CardGroup from 'shared/org.CardGroup';
 import Card from 'shared/atm.Card';
+import BCardWrap from '../atm.BCardWrap';
 
 const rowstyle = {
   flexWrap: 'wrap'
@@ -19,7 +20,11 @@ const OrgGroup = (props) => {
         { props.toolbar }
         <div className="row">
           <div className="col-xs">
-            { props.boss }
+            <CardGroup>
+              <BCardWrap>
+              { props.boss }
+              </BCardWrap>
+            </CardGroup>
           </div>
         </div>
           <CardGroup>

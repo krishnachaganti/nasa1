@@ -59,11 +59,7 @@ class BossCard extends React.Component {
   }
   render() {
     return (
-      <div className="card-wrapper">
-        <div style={ inlineStyle.bossIconstyle }>
-          <BossIcon />
-        </div>
-        <div className="card-wrapper-inner">
+            <div>
           <div className="card-body" style={ inlineStyle.insideCard } onClick={ ::this.handleClickage }>
             <BossImage style={ inlineStyle.cardImg } />
               <div style={ inlineStyle.rightSide }>
@@ -75,7 +71,6 @@ class BossCard extends React.Component {
                  <br />
                 </CardText>
             </div>
-          </div>
         </div>
               <BossDetails
                   closeExpand={ ::this.handleClickage }
