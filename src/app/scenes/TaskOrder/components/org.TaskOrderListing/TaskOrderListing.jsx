@@ -43,7 +43,7 @@ const TaskOrderListing = (props) => {
             const toolBarCode = `${groupName}:`;
             return (
               <div className="row" key={ index }>
-                <SubToolbar orgCode={ toolBarCode } orgTitle="Business Office" />
+                <SubToolbar orgCode={ toolBarCode } orgTitle={ fileList[0].TO_Name } />
                 <ListGroup reportFiles={ fileList } orgC={ groupName } />
               </div>
             )
