@@ -27,6 +27,8 @@ const ListGroup = (props) => {
               props.reportFiles.map((rf, i) => {
                 return (
                   <ListPanel key={ i }
+                      monthAbrv={ rf.month }
+                      year={ rf.year }
                       dateCircle="MAR 2016"
                       file={ rf }
                     />

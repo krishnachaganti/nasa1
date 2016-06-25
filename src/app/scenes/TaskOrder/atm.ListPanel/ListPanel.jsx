@@ -19,7 +19,8 @@ const ListPanel = (props) => {
     <div className="listgroup__panel">
       <div className="col-md-2">
         <div style={ dateCirStyle }>
-        { props.dateCircle }
+        { props.monthAbrv }<br />
+        { props.year }
         </div>
       </div>
       <div className="col-md-3">
