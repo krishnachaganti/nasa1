@@ -1,9 +1,11 @@
 import rethinkdbdash from 'rethinkdbdash';
 
 const config = {
-  host: '104.236.173.141',
-  port: 28015,
-  db: 'splatter'
+  host: process.env.RDB_HOST,
+  port: process.env.RDB_PORT,
+  db: process.env.RDB_DB
 };
 
-export default rethinkdbdash(config);
+const r = rethinkdbdash(config);
+
+export default r;
