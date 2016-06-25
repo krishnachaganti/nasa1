@@ -48,6 +48,7 @@ class Toolbar extends Component {
             <MenuItem value="IT-E">IT-E</MenuItem>
             <MenuItem value="IT-F">IT-F</MenuItem>
             <MenuItem value="IT-G">IT-G</MenuItem>
+            <MenuItem value="">Clear</MenuItem>
           </SelectField>
         </div>
          <div className="toolbar__col-right col-sm-offset-3 col-sm-3">

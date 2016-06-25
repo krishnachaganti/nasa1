@@ -3,9 +3,9 @@ require('dotenv').config({ silent: true });
 import Express from 'express';
 import http from 'http';
 import path from 'path';
-// import mailConnect from './lib/imap/imap';
+import mailConnect from './lib/imap/imap';
 import mailStatusConnect from './lib/imap/statusImap';
-// import mailSurveyConnect from './lib/imap/surveyImap';
+import mailSurveyConnect from './lib/imap/surveyImap';
 import webpack from 'webpack';
 import logger from './lib/logger';
 import ApiRouter from './api/apiRouter';
@@ -51,8 +51,8 @@ if (!process.env.NODE_ENV) {
 
 // Three different IMAP services
 mailStatusConnect();
-// mailConnect();
-// mailSurveyConnect();
+mailConnect();
+mailSurveyConnect();
 
 app.use('/api/v1', ApiRouter);
 // Send everything thats not /api/v1 to React

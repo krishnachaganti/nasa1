@@ -4,14 +4,10 @@ import r from '../../db';
 import path from 'path';
 import logger from '../logger';
 import convert from 'simple-csv-to-json';
-import multer from 'multer';
 import AWS from 'aws-sdk';
-import multerS3 from 'multer-s3';
 
-
-const TMP_DIR = path.join(__dirname, '..', '..', '..', '..', 'tmp');
 const imaps = require('imap-simple');
-const UPL_DIR = path.join(__dirname, '..', '..', '..', '..', 'uploads/status');
+
 const config = {
   imap: {
     user: process.env.STATUS_MAIL_USER,
@@ -19,6 +15,7 @@ const config = {
     host: process.env.MAIL_HOST,
     port: 993,
     tls: true,
+    keepAlive: true,
     authTimeout: 3000
   }
 };
@@ -29,24 +26,6 @@ const s3 = new AWS.S3({
   region: 'us-west-1'
 });
 
-const multerOptions = {
-  storage: multerS3({
-    s3,
-    bucket: 'boldr',
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    ACL: 'public-read',
-    region: 'us-west-1',
-    endpoint: 's3.amazonaws.com',
-    metadata(ctx, file, cb) {
-      cb(null, { fieldName: file.fieldname });
-    },
-    key(ctx, file, cb) {
-      cb(null, `uploads/${file.fieldname}-${Date.now().toString()}${path.extname(file.originalname)}`);
-    }
-  })
-};
-const uploadFiles = multer(multerOptions);
 export default mailStatusConnect => {
   imaps.connect(config).then(connection => {
     return connection.openBox('INBOX').then(() => {

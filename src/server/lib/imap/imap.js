@@ -1,4 +1,3 @@
-
 import fs from 'fs-extra';
 import inspect from 'util';
 import r from '../../db';
@@ -15,13 +14,14 @@ const config = {
     host: process.env.MAIL_HOST,
     port: 993,
     tls: true,
+    keepAlive: true,
     authTimeout: 3000
   }
 };
 export default mailConnect => {
   imaps.connect(config).then(connection => {
     return connection.openBox('INBOX').then(() => {
-      // Fetch emails from the last 96h
+      // Fetch emails from the last 24h
       const delay = 24 * 3600 * 1000;
       let yesterday = new Date();
       yesterday.setTime(Date.now() - delay);
@@ -56,13 +56,9 @@ export default mailConnect => {
       return Promise.all(attachments);
     }).then(attachments => {
       const parseMe = attachments[0].data;
-      // const csvString = parseMe.toString().replace(/(,|\s)*(\n|\r|$)/g, '$2');
-      const storage = {
-        file: attachments[0].data,
-        fileName: 'Report'
-      };
-      r.table('files').insert(storage).run();
-      fs.writeFile(TMP_DIR + '/report' + - Date.now() + '.csv', parseMe, err => { // eslint-disable-line
+      const csvString = parseMe.toString().replace(/(,|\s)*(\n|\r|$)/g, '$2');
+
+      fs.writeFile(TMP_DIR + '/report' + - Date.now() + '.csv', csvString, err => { // eslint-disable-line
         if (err) {
           throw err;
         }
