@@ -37,7 +37,7 @@ const People = (props) => {
               return (
                 <div className="row" key={ index }>
                   <OrgGroup boss={
-                      <BossCard nasaName="Lisa Barber" position="Boss" contactID={ index } orgCode={ groupName } />
+                      <BossCard nasaName={ peopleList[0].NASAContactName } position="Boss" contactID={ index } orgCode={ groupName } />
                     } toolbar={
                       <SubToolbar orgCode={ toolBarCode } orgTitle={ peopleList[0].TO_Name } orgLength={ peopleList.length }  />
                     } orgType={ groupName } persons={ peopleList }

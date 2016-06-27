@@ -12,6 +12,10 @@
     color: #000;
     text-decoration: none;
   }
+
+  @include mq(600px, max-width, screen) {
+    display: none;
+  }
 }
 .sider__square {
     background-color: #D8D8D8;

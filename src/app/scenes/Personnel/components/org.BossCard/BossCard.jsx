@@ -6,6 +6,7 @@ import { Card, CardTitle, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
 import { toggleBossCard } from 'scenes/Personnel/state/card';
+import { getNasaContactData } from 'state/ncontacts/ncontacts';
 import { BossIcon, BossImage, BossDetails } from 'scenes/Personnel/components';
 
 const inlineStyle = {
@@ -29,13 +30,15 @@ const inlineStyle = {
 function mapStateToProps(state) {
   return {
     card: state.card,
-    people: state.peopleReducer
+    people: state.peopleReducer,
+    nasaContacts: state.nasaContacts
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators({ toggleBossCard }, dispatch)
+    actions: bindActionCreators({ toggleBossCard }, dispatch),
+    nactions: bindActionCreators({ getNasaContactData }, dispatch)
   };
 }
 
@@ -55,6 +58,8 @@ class BossCard extends React.Component {
       isOpened: !this.state.isOpened
     });
     const ncontact = this.props.contactID;
+    const contactName = this.props.nasaName;
+    this.props.nactions.getNasaContactData(contactName);
     this.props.actions.toggleBossCard(ncontact);
   }
   render() {
@@ -72,12 +77,13 @@ class BossCard extends React.Component {
                 </CardText>
             </div>
         </div>
-              <BossDetails
-                  closeExpand={ ::this.handleClickage }
-                  isOpened={ this.state.isOpened }
-                  closeExpand={ ::this.handleClickage }
-                  contactID={this.props.contactID}
-                />
+         <BossDetails
+            closeExpand={ ::this.handleClickage }
+            isOpened={ this.state.isOpened }
+            closeExpand={ ::this.handleClickage }
+            contactID={ this.props.contactID }
+            survey={ this.props.nasaContacts.contact }
+          />
       </div>
     );
   }

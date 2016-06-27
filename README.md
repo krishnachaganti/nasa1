@@ -42,3 +42,7 @@ SURVEY_MAIL_USER=
 SURVEY_MAIL_PASSWORD=
 MAIL_HOST=mail.nasaupdate.com
 ```
+
+
+
+r.table('nasa_contacts').insert([{"name":"Ann Marie Keim"},{"name":"Bill Toler"},{"name":"Buddy Reckline"},{"name":"David Campbell"},{"name":"Henry Yu"},{"name":"Jim Dumoulin"},{"name":"Lisa Barber"},{"name":"Marie Wilson"},{"name":"Mark Page"},{"name":"Mike Conroy"},{"name":"Tony Anania"},{"name":"Tony Killiri"},{"name":"Tracey Kickbusch"},{"name":"William Merrill"}]).run()

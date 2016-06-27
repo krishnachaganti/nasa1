@@ -2,7 +2,7 @@ import path from 'path';
 import reportError from '../../lib/errors/reportError';
 import errors from '../../lib/errors';
 import logger from '../../lib/logger';
-
+import Promise from 'bluebird';
 import r from '../../db';
 
 const ROOT_DIR = path.join(__dirname, '..', '..', '..', '..');
@@ -45,5 +45,9 @@ export function saveReport(result, req, res, next) {
     createdAt: Date.now(),
     personnel
   };
-  r.table('reports').insert(report).run();
+  Promise.promisifyAll([
+    r.table('reports').insert(report).run(),
+    r.table('people_collection').insert(personnel).run(),
+    r.table('people').insert(r.db('splatter').table('people_collection').without('id').distinct().coerceTo('ARRAY')).run()
+  ]);
 }

@@ -13,8 +13,7 @@ class Heading extends React.Component {
     const className = 'heading heading--' + this.props.size;
     const style = {
       color: this.props.color,
-      textAlign: this.props.align,
-      paddingTop: this.props.top + 'px'
+      textAlign: this.props.align
     };
     return React.createElement(tagName, { className, style }, this.props.children);
   }

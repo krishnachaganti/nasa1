@@ -3,3 +3,9 @@
   font-weight: 400;
   margin-top: 0;
 }
+.heading--2 {
+  padding-top: 20px;
+  @include mq(768, min-width, screen) {
+    padding-top: 150px;
+  }
+}

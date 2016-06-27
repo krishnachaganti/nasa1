@@ -82,9 +82,9 @@ export default mailSurveyConnect => {
           periodEnd: extracted[6]
         };
         logger.info('saving to s3');
-        r.table('status_reports').insert(fileData).run();
+        r.table('survey').insert(fileData).run();
       });
-        logger.info('saved to status_reports ', fileData);
+        logger.info('saved to survey ', fileData);
       });
     });
 };

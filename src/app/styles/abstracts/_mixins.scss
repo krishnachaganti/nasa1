@@ -110,3 +110,20 @@
 @-webkit-keyframes Select-animation-spin {
   to { -webkit-transform: rotate(1turn); }
 }
+/// Media Queries
+///
+/// Allows you to use inline media queries. Includes options for `$fix-mqs`.
+///
+/// $breakpoint - Desired breakpoint. Can be variable or unit.
+/// $query - Defaults to `min-width`.
+/// $type - Defaults to `screen`.
+
+@mixin mq($breakpoint, $query: 'min-width', $type: 'screen') {
+
+    @media #{$type} and (#{$query}: #{$breakpoint}) { @content; }
+}
+@mixin max-screen($max) {
+  @include mq($max-width: $max) {
+    @content;
+  }
+}

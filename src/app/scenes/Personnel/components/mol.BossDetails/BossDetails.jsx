@@ -4,10 +4,11 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { connect } from 'react-redux';
 import CloseIcn from 'material-ui/svg-icons/navigation/close';
 import IconButton from 'material-ui/IconButton';
-
+import { getNasaContactData } from 'state/ncontacts/ncontacts';
 function mapStateToProps(state) {
   return {
-    card: state.card
+    card: state.card,
+    nasaContacts: state.nasaContacts
   };
 }
 
@@ -126,7 +127,7 @@ export default class BossDetails extends Component {
           {/* end header row */}
           <div className="row row__pad" style={ topRowStyle }>
            <div className="col-md-6 col__border">
-               <span style={ span1Style }>07/01/15 - 09/30/15 (pdf)</span> <span style={span2Style}>Download</span>
+               <span style={ span1Style }></span> <span style={span2Style}>Download</span>
             </div>
             <div className="col-md-6">
               <span style={ span1Style }>07/01/15 - 09/30/15 (pdf)</span> <span style={span2Style}>Download</span>

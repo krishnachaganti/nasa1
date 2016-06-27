@@ -6,6 +6,7 @@ import r from '../../db';
 
 export function getAll(req, res, next) {
   r.table('people')
+    .distinct()
     .run()
     .then(people => {
       res.status(200).json(people);
