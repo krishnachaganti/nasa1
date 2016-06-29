@@ -16,7 +16,7 @@ const buttonStyles = {
 
 const OrgGroup = (props) => {
     return (
-      <div>
+      <div className="onehun">
         { props.toolbar }
         <div className="row">
           <div className="col-xs">
