@@ -10,4 +10,5 @@ peopleRouter.get('/itc', controller.getITC);
 peopleRouter.get('/itd', controller.getITD);
 peopleRouter.get('/ite', controller.getITE);
 peopleRouter.get('/itf', controller.getITF);
+peopleRouter.get('/:name', controller.getContractors);
 export default peopleRouter;

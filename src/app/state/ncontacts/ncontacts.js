@@ -73,13 +73,50 @@ export function getNasaContactData(contactName) {
       });
   };
 }
+export const FETCH_CONTRACTORS = '@@ncontact/FETCH_CONTRACTORS';
+export const FETCH_CONTRACTORS_SUCCESS = '@@ncontact/FETCH_CONTRACTORS_SUCCESS';
+export const FETCH_CONTRACTORS_FAIL = '@@ncontact/FETCH_CONTRACTORS_FAIL';
+
+const loadContractors = () => ({
+  type: FETCH_CONTRACTORS
+});
+
+const loadContractorsSuccess = response => ({
+  type: FETCH_CONTRACTORS_SUCCESS,
+  payload: response.data
+});
+
+// Fail receivers
+const failedToLoadContractors = data => ({
+  type: FETCH_CONTRACTORS_FAIL,
+  data
+});
+
+export function getNasaContractors(contactName) {
+  return dispatch => {
+    dispatch(loadContractors());
+    return axios.get(`/api/v1/people/${contactName}`)
+      .then(response => {
+        if (response.status === 200) {
+          dispatch(loadContractorsSuccess(response));
+        } else {
+          dispatch(failedToLoadContractors('Oops! Something went wrong!'));
+        }
+      })
+      .catch(err => {
+        dispatch(failedToLoadContractors(err));
+      });
+  };
+}
+
 
 const INITIAL_STATE = {
   loading: false,
   message: '',
   error: false,
   contacts:[],
-  contact: {}
+  surveys: [],
+  contractors: []
 };
 
 export default function nasaContacts(state = INITIAL_STATE, action) {
@@ -112,10 +149,28 @@ export default function nasaContacts(state = INITIAL_STATE, action) {
         ...state,
         error: false,
         loading: false,
-        contact: action.payload
+        surveys: action.payload
       };
     //
     case FETCH_SURVEY_FAIL:
+      return {
+        ...state,
+        error: action.payload
+      };
+    case FETCH_CONTRACTORS:
+      return {
+        ...state,
+        loading: true
+      };
+    case FETCH_CONTRACTORS_SUCCESS:
+      return {
+        ...state,
+        error: false,
+        loading: false,
+        contractors: action.payload
+      };
+    //
+    case FETCH_CONTRACTORS_FAIL:
       return {
         ...state,
         error: action.payload

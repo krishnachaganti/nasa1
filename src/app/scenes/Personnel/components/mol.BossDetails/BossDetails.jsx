@@ -25,6 +25,7 @@ export default class BossDetails extends Component {
   }
 
   render() {
+    const { surveys } = this.props;
     const listStyle = {
       listStyleType: 'none'
     };
@@ -32,7 +33,7 @@ export default class BossDetails extends Component {
       display: 'inline-block'
     };
     const expanderStyle = {
-      height: this.shouldOpen() ? '700px' : 0
+      height: this.shouldOpen() ? '1000px' : 0
     };
     const icnBtnStyle = {
       float: 'right'
@@ -70,77 +71,56 @@ export default class BossDetails extends Component {
             </div>
           </div>
           {/* end header row */}
-          <div className="row row__pad" style={ topRowStyle }>
-            <div className="col-md-3">
-                Wendy Mizerek-Herrburger
-            </div>
-            <div className="col-md-3">
-              Project Manager 3
-            </div>
-            <div className="col-md-3">
-            Lisa Barber
-            </div>
-            <div className="col-md-3">
-            Completed.
-            </div>
-          </div>
-          <div className="row row__pad" style={ midRowStyle }>
-              <div className="col-md-3">
-               John Leavitt
-            </div>
-            <div className="col-md-3">
-            Project Manager 2
-            </div>
-            <div className="col-md-3">
-            Lisa Barber
-            </div>
-            <div className="col-md-3">
-            Incomplete
-            </div>
-          </div>
-           <div className="row row__pad" style={ botRowStyle }>
-              <div className="col-md-3">
-                Arthur Waters
-            </div>
-            <div className="col-md-3">
-            Project Manager 1
-            </div>
-            <div className="col-md-3">
-            Buddy Reckline
-            </div>
-            <div className="col-md-3">
-            Incomplete
-            </div>
-          </div>
+
+            {
+              this.props.contractors.length ? this.props.contractors.map((contractor, i) => {
+                return (
+                   <div className="row row__pad" style={ midRowStyle } key={ i }>
+                     <div className="col-md-3">
+                        { contractor.PersonnelName }
+                     </div>
+                     <div className="col-md-3">
+                       { contractor.PositionTitlePLC }
+                     </div>
+                     <div className="col-md-3">
+                     { contractor.NASAContactName }
+                     </div>
+                     <div className="col-md-3">
+                      <strong>ITS 016 001</strong> { contractor.ITS_016_001 ? <span>{ contractor.ITS_016_001 }</span> : <span>Incomplete</span> }
+                      <strong>LARC CICT</strong> { contractor.LARC_CICT ? <span>{ contractor.LARC_CICT } </span> : <span>Incomplete</span> }
+                      <strong>OCIMPR</strong> { contractor.OCIMPR ? <span>{ contractor.OCIMPR }</span> : <span>Incomplete</span> }
+                     </div>
+                  </div>
+                )
+              }) : null
+            }
+
         </section>
     );
+
     const renderBottomT = (
       <section className="faux-table">
           <div className="row">
             <div className="col-md-6">
                 <strong>Authored Performance Survey</strong>
             </div>
-            <div className="col-md-6">
 
-            </div>
           </div>
           {/* end header row */}
           <div className="row row__pad" style={ topRowStyle }>
-           <div className="col-md-6 col__border">
-               <span style={ span1Style }></span> <span style={span2Style}>Download</span>
-            </div>
-            <div className="col-md-6">
-              <span style={ span1Style }>07/01/15 - 09/30/15 (pdf)</span> <span style={span2Style}>Download</span>
-            </div>
+            {
+              this.props.surveys.length ? this.props.surveys.map((survey, i) => {
+                return (
+                  <div className="col-md-6 col__border" key={ i }>
+                    <span style={ span1Style }>{ survey.periodStart } - { survey.periodEnd }</span>
+                    <span style={ span2Style }><a href={ survey.location }>Download</a></span>
+                  </div>
+                )
+              }) : null
+            }
+
           </div>
-          <div className="row row__pad" style={ midRowStyle }>
-              <div className="col-md-6 col__border">
-                <span style={ span1Style }>07/01/15 - 09/30/15 (pdf)</span> <span style={span2Style}>Download</span>
-            </div>
-            <div className="col-md-6">
-               <span style={ span1Style }>07/01/15 - 09/30/15 (pdf)</span> <span style={span2Style}>Download</span>
-            </div>
-          </div>
+
         </section>
     );
     return (

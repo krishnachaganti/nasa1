@@ -81,3 +81,16 @@ export function getITF(req, res, next) {
       return res.status(500).json(err);
     });
 }
+
+export function getContractors(req, res, next) {
+  r.table('people')
+    .filter({ NASAContactName: req.params.name })
+    .distinct()
+    .run()
+    .then(contacts => {
+      res.status(200).json(contacts);
+    })
+    .error(err => {
+      return res.status(500).json(err);
+    });
+}
