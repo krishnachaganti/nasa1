@@ -11,4 +11,5 @@ peopleRouter.get('/itd', controller.getITD);
 peopleRouter.get('/ite', controller.getITE);
 peopleRouter.get('/itf', controller.getITF);
 peopleRouter.get('/:name', controller.getContractors);
+peopleRouter.put('/:id', controller.updatePerson);
 export default peopleRouter;

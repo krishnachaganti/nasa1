@@ -8,6 +8,7 @@ import FlatButton from 'material-ui/FlatButton';
 import { toggleBossCard } from 'scenes/Personnel/state/card';
 import { getNasaContactData, getNasaContractors } from 'state/ncontacts/ncontacts';
 import { BossIcon, BossImage, BossDetails } from 'scenes/Personnel/components';
+import shallowCompare from 'react-addons-shallow-compare';
 
 const inlineStyle = {
   insideCard: {
@@ -23,8 +24,7 @@ const inlineStyle = {
     width: '60%'
   },
   bossIconstyle: {
-    float: 'right',
-    marginLeft: '-60px'
+    float: 'right'
   }
 };
 function mapStateToProps(state) {
@@ -51,9 +51,11 @@ class BossCard extends React.Component {
       isOpened: false,
       contactID: props.contactID
     };
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
 
+  }
+  shouldComponentUpdate(nextProps, nextState) {
+    return shallowCompare(this, nextProps, nextState);
+  }
   handleClickage() {
     this.setState({
       isOpened: !this.state.isOpened
@@ -70,6 +72,9 @@ class BossCard extends React.Component {
           <div className="card-body" style={ inlineStyle.insideCard } onClick={ ::this.handleClickage }>
             <BossImage style={ inlineStyle.cardImg } />
               <div style={ inlineStyle.rightSide }>
+              <div style={ inlineStyle.bossIconstyle }>
+              <BossIcon />
+              </div>
                 <CardTitle title={ this.props.nasaName } />
                 <CardText>
                  { this.props.position }

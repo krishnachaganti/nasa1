@@ -12,6 +12,8 @@ import Sider from 'shared/atm.Sider';
 import Toolbar from 'shared/mol.Toolbar';
 import fallbackimg from './components/org.Hero/fallback-hero.jpg';
 import { People, Hero, OrgGroup } from 'scenes/Personnel/components';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import shallowCompare from 'react-addons-shallow-compare';
 
 const mapStateToProps = (state) => {
   return {
@@ -21,7 +23,8 @@ const mapStateToProps = (state) => {
     filter: state.peopleReducer.filter,
     sidebar: state.sidebarReducer,
     nasaContacts: state.nasaContacts,
-    card: state.card
+    card: state.card,
+    env: state.environment
   };
 };
 
@@ -40,9 +43,16 @@ class Personnel extends Component {
       dispatch(getNcontact())
     ]);
   }
+  constructor(props) {
+    super(props);
+  }
 
   componentDidMount() {
     this.constructor.loadAsyncData(this.props.dispatch);
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return shallowCompare(this, nextProps, nextState);
   }
 
   menuButtonClick(ev) {
@@ -86,7 +96,7 @@ class Personnel extends Component {
           <Sidebar />
           <Toolbar people={ this.props.people } />
           <Sider />
-         <People people={ this.props.people } loading={ this.props.loading } filter={ this.props.filter } />
+         <People people={ this.props.people } env={ this.props.env } loading={ this.props.loading } filter={ this.props.filter } />
       </div>
     );
   }

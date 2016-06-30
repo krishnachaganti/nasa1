@@ -34,15 +34,7 @@ const ListGroup = (props) => {
                 );
               })
       }
-      <div className="row center-xs">
-        <div className="col-xs">
-          <RaisedButton label={ bLabel }
-            backgroundColor="#D8D8D8"
-            style={ styles.btnStyle }
-            labelStyle={ styles.labelStyle }
-          />
-       </div>
-      </div>
+
     </section>
   );
 };

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { white } from 'material-ui/styles/colors';
 import PhotoCamera from 'material-ui/svg-icons/action/camera-enhance';
 import { Popover, PopoverAnimationVertical } from 'material-ui/Popover';
-
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 import nasaLogo from './nasalogo.png';
 import Heading from 'shared/atm.Heading';
 import Weather from 'shared/mol.Weather';
@@ -40,6 +40,7 @@ export default class Hero extends React.Component {
     this.state = {
       open: false
     };
+    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
   }
 
   handleTouchTap = event => {

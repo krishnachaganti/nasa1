@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { BossIcon } from 'scenes/Personnel/components';
-
+import shallowCompare from 'react-addons-shallow-compare';
 function mapStateToProps(state) {
   return {
     card: state.card
@@ -16,7 +16,9 @@ class BCardWrap extends Component {
     super();
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
   }
-
+  shouldComponentUpdate(nextProps, nextState) {
+    return shallowCompare(this, nextProps, nextState);
+  }
   shouldOpen() {
     return this.props.contactID === this.props.card.contactID
       && this.props.card.isBossCardOpen;

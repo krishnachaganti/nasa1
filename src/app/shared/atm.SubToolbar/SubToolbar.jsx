@@ -13,7 +13,7 @@ const inlineStyles = {
 const SubToolbar = props => {
   return (
     <div className="subtoolbar">
-      <span style={ inlineStyles.bold }>{ props.orgCode }</span> { props.orgTitle }
+      <span style={ inlineStyles.bold }>{ props.orgCode }</span> { props.env.width > 500 ? props.orgTitle : null }
       { props.orgLength ? <span style={ inlineStyles.inline }>Headcount: { props.orgLength }</span> : null }
     </div>
   );

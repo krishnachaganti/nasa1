@@ -16,6 +16,10 @@ const inlineStyles = {
     marginRight: '5px',
     borderRadius: '50%',
     zIndex: '1'
+  },
+  photo: {
+    width: '169px',
+    height: '216px'
   }
 }
 const PersonImage = props => {
@@ -26,7 +30,7 @@ const PersonImage = props => {
         <ThumbsUp />
        </IconButton>
       </div>
-      <img src={ WBImg } />
+      <img style={ inlineStyles.photo } src={ props.photo ? props.photo : WBImg } />
     </div>
     );
 };

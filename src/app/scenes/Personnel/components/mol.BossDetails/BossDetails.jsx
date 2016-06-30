@@ -2,9 +2,12 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { connect } from 'react-redux';
+import ReactTooltip from 'react-tooltip';
 import CloseIcn from 'material-ui/svg-icons/navigation/close';
 import IconButton from 'material-ui/IconButton';
 import { getNasaContactData } from 'state/ncontacts/ncontacts';
+import shallowCompare from 'react-addons-shallow-compare';
+
 function mapStateToProps(state) {
   return {
     card: state.card,
@@ -14,11 +17,10 @@ function mapStateToProps(state) {
 
 @connect(mapStateToProps)
 export default class BossDetails extends Component {
-  constructor() {
-    super();
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return shallowCompare(this, nextProps, nextState);
+  }
   shouldOpen() {
     return this.props.contactID === this.props.card.contactID
       && this.props.card.isBossCardOpen;
@@ -86,9 +88,10 @@ export default class BossDetails extends Component {
                      { contractor.NASAContactName }
                      </div>
                      <div className="col-md-3">
-                      <strong>ITS 016 001</strong> { contractor.ITS_016_001 ? <span>{ contractor.ITS_016_001 }</span> : <span>Incomplete</span> }
-                      <strong>LARC CICT</strong> { contractor.LARC_CICT ? <span>{ contractor.LARC_CICT } </span> : <span>Incomplete</span> }
-                      <strong>OCIMPR</strong> { contractor.OCIMPR ? <span>{ contractor.OCIMPR }</span> : <span>Incomplete</span> }
+                      <strong data-tip={ `Completed ${contractor.ITS_016_001}` }>ITS 016 001</strong> |
+                      <strong data-tip={ `Completed ${contractor.LARC_CICT}` }>LARC CICT</strong> |
+                      <strong data-tip={ `Completed ${contractor.OCIMPR}` }>OCIMPR</strong>
+                     <ReactTooltip />
                      </div>
                   </div>
                 )

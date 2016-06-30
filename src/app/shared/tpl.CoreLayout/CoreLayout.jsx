@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { initEnvironment } from 'state/environment/environment';
-
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 function mapStateToProps(state) {
   const { environment } = state;
   const { height, isMobile, width } = environment;
@@ -15,6 +15,11 @@ function mapStateToProps(state) {
 
 @connect(mapStateToProps)
 class CoreLayout extends Component {
+
+  constructor() {
+    super();
+    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+  }
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(initEnvironment());

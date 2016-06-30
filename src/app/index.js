@@ -7,6 +7,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import axios from 'axios';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+// import {whyDidYouUpdate} from 'why-did-you-update';
 
 import preRenderMiddleware from 'app/utils.render/preRenderMiddleware';
 import createRoutes from './routes.jsx';
@@ -19,7 +20,9 @@ const store = configureStore(initialState, browserHistory);
 const history = syncHistoryWithStore(browserHistory, store);
 
 injectTapEventPlugin();
-
+// if (process.env.NODE_ENV !== 'production') {
+//   whyDidYouUpdate(React)
+// }
 /**
  * Callback function handling frontend route changes.
  */

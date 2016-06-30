@@ -35,11 +35,11 @@ const People = (props) => {
             const toolBarCode = `${groupName}:`;
             if (!props.filter || groupName === props.filter) {
               return (
-                <div className="row onehun" key={ index }>
+                <div className="row onehun" key={ index } id={ groupName }>
                   <OrgGroup boss={
                       <BossCard nasaName={ peopleList[0].NASAContactName } position="Boss" contactID={ index } orgCode={ groupName } />
                     } toolbar={
-                      <SubToolbar orgCode={ toolBarCode } orgTitle={ peopleList[0].TO_Name } orgLength={ peopleList.length }  />
+                      <SubToolbar env={ props.env } orgCode={ toolBarCode } orgTitle={ peopleList[0].TO_Name } orgLength={ peopleList.length }  />
                     } orgType={ groupName } persons={ peopleList }
                   />
                 </div>

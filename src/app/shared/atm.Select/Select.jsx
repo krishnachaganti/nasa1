@@ -2,47 +2,34 @@ import React, { PropTypes } from 'react';
 import ReactSelect from 'react-select';
 
 class Select extends React.Component {
-  static propTypes = {
-    label: PropTypes.string,
+  constructor(props) {
+    super(props);
 
-    onChange: PropTypes.func.isRequired,
-    onBlur: PropTypes.func,
-    onFocus: PropTypes.func,
-
-    multi: PropTypes.bool,
-    searchable: PropTypes.bool,
-
-    value: PropTypes.any,
-    options: PropTypes.arrayOf(PropTypes.shape({
-      label: PropTypes.string.isRequired,
-      value: PropTypes.any.isRequired
-    })),
-    placeholder: PropTypes.string
-  };
-
-  static defaultProps = {
-    multi: false,
-    searchable: false
-  };
-
+    this.state = {};
+  }
+  setValue (value) {
+    this.setState({ value });
+    console.log('Support level selected:', value.label);
+  }
   render() {
+    const options = [
+      { label: 'IT-A', value: 'IT-A' },
+      { label: 'IT-B', value: 'IT-B' },
+      { label: 'IT-C', value: 'IT-C' },
+      { label: 'IT-D', value: 'IT-D' },
+      { label: 'IT-E', value: 'IT-E' },
+      { label: 'IT-F', value: 'IT-F' },
+      { label: 'IT-G', value: 'IT-G' }
+    ];
     return (
       <div className="select__wrapper">
-        {this.props.label && <label>{this.props.label}</label>}
         <ReactSelect
-          // Simplify if this isnt a searchable select
-          searchable={this.props.searchable}
-          clearable={this.props.searchable}
-          backspaceRemoves={this.props.searchable}
-
-          onChange={this.props.onChange}
-          onBlur={this.props.onBlur}
-          onFocus={this.props.onFocus}
-
-          multi={this.props.multi}
-          value={this.props.value}
-          options={this.props.options}
-          placeholder={this.props.placeholder}/>
+          placeholder="Filter by Org Code"
+          options={options}
+          optionRenderer={this.renderOption}
+          onChange={this.setValue}
+          value={this.state.value}
+          valueRenderer={this.renderValue} />
       </div>
     );
   }

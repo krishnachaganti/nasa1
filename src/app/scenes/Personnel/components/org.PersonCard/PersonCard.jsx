@@ -6,6 +6,8 @@ import { CardTitle, CardText } from 'material-ui/Card';
 
 import { PersonDetails, PersonImage } from '../index';
 import { toggleCard } from 'scenes/Personnel/state/card';
+import { giveKudos } from 'state/people/people';
+import shallowCompare from 'react-addons-shallow-compare';
 
 const inlineStyle = {
   insideCard: {
@@ -31,7 +33,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators({ toggleCard }, dispatch)
+    actions: bindActionCreators({ toggleCard }, dispatch),
+    pactions: bindActionCreators({ giveKudos }, dispatch)
   };
 }
 
@@ -44,9 +47,10 @@ class PersonCard extends Component {
       someValue: 'init',
       personID: props.person.id
     };
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
   }
-
+  shouldComponentUpdate(nextProps, nextState) {
+    return shallowCompare(this, nextProps, nextState);
+  }
   handleClickage() {
     this.setState({
       isOpened: !this.state.isOpened
@@ -54,20 +58,23 @@ class PersonCard extends Component {
     const persn = this.props.person.id;
     this.props.actions.toggleCard(persn);
   }
-
+  handleGiveKudos() {
+    const id = this.props.person.id;
+    this.props.pactions.giveKudos(id);
+  }
   render() {
     return (
         <div>
-          <div className="card-body" style={ inlineStyle.insideCard } onClick={ ::this.handleClickage }>
-            <PersonImage style={ inlineStyle.cardImg } increaseKudos={ this.props.handleIncrement } />
-            <div style={ inlineStyle.rightSide }>
+          <div className="card-body" style={ inlineStyle.insideCard }>
+            <PersonImage style={ inlineStyle.cardImg } photo={ this.props.person.image } increaseKudos={ ::this.handleGiveKudos } />
+            <div style={ inlineStyle.rightSide } onClick={ ::this.handleClickage }>
               <CardTitle title={ this.props.person.PersonnelName } />
               <CardText>
                 { this.props.person.PositionTitlePLC }
                 <br />
                 Org Code: { this.props.person.OrgCode }
                 <br />
-                Kudos: { this.props.count }
+                Kudos: { this.props.person.kudos }
               </CardText>
             </div>
           </div>

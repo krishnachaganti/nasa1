@@ -10,6 +10,10 @@
   background-color: #fff;
   width: 380px;
   height: 220px;
+
+  @include mq(440px, max-width, screen) {
+    width: 300px;
+  }
 }
 
 .card-expander {
@@ -48,9 +52,11 @@
 }
 
 .col__border {
+  border-top: 2px solid #fff;
   border-right: 2px solid #fff;
   height: 100%;
   padding-top: 15px;
+  background-color: rgb(240, 240, 240);
 }
 
 .card-wrapper {

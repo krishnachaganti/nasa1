@@ -13,7 +13,7 @@ import Weather from 'shared/mol.Weather';
 import Heading from 'shared/atm.Heading';
 import SubToolbar from 'shared/atm.SubToolbar';
 import Textblock from 'shared/atm.Textblock';
-
+import fallbackimg from '../Personnel/components/org.Hero/fallback-hero.jpg';
 import * as sidebarActions from 'state/sidebar/sidebar';
 import { getIotd, fetchWeather } from 'state/index';
 import { fetchReports, setFilter } from './state/report';
@@ -119,7 +119,7 @@ class TaskOrder extends Component {
             </div>
           </div>
           </div>
-          <TaskOrderListing reports={ this.props.report } loading={ this.props.loading } />
+          <TaskOrderListing env={ this.props.env } reports={ this.props.report } loading={ this.props.loading } />
         </div>
       </div>
     );
@@ -130,7 +130,8 @@ function mapStateToProps(state) {
     hero: state.heroReducer,
     loading: state.report.loading,
     report: state.report,
-    sidebar: state.sidebarReducer
+    sidebar: state.sidebarReducer,
+    env: state.environment
   };
 }
 
