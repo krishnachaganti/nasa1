@@ -88,9 +88,13 @@ class BossCard extends React.Component {
             closeExpand={ ::this.handleClickage }
             isOpened={ this.state.isOpened }
             closeExpand={ ::this.handleClickage }
+            nasaPhone={ this.props.nasaPhone }
+            orgCode={ this.props.orgCode }
+            taskOrder={ this.props.taskOrder }
             contactID={ this.props.contactID }
             surveys={ this.props.nasaContacts.surveys }
             contractors={ this.props.nasaContacts.contractors }
+            orgTitle={ this.props.orgTitle }
           />
       </div>
     );

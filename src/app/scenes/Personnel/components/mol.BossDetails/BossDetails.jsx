@@ -7,7 +7,8 @@ import CloseIcn from 'material-ui/svg-icons/navigation/close';
 import IconButton from 'material-ui/IconButton';
 import { getNasaContactData } from 'state/ncontacts/ncontacts';
 import shallowCompare from 'react-addons-shallow-compare';
-
+import CheckIcon from '../atm.CheckIcon';
+import EmptyCircle from '../atm.EmptyCircle';
 function mapStateToProps(state) {
   return {
     card: state.card,
@@ -40,6 +41,9 @@ export default class BossDetails extends Component {
     const icnBtnStyle = {
       float: 'right'
     };
+    const iconstyle = {
+      marginLeft: '10px'
+    };
     const topRowStyle = {
       marginTop: '5px',
       backgroundColor: '#F0F0F0'
@@ -51,24 +55,29 @@ export default class BossDetails extends Component {
       backgroundColor:'#F0F0F0'
     };
     const span1Style = {
+      color: '#053A93',
       verticalAlign: 'middle'
     };
     const span2Style = {
       float: 'right'
     };
+    const linkstyle = {
+      color: '#053A93',
+      textDecoration: 'none'
+    };
     const renderTable = (
       <section className="faux-table">
           <div className="row">
-            <div className="col-md-3">
+            <div className="col-xs-12 col-md-3">
                 <strong>Contractor Team</strong>
             </div>
-            <div className="col-md-3">
+            <div className="col-xs-12 col-md-3">
                 <strong>Position Title</strong>
             </div>
-            <div className="col-md-3">
+            <div className="col-xs-12 col-md-3">
                 <strong>NASA Contact</strong>
             </div>
-            <div className="col-md-3">
+            <div className="col-xs-12 col-md-3">
                 <strong>Trainings</strong>
             </div>
           </div>
@@ -78,19 +87,29 @@ export default class BossDetails extends Component {
               this.props.contractors.length ? this.props.contractors.map((contractor, i) => {
                 return (
                    <div className="row row__pad" style={ midRowStyle } key={ i }>
-                     <div className="col-md-3">
-                        { contractor.PersonnelName }
+                     <div className="col-xs-12 col-md-3">
+                        <span style={linkstyle}>{ contractor.PersonnelName }</span>
                      </div>
-                     <div className="col-md-3">
-                       { contractor.PositionTitlePLC }
+                     <div className="col-xs-12 col-md-3">
+                      <span style={linkstyle}>{ contractor.PositionTitlePLC }</span>
                      </div>
-                     <div className="col-md-3">
-                     { contractor.NASAContactName }
+                     <div className="col-xs-12 col-md-2">
+                     <span style={linkstyle}>{ contractor.NASAContactName }</span>
                      </div>
-                     <div className="col-md-3">
-                      <strong data-tip={ `Completed ${contractor.ITS_016_001}` }>ITS 016 001</strong> |
-                      <strong data-tip={ `Completed ${contractor.LARC_CICT}` }>LARC CICT</strong> |
-                      <strong data-tip={ `Completed ${contractor.OCIMPR}` }>OCIMPR</strong>
+                     <div className="col-xs-12 col-md-4">
+                      { contractor.ITS_016_001 ? <span data-tip={ `Completed ${contractor.ITS_016_001}` }>
+                       <span style={ iconstyle }><CheckIcon /> </span> ITS 016 001
+                      </span> : <EmptyCircle />
+                      }
+                      { contractor.LARC_CICT ? <span data-tip={ `Completed ${contractor.LARC_CICT}` }>
+                        <span style={ iconstyle }><CheckIcon /> </span>LARC CICT
+                      </span> : <EmptyCircle />
+                      }
+                      { contractor.OCIMPR ? <span data-tip={ `Completed ${contractor.OCIMPR}` }>
+                        <span style={ iconstyle }><CheckIcon /> </span> OCIMPR
+                      </span> : <EmptyCircle />
+                      }
+
                      <ReactTooltip />
                      </div>
                   </div>
@@ -104,7 +123,7 @@ export default class BossDetails extends Component {
     const renderBottomT = (
       <section className="faux-table">
           <div className="row">
-            <div className="col-md-6">
+            <div className="col-xs-12 col-md-6">
                 <strong>Authored Performance Survey</strong>
             </div>
 
@@ -114,9 +133,9 @@ export default class BossDetails extends Component {
             {
               this.props.surveys.length ? this.props.surveys.map((survey, i) => {
                 return (
-                  <div className="col-md-6 col__border" key={ i }>
+                  <div className="col-xs-12 col-md-6 col__border" key={ i }>
                     <span style={ span1Style }>{ survey.periodStart } - { survey.periodEnd }</span>
-                    <span style={ span2Style }><a href={ survey.location }>Download</a></span>
+                    <span style={ span2Style }><a style={ linkstyle } href={ survey.location }>Download</a></span>
                   </div>
                 )
               }) : null
@@ -132,32 +151,32 @@ export default class BossDetails extends Component {
          <div className="card-expander" key="expander" style={ expanderStyle }>
          <div className="wrap">
           <div className="row row__padding">
-            <div className="col-md-3">
+            <div className="col-xs-12 col-md-3">
               <strong>Position Title</strong><br />
-              Task Order Technical Monitor
+              NASA Contact
             </div>
-            <div className="col-md-3">
+            <div className="col-xs-12 col-md-3">
               <strong>NASA Contact Phone #</strong> <br />
-              321.867.1794
+              { this.props.nasaPhone }
             </div>
-            <div className="col-md-offset-3 col-md-3">
+            <div className="col-xs-12 col-md-offset-3 col-md-3">
               <IconButton onClick={ this.props.closeExpand } tooltip="Dismiss" style={ icnBtnStyle }>
                 <CloseIcn />
               </IconButton>
             </div>
           </div>
           <div className="row row__padding">
-            <div className="col-md-3">
+            <div className="col-xs-12 col-md-3">
                 <strong>Org Code</strong> <br />
-                IT-A
+                { this.props.orgCode }
             </div>
-            <div className="col-md-3">
+            <div className="col-xs-12 col-md-3">
                 <strong>Task Order #</strong><br />
-                IT-A,E
+                { this.props.taskOrder }
             </div>
-            <div className="col-md-6">
+            <div className="col-xs-12 col-md-6">
               <strong>Task Order Name</strong><br />
-              IT Business Office and End User Support
+              { this.props.orgTitle }
             </div>
           </div>
 

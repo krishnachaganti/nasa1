@@ -6,6 +6,9 @@ import IconButton from 'material-ui/IconButton';
 import { lightWhite } from 'material-ui/styles/colors';
 import MenuIc from 'material-ui/svg-icons/navigation/menu';
 import RaisedButton from 'material-ui/RaisedButton';
+import { Link } from 'react-router';
+import Drawer from 'material-ui/Drawer';
+import MenuItem from 'material-ui/MenuItem';
 import Sider from 'shared/atm.Sider';
 import Sidebar from 'shared/org.Sidebar';
 import Toolbar from 'shared/mol.Toolbar';
@@ -50,17 +53,20 @@ class TaskOrder extends Component {
       dispatch(fetchReports())
     ]);
   }
-
+  constructor(props) {
+    super(props);
+    this.state = {open: false};
+  }
   componentDidMount() {
     TaskOrder.readyOnActions(this.props.dispatch);
   }
-  menuButtonClick(ev, dispatch) {
-    ev.preventDefault();
-    this.props.dispatch(sidebarActions.toggleSideBar());
-  }
+
   handleFilter = (event, index, value) => {
     this.props.actions.setFilter(value);
   }
+  handleToggle = () => this.setState({open: !this.state.open});
+
+  handleClose = () => this.setState({ open: false });
   render() {
     const HERO_IMG = this.props.hero.iotd || fallbackimg;
     const styles = {
@@ -82,40 +88,50 @@ class TaskOrder extends Component {
       search: {
         width: '600px',
         height: '60px'
+      },
+      drawer: {
+        backgroundColor: '#11222D',
+        paddingTop: '80px'
       }
     };
     return (
       <div>
         <Helmet title="Task Order" />
         <Header heroImage={ styles.heroStyle } menuIcon={
-          <MenuIc onTouchTap={ ::this.menuButtonClick } color={ lightWhite } style={ styles.contentHeaderMenuLink } />
+          <MenuIc onTouchTap={ ::this.handleToggle } color="#fff" style={ styles.contentHeaderMenuLink } />
           }
           weatherWidget={ <Weather temperature={ this.props.hero.temperature } /> }
           pageTitle={
-            <Heading size={1} color="#fff" align="center" top="75">
+            <Heading size={1} color="#fff" align="center" top="175">
               Task Order Archives
             </Heading>
           }
-          buttonGroup={ <ButtonGroup filterAct={ ::this.handleFilter } /> }
         />
+        <Drawer
+          docked={false}
+          width={200}
+          open={ this.state.open }
+          onRequestChange={(open) => this.setState({open})}
+          containerStyle={ styles.drawer }
+        >
+          <MenuItem className="nav__item"><Link to="/">Employee Search</Link></MenuItem>
+          <MenuItem className="nav__item"><Link to="/">Financial Report</Link></MenuItem>
+          <MenuItem className="nav__item"><Link to="/taskorder">Task Order Archives</Link></MenuItem>
+        </Drawer>
         <Sider />
-        <Sidebar />
         <div className="wrap">
           <div className="col-xs-12">
           <Textblock center>
-            Bacon ipsum dolor amet kevin andouille short ribs boudin ribeye. Meatloaf biltong rump t-bone
-            alcatra bresaola short ribs shoulder flank salami pork chop shankle. Tri-tip ham hock doner corned
-            beef jerky shank. Flank capicola landjaeger tenderloin kevin cow corned beef chicken sirloin short
-            ribs shank ham beef. Landjaeger ball tip pork chop pork belly meatball pastrami venison. Capicola sausage
-            hamburger, brisket pork chop prosciutto leberkas swine picanha shank tri-tip cow pork.
+            Submitting a new task order is easy.
           </Textblock>
           <div className="row center-xs">
             <div className="col-xs-6">
+            <a href="mailto:status@nasaupdate.com">
                 <RaisedButton label="Submit a Task Order"
                   backgroundColor="#043A92"
                   style={ btnStyle }
                   labelStyle={ labelSty }
-                />
+                /></a>
             </div>
           </div>
           </div>

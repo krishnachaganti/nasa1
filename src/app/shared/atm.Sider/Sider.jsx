@@ -54,49 +54,38 @@ class Sider extends Component {
   }
 
   render() {
-    const inline = {
-      padding: 0,
-      border: 'none',
-      backgroundColor: '#D8D8D8'
-    };
     return (
       <div className="sider">
         <ul>
         <Menu width="50px" value={ this.state.value } onItemTouchTap={ ::this.handleChange }>
-          <li>
-           <span className="sider__square">
-            <MenuItem style={ inline } primaryText="IT-A" value="IT-A" />
-           </span>
+          <li className="sider__square">
+            <MenuItem className="sider__nav" primaryText="IT-A" value="IT-A" />
           </li>
-         <li>
-          <span className="sider__square">
-           <MenuItem style={ inline } primaryText="IT-B" value="IT-B" />
-          </span>
+         <li className="sider__square">
+           <MenuItem className="sider__nav" primaryText="IT-B" value="IT-B" />
          </li>
-          <li>
-           <span className="sider__square">
-            <MenuItem style={ inline } primaryText="IT-C" value="IT-C" />
-           </span>
+          <li className="sider__square">
+
+            <MenuItem className="sider__nav" primaryText="IT-C" value="IT-C" />
+
           </li>
-          <li>
-           <span className="sider__square">
-            <MenuItem style={ inline } primaryText="IT-D" value="IT-D" />
-           </span>
+          <li className="sider__square">
+
+            <MenuItem className="sider__nav" primaryText="IT-D" value="IT-D" />
+
           </li>
-          <li>
-            <span className="sider__square">
-              <MenuItem style={ inline } primaryText="IT-E" value="IT-E" />
-            </span>
+          <li className="sider__square">
+
+          <MenuItem className="sider__nav" primaryText="IT-E" value="IT-E" />
+
           </li>
-          <li>
-           <span className="sider__square">
-            <MenuItem style={ inline } primaryText="IT-F" value="IT-F" />
-           </span>
+          <li className="sider__square">
+            <MenuItem className="sider__nav" primaryText="IT-F" value="IT-F" />
           </li>
-          <li>
-           <span className="sider__square">
-            <MenuItem style={ inline } primaryText="IT-G" value="IT-G" />
-           </span>
+          <li className="sider__square">
+
+            <MenuItem className="sider__nav" primaryText="IT-G" value="IT-G" />
+
           </li>
           </Menu>
         </ul>

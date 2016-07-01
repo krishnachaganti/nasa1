@@ -20,6 +20,12 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
+const inline = {
+  select: {
+    backgroundColor: '#fff'
+  }
+}
+
 @connect(mapStateToProps, mapDispatchToProps)
 class Toolbar extends Component {
   constructor(props) {
@@ -40,7 +46,7 @@ class Toolbar extends Component {
       <div className="toolbar row">
       <div className="toolbar__section">
         <div className="toolbar__col-left col-sm-6">
-          <SelectField value={ this.state.value } onChange={ ::this.handleChange }>
+          <SelectField value={ this.state.value } style={ inline.select } onChange={ ::this.handleChange }>
             <MenuItem value="IT-A">IT-A</MenuItem>
             <MenuItem value="IT-B">IT-B</MenuItem>
             <MenuItem value="IT-C">IT-C</MenuItem>

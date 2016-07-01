@@ -8,7 +8,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import nasaLogo from './nasalogo.png';
 import Heading from 'shared/atm.Heading';
 import Weather from 'shared/mol.Weather';
-
+import FileIcn from 'material-ui/svg-icons/file/file-download';
 const inlineStyles = {
   cameraStyle: {
     position: 'absolute',
@@ -78,6 +78,9 @@ export default class Hero extends React.Component {
           Search our Listing of Current Employees and Training Status <br />
           Regarding Treatment of Sensitive Information</Heading>
           { this.props.searchField }
+
+          <Heading size={ 4 } color="#fff" align="center" top="50">
+          <a href="#" className="header__link"><FileIcn color="#fff" /> Download Org Chart</a></Heading>
           </div>
         </div>
         <div className="row center-xs">

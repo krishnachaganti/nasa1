@@ -14,6 +14,16 @@ const dateCirStyle = {
   paddingTop: '1.1em',
   lineHeight: '14px'
 };
+const linkStyle = {
+  color: '#053A93',
+  textDecoration: 'none',
+  fontFamily: 'Titillium Web',
+  fontSize: '20px'
+}
+const infoStyle = {
+   color: '#053A93',
+   fontFamily: 'Titillium Web'
+}
 const ListPanel = (props) => {
   return (
     <div className="listgroup__panel">
@@ -25,14 +35,14 @@ const ListPanel = (props) => {
       </div>
       <div className="col-md-3">
       <strong>Period Covered</strong> <br />
-      { props.file.periodStart } - { props.file.periodEnd }
+      <span style={ infoStyle }>{ props.file.periodStart }</span>
       </div>
       <div className="col-md-5">
         <strong>Name of Preparer</strong> <br />
-        { props.file.preparer }
+        <span style={ infoStyle }>{ props.file.preparer }</span>
       </div>
       <div className="col-md-2">
-        <a href={ props.file.location }>View Full Report</a>
+        <a href={ props.file.location } style={ linkStyle }>View Full Report</a>
       </div>
     </div>
   );

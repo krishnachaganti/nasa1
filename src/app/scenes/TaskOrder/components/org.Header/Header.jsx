@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import nasalogo from './nasalogo.png';
-
+import Heading from 'shared/atm.Heading';
 const logoStyle = {
   width: '80px',
   height: '63px',
@@ -8,7 +8,9 @@ const logoStyle = {
   display: 'flex',
   justifyContent: 'center'
 };
-
+const headingStyle = {
+  paddingTop: '100px'
+}
 const Header = (props) => {
   return (
     <div className="header__main" style={ props.heroImage }>
@@ -25,15 +27,13 @@ const Header = (props) => {
         </div>
       </div>
       <div className="row">
-        <div className="col-xs">
+        <div className="col-xs" style={ headingStyle }>
+
           { props.pageTitle }
+
         </div>
       </div>
-        <div className="row center-xs">
-         <div className="col-xs-6">
-          { props.buttonGroup }
-          </div>
-        </div>
+
       </div>
     </div>
   );

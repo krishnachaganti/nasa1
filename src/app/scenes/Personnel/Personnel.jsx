@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 import { lightWhite } from 'material-ui/styles/colors';
 import MenuIc from 'material-ui/svg-icons/navigation/menu';
 import { getIotd, fetchWeather } from 'state/index';
@@ -14,7 +15,8 @@ import fallbackimg from './components/org.Hero/fallback-hero.jpg';
 import { People, Hero, OrgGroup } from 'scenes/Personnel/components';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import shallowCompare from 'react-addons-shallow-compare';
-
+import Drawer from 'material-ui/Drawer';
+import MenuItem from 'material-ui/MenuItem';
 const mapStateToProps = (state) => {
   return {
     hero: state.heroReducer,
@@ -45,6 +47,7 @@ class Personnel extends Component {
   }
   constructor(props) {
     super(props);
+    this.state = {open: false};
   }
 
   componentDidMount() {
@@ -55,11 +58,9 @@ class Personnel extends Component {
     return shallowCompare(this, nextProps, nextState);
   }
 
-  menuButtonClick(ev) {
-    ev.preventDefault();
-    this.props.dispatch(sidebarActions.toggleSideBar());
-  }
+  handleToggle = () => this.setState({open: !this.state.open});
 
+  handleClose = () => this.setState({ open: false });
   render() {
     const HERO_IMG = this.props.hero.iotd || fallbackimg;
     const styles = {
@@ -81,22 +82,36 @@ class Personnel extends Component {
       search: {
         width: '600px',
         height: '60px'
+      },
+      drawer: {
+        backgroundColor: '#11222D',
+        paddingTop: '80px'
       }
     };
 
     return (
       <div>
         <Helmet title="Personnel" />
-        <MenuIc onTouchTap={ ::this.menuButtonClick } color={ lightWhite } style={ styles.contentHeaderMenuLink } />
+        <MenuIc onTouchTap={ ::this.handleToggle } color={ lightWhite } style={ styles.contentHeaderMenuLink } />
           <Hero heroImage={ styles.heroStyle }
             temperature={ this.props.hero.temperature }
             titleImg={ this.props.hero.title }
             isLoading={ this.props.hero.loading }
           />
-          <Sidebar />
+          <Drawer
+            docked={false}
+            width={200}
+            open={ this.state.open }
+            onRequestChange={(open) => this.setState({open})}
+            containerStyle={ styles.drawer }
+          >
+            <MenuItem className="nav__item"><Link to="/">Employee Search</Link></MenuItem>
+            <MenuItem className="nav__item"><Link to="/">Financial Report</Link></MenuItem>
+            <MenuItem className="nav__item"><Link to="/taskorder">Task Order Archives</Link></MenuItem>
+          </Drawer>
           <Toolbar people={ this.props.people } />
           <Sider />
-         <People people={ this.props.people } env={ this.props.env } loading={ this.props.loading } filter={ this.props.filter } />
+         <People nasaContacts={ this.props.nasaContacts } people={ this.props.people } env={ this.props.env } loading={ this.props.loading } filter={ this.props.filter } />
       </div>
     );
   }

@@ -6,7 +6,7 @@
     height: 100%;
     margin: 0;
     background-color: $body-bg;
-    font-family: $text-font-stack;
+    font-family: 'Titillium Web';
   }
   // Make all elements from the DOM inherit from the parent box-sizing
   *,
@@ -32,4 +32,31 @@
 
 .onehun {
   width: 100%;
+}
+
+.nav__item {
+  &:hover {
+    background-color: #F0F0F0!important;
+  }
+  a {
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Titillium Web';
+    font-size: 18px;
+    letter-spacing: 0.45px;
+    line-height: 41px;
+    font-weight: 300;
+    &:hover {
+      color: #12222D!important;
+    }
+  }
+}
+.header__link {
+  color: #fff;
+  text-decoration: none;
+  font-family: 'Titillium Web';
+  font-size: 16px;
+  font-weight: 600;
+  vertical-align: middle;
+  margin-top: -5px;
 }
