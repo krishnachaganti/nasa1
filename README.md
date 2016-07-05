@@ -31,8 +31,8 @@ A bucket, access key id and access key secret are necessary.
 ## All email users, their passwords and AWS credentials must be stored in the .env file
 ```
 PORT=3000
-AWS_ACCESS_KEY_ID=
-AWS_SECRET_ACCESS_KEY=
+AWS_ACCESS_KEY_ID=AKIAJHZ4BQWIOP7GPHHQ
+AWS_SECRET_ACCESS_KEY=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
 AWS_BUCKET=
 REPORT_MAIL_USER=
 REPORT_MAIL_PASSWORD=
