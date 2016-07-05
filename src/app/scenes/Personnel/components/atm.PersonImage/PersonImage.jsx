@@ -19,7 +19,7 @@ const inlineStyles = {
   },
   photo: {
     width: '169px',
-    height: '216px'
+    height: '225px'
   }
 }
 const PersonImage = props => {

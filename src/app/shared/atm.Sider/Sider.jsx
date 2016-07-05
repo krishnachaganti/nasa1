@@ -1,15 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
+import classNames from 'classnames';
 import { bindActionCreators } from 'redux';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { setFilter } from 'state/people/people';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import Menu from 'material-ui/Menu';
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
   return {
-    filter: state.peopleReducer.filter
+    filter: state.peopleReducer.filter,
+    filterActive: state.peopleReducer.filterActive
   };
 }
 
@@ -24,7 +26,8 @@ class Sider extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: 1
+      value: 1,
+      isActive: false
     };
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
   }
@@ -54,38 +57,33 @@ class Sider extends Component {
   }
 
   render() {
+    const siderNavClass = classNames({
+      'sider__nav': true
+    });
     return (
       <div className="sider">
         <ul>
         <Menu width="50px" value={ this.state.value } onItemTouchTap={ ::this.handleChange }>
           <li className="sider__square">
-            <MenuItem className="sider__nav" primaryText="IT-A" value="IT-A" />
+            <MenuItem className={ siderNavClass } primaryText="IT-A" value="IT-A" />
           </li>
          <li className="sider__square">
-           <MenuItem className="sider__nav" primaryText="IT-B" value="IT-B" />
+          <MenuItem className={ siderNavClass } primaryText="IT-B" value="IT-B" />
          </li>
           <li className="sider__square">
-
-            <MenuItem className="sider__nav" primaryText="IT-C" value="IT-C" />
-
+            <MenuItem className={ siderNavClass } primaryText="IT-C" value="IT-C" />
           </li>
           <li className="sider__square">
-
-            <MenuItem className="sider__nav" primaryText="IT-D" value="IT-D" />
-
+            <MenuItem className={ siderNavClass } primaryText="IT-D" value="IT-D" />
           </li>
           <li className="sider__square">
-
-          <MenuItem className="sider__nav" primaryText="IT-E" value="IT-E" />
-
+           <MenuItem className={ siderNavClass } primaryText="IT-E" value="IT-E" />
           </li>
           <li className="sider__square">
-            <MenuItem className="sider__nav" primaryText="IT-F" value="IT-F" />
+            <MenuItem className={ siderNavClass } primaryText="IT-F" value="IT-F" />
           </li>
           <li className="sider__square">
-
-            <MenuItem className="sider__nav" primaryText="IT-G" value="IT-G" />
-
+            <MenuItem className={ siderNavClass } primaryText="IT-G" value="IT-G" />
           </li>
           </Menu>
         </ul>

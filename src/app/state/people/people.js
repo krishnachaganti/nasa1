@@ -75,7 +75,8 @@ export function giveKudos(id, kudos) {
 }
 export const setFilter = (value) => ({
   type: SET_FILTER,
-  filter: value
+  filter: value,
+  filterActive: value + '-active'
 });
 
 const INITIAL_STATE = {
@@ -84,7 +85,8 @@ const INITIAL_STATE = {
   error: false,
   people: {},
   count: 0,
-  filter: ''
+  filter: '',
+  filterActive: ''
 };
 
 export default function peopleReducer(state = INITIAL_STATE, action) {
@@ -115,7 +117,8 @@ export default function peopleReducer(state = INITIAL_STATE, action) {
     case SET_FILTER:
       return {
         ...state,
-        filter: action.filter
+        filter: action.filter,
+        filterActive: action.filterActive
       };
     case GIVE_KUDOS:
       return {

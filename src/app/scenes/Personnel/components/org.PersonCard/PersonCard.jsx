@@ -17,7 +17,8 @@ const inlineStyle = {
   },
   cardImg: {
     width: '40%',
-    paddingLeft: 0
+    paddingLeft: 0,
+    height: '100%'
   },
   rightSide: {
     width: '60%'
@@ -74,7 +75,7 @@ class PersonCard extends Component {
                 <br />
                 Org Code: { this.props.person.OrgCode }
                 <br />
-                Kudos: { this.props.person.kudos }
+                Kudos: <strong>{ this.props.person.kudos }</strong>
               </CardText>
             </div>
           </div>

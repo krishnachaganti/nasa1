@@ -58,6 +58,9 @@ export default class BossDetails extends Component {
       color: '#053A93',
       verticalAlign: 'middle'
     };
+    const labeltext = {
+      verticalAlign: 'top'
+    };
     const span2Style = {
       float: 'right'
     };
@@ -98,15 +101,15 @@ export default class BossDetails extends Component {
                      </div>
                      <div className="col-xs-12 col-md-4">
                       { contractor.ITS_016_001 ? <span data-tip={ `Completed ${contractor.ITS_016_001}` }>
-                       <span style={ iconstyle }><CheckIcon /> </span> ITS 016 001
+                       <span style={ iconstyle }><CheckIcon /> </span> <span style={labeltext}>ITS 016 001</span>
                       </span> : <EmptyCircle />
                       }
                       { contractor.LARC_CICT ? <span data-tip={ `Completed ${contractor.LARC_CICT}` }>
-                        <span style={ iconstyle }><CheckIcon /> </span>LARC CICT
+                        <span style={ iconstyle }><CheckIcon /> </span><span style={labeltext}>LARC CICT</span>
                       </span> : <EmptyCircle />
                       }
                       { contractor.OCIMPR ? <span data-tip={ `Completed ${contractor.OCIMPR}` }>
-                        <span style={ iconstyle }><CheckIcon /> </span> OCIMPR
+                        <span style={ iconstyle }><CheckIcon /> </span> <span style={labeltext}>OCIMPR</span>
                       </span> : <EmptyCircle />
                       }
 

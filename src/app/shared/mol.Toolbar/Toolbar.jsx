@@ -23,6 +23,12 @@ function mapDispatchToProps(dispatch) {
 const inline = {
   select: {
     backgroundColor: '#fff'
+  },
+  label: {
+    marginRight: '15px'
+  },
+  selectul: {
+    opacity: 0
   }
 }
 
@@ -46,7 +52,8 @@ class Toolbar extends Component {
       <div className="toolbar row">
       <div className="toolbar__section">
         <div className="toolbar__col-left col-sm-6">
-          <SelectField value={ this.state.value } style={ inline.select } onChange={ ::this.handleChange }>
+          <span style={ inline.label }>Filter by department:</span>
+          <SelectField value={ this.state.value } style={ inline.select } onChange={ ::this.handleChange } underlineStyle={ inline.selectul } placeholder="Org Code">
             <MenuItem value="IT-A">IT-A</MenuItem>
             <MenuItem value="IT-B">IT-B</MenuItem>
             <MenuItem value="IT-C">IT-C</MenuItem>

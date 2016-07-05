@@ -35,8 +35,12 @@
 }
 
 .nav__item {
+  color: #fff;
   &:hover {
     background-color: #F0F0F0!important;
+    a {
+      color: #12222D!important;
+    }
   }
   a {
     color: #fff;
