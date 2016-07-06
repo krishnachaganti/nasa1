@@ -1,11 +1,11 @@
 import rethinkdbdash from 'rethinkdbdash';
-
-const config = {
-  host: process.env.RDB_HOST,
-  port: process.env.RDB_PORT,
-  db: process.env.RDB_DB
+import { config } from '../config/splatter';
+const cfg = {
+  host: config.db.host,
+  port: config.db.port,
+  db: config.db.name
 };
 
-const r = rethinkdbdash(config);
+const r = rethinkdbdash(cfg);
 
 export default r;

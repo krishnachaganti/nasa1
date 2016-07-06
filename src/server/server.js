@@ -11,8 +11,9 @@ import logger from './lib/logger';
 import ApiRouter from './api/apiRouter';
 import watcher from './lib/watcher';
 import renderReact from './lib/ssr/renderReact';
+import { config } from './config/splatter';
 
-const port = process.env.PORT || 3000;
+const port = config.port;
 const app = Express();
 app.server = http.createServer(app);
 
@@ -48,8 +49,8 @@ if (!process.env.NODE_ENV) {
   }));
   app.use(hot(compiler));
 }
-
 // Three different IMAP services
+
 mailStatusConnect();
 mailConnect();
 mailSurveyConnect();

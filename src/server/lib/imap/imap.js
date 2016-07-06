@@ -4,14 +4,15 @@ import r from '../../db';
 import path from 'path';
 import logger from '../logger';
 import convert from 'simple-csv-to-json';
+import { config } from '../../config/splatter';
 const TMP_DIR = path.join(__dirname, '..', '..', '..', '..', 'tmp');
 const imaps = require('imap-simple');
 
-const config = {
+const cfg = {
   imap: {
-    user: process.env.REPORT_MAIL_USER,
-    password: process.env.REPORT_MAIL_PASSWORD,
-    host: process.env.MAIL_HOST,
+    user: config.mail.report.user,
+    password: config.mail.report.password,
+    host: config.mail.host,
     port: 993,
     tls: true,
     keepAlive: true,
@@ -19,7 +20,7 @@ const config = {
   }
 };
 export default mailConnect => {
-  imaps.connect(config).then(connection => {
+  imaps.connect(cfg).then(connection => {
     return connection.openBox('INBOX').then(() => {
       // Fetch emails from the last 24h
       const delay = 24 * 3600 * 1000;

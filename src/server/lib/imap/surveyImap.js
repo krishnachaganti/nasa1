@@ -4,13 +4,14 @@ import r from '../../db';
 import path from 'path';
 import logger from '../logger';
 import AWS from 'aws-sdk';
+import { config } from '../../config/splatter';
 const imaps = require('imap-simple');
 
-const config = {
+const cfg = {
   imap: {
-    user: process.env.SURVEY_MAIL_USER,
-    password: process.env.SURVEY_MAIL_PASSWORD,
-    host: process.env.MAIL_HOST,
+    user: config.mail.survey.user,
+    password: config.mail.survey.password,
+    host: config.mail.host,
     port: 993,
     tls: true,
     authTimeout: 3000
@@ -18,13 +19,13 @@ const config = {
 };
 
 const s3 = new AWS.S3({
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: config.aws.secret,
+  accessKeyId: config.aws.id,
   region: 'us-west-1'
 });
 
 export default mailSurveyConnect => {
-  imaps.connect(config).then(connection => {
+  imaps.connect(cfg).then(connection => {
     return connection.openBox('INBOX').then(() => {
       // Fetch emails from the last 96h
       const delay = 24 * 3600 * 1000;
@@ -64,7 +65,7 @@ export default mailSurveyConnect => {
       const parseMe = attachments[0].data;
       // const csvString = parseMe.toString().replace(/(,|\s)*(\n|\r|$)/g, '$2');
       const params = {
-        Bucket: 'boldr',
+        Bucket: config.aws.bucket,
         Key: attachments[0].filename,
         Body: attachments[0].data
       };
