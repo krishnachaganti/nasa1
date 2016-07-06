@@ -99,7 +99,6 @@ export function updatePerson(req, res, next) {
   r.table('people')
     .get(req.params.id)
     .update({ kudos: r.row('kudos').default(0).add(1) })
-    .run()
     .then(contacts => {
       res.status(202).json(contacts);
     })

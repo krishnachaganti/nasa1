@@ -46,12 +46,15 @@ class PersonCard extends Component {
     this.state = {
       isOpened: false,
       someValue: 'init',
-      personID: props.person.id
+      personID: props.person.id,
+      kudos: props.person.kudos
     };
   }
+
   shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);
   }
+
   handleClickage() {
     this.setState({
       isOpened: !this.state.isOpened
@@ -59,10 +62,15 @@ class PersonCard extends Component {
     const persn = this.props.person.id;
     this.props.actions.toggleCard(persn);
   }
+
   handleGiveKudos() {
     const id = this.props.person.id;
     this.props.pactions.giveKudos(id);
+    this.setState({
+      kudos: this.props.person.kudos + 1
+    })
   }
+
   render() {
     return (
         <div>
@@ -75,7 +83,7 @@ class PersonCard extends Component {
                 <br />
                 Org Code: { this.props.person.OrgCode }
                 <br />
-                Kudos: <strong>{ this.props.person.kudos }</strong>
+                Kudos: <strong>{ this.state.kudos }</strong>
               </CardText>
             </div>
           </div>
