@@ -38,16 +38,16 @@ export default class Html extends Component {
       <style dangerouslySetInnerHTML={ { __html: _assets[style]._style } } key={ i } />
     );
   }
-    renderInitialState() {
+  renderInitialState() {
     if (this.props.initialState) {
       const innerHtml = `window.__INITIAL_STATE__ = ${JSON.stringify(this.props.initialState)}`;
-      return <script dangerouslySetInnerHTML={{__html: innerHtml}} />;
+      return <script dangerouslySetInnerHTML={{ __html: innerHtml }} />;
     }
   }
 
   renderEnvironment() {
-    const innerHtml = `window.__ENVIRONMENT__ = '${__ENVIRONMENT__}'`;
-    return <script dangerouslySetInnerHTML={{__html: innerHtml}} />
+    const innerHtml = `window.__ENVIRONMENT__ = '${process.env.NODE_ENV}'`;
+    return <script dangerouslySetInnerHTML={{ __html: innerHtml }} />;
   }
   render() {
     const { component, store, head } = this.props;
@@ -62,11 +62,11 @@ export default class Html extends Component {
           <link href="https://fonts.googleapis.com/css?family=Titillium+Web:400,300,700"
             rel="stylesheet" type="text/css"
           />
+         <link href="/dist/main.css"
+            rel="stylesheet" type="text/css"
+          />
           { this.styles }
-          { head.base.toComponent() }
-          { head.title.toComponent() }
-          { head.meta.toComponent() }
-          { head.link.toComponent() }
+
         </head>
         <body>
           <div id="root" dangerouslySetInnerHTML={ { __html: this.props.component } } />

@@ -5,7 +5,6 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { Link } from 'react-router';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
-import Select from 'shared/atm.Select';
 import { setFilter } from 'state/people/people';
 
 function mapStateToProps(state) {
@@ -30,7 +29,7 @@ const inline = {
   selectul: {
     opacity: 0
   }
-}
+};
 
 @connect(mapStateToProps, mapDispatchToProps)
 class Toolbar extends Component {

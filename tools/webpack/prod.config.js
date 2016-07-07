@@ -1,27 +1,27 @@
-import webpack from 'webpack'
-import _debug from 'debug'
-import WebpackIsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin'
-import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import webpack from 'webpack';
+import _debug from 'debug';
+import WebpackIsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
-import isomorphicToolsConfig from './isomorphic.config'
+import isomorphicToolsConfig from './isomorphic.config';
 import projectConfig from '../../src/config';
 import paths from '../../src/config/paths';
 
-const webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(isomorphicToolsConfig)
-const debug = _debug('app:webpack:config:prod')
+const webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(isomorphicToolsConfig);
+const debug = _debug('app:webpack:config:prod');
 const cssLoader = [
   'css?modules',
   'sourceMap',
   'importLoaders=2',
   'localIdentName=[name]__[local]___[hash:base64:5]'
-].join('&')
+].join('&');
 const {
   __CLIENT__,
   __SERVER__,
   __DEV__,
   __PROD__,
   __DEBUG__
-} = projectConfig
+} = projectConfig;
 const VENDOR_DEPENDENCIES = [
   'react',
   'react-dom',
@@ -35,10 +35,10 @@ const VENDOR_DEPENDENCIES = [
   'axios',
   'react-tap-event-plugin'
 ];
-debug('Create configuration.')
+debug('Create configuration.');
 const config = {
   context: paths.ROOT_DIR,
-  devtool: 'source-ma',
+  devtool: 'source-map',
   entry: {
     app: projectConfig.BLDR_ENTRY,
     vendors: VENDOR_DEPENDENCIES
@@ -69,7 +69,9 @@ const config = {
       },
       {
         test: webpackIsomorphicToolsPlugin.regular_expression('styles'),
-        loader: ExtractTextPlugin.extract('style', `${cssLoader}!postcss!sass?sourceMap`)
+        loader: ExtractTextPlugin.extract('style', `${cssLoader}!postcss!sass`),
+        include: [paths.SRC_DIR],
+        exclude: /node_modules/
       },
       {
         test: /\.(woff|woff2|eot|ttf|svg)(\?v=\d+\.\d+\.\d+)?$/,
@@ -127,6 +129,6 @@ const config = {
 
     webpackIsomorphicToolsPlugin
   ]
-}
+};
 
-export default config
+export default config;

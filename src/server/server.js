@@ -1,5 +1,3 @@
-global.__ENVIRONMENT__ = process.env.NODE_ENV || 'default';
-require('dotenv').config({ silent: true });
 import Express from 'express';
 import http from 'http';
 import path from 'path';
@@ -35,6 +33,7 @@ if (!process.env.NODE_ENV) {
   }));
   app.use(hot(compiler));
 }
+
 // Three different IMAP services
 
 mailStatusConnect();
@@ -42,6 +41,11 @@ mailConnect();
 mailSurveyConnect();
 
 app.use('/api/v1', ApiRouter);
+
+if (process.env.NODE_ENV) {
+  app.use('/dist', Express.static(path.join(__dirname, '../../dist')));
+}
+app.use('/assets', Express.static(path.join(__dirname, '../../dist')));
 // Send everything thats not /api/v1 to React
 app.get('*', renderReact);
 // app.use(Express.static(path.join(process.cwd(), 'dist')));

@@ -14,7 +14,7 @@ import Html from 'app/utils.render/Html';
 import { LOAD_PEOPLE } from 'state/people/people';
 
 export default (req, res, next) => {
-  if (__DEV__) {
+  if (process.env.NODE_ENV === 'development') {
     webpackIsomorphicTools.refresh();
   }
   const { url } = req;
@@ -30,11 +30,11 @@ export default (req, res, next) => {
       renderToString(<Html assets={webpackIsomorphicTools.assets()} store={store}/>));
   }
 
-  if (!__DEV__) {
+  if (process.env.NODE_ENV === 'production') {
     hydrateOnClient();
     return;
   }
-    match({routes, location: req.url}, (err, redirect, props) => {
+    match({ routes, location: req.url} , (err, redirect, props) => {
     if (err) {
       res.status(500).json(err);
     } else if (redirect) {

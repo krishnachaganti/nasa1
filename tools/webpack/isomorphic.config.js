@@ -1,7 +1,7 @@
-import WebpackIsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin';
+const WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
 // https://github.com/halt-hammerzeit/webpack-isomorphic-tools#configuration
 // https://github.com/halt-hammerzeit/webpack-isomorphic-tools#style-loader-css-stylesheets-with-css-modules-feature
-export default {
+module.exports = {
   // debug: projectConfig.__DEBUG__,
   assets: {
     images: {
