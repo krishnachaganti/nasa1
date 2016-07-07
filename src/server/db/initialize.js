@@ -1,10 +1,10 @@
-import r from './index';
+const r = require('index');
 require('rethinkdb-init')(r);
 
 const initialize = () => r.init({
-  host: process.env.RDB_HOST || 'localhost',
-  port: process.env.RDB_PORT || 28015,
-  db: process.env.RDB_DB || 'splatter'
+  host: process.env.DB_HOST || 'localhost',
+  port: process.env.DB_PORT || 28015,
+  db: process.env.DB_DB || 'splatter'
 },
   [
     {
@@ -35,14 +35,13 @@ const initialize = () => r.init({
       ]
     }, {
       name: 'status_reports',
-      durability: 'soft',
-      indexes: [
-        {
-          name: 'location'
-        }, {
-          name: 'orgCode'
-        }
-      ]
+      durability: 'soft'
+    }, {
+      name: 'people_collection',
+      durability: 'soft'
+    }, {
+      name: 'nasa_contacts',
+      durability: 'soft'
     }
   ]);
 
