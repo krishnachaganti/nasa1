@@ -8,7 +8,6 @@ import { getIotd, fetchWeather } from 'state/index';
 import { getPeople } from 'state/people/people';
 import * as sidebarActions from 'state/sidebar/sidebar';
 import { getNcontact } from 'state/ncontacts/ncontacts';
-import Sidebar from 'shared/org.Sidebar';
 import Sider from 'shared/atm.Sider';
 import Toolbar from 'shared/mol.Toolbar';
 import fallbackimg from './components/org.Hero/fallback-hero.jpg';
@@ -102,11 +101,10 @@ class Personnel extends Component {
             docked={false}
             width={200}
             open={ this.state.open }
-            onRequestChange={(open) => this.setState({open})}
+            onRequestChange={(open) => this.setState({ open })}
             containerStyle={ styles.drawer }
           >
             <MenuItem className="nav__item"><Link to="/">Employee Search</Link></MenuItem>
-            <MenuItem className="nav__item"><Link to="/">Financial Report</Link></MenuItem>
             <MenuItem className="nav__item"><Link to="/taskorder">Task Order Archives</Link></MenuItem>
           </Drawer>
           <Toolbar people={ this.props.people } />

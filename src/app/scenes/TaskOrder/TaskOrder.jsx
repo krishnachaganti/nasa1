@@ -10,7 +10,6 @@ import { Link } from 'react-router';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import Sider from 'shared/atm.Sider';
-import Sidebar from 'shared/org.Sidebar';
 import Toolbar from 'shared/mol.Toolbar';
 import Weather from 'shared/mol.Weather';
 import Heading from 'shared/atm.Heading';

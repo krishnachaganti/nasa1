@@ -67,8 +67,8 @@ class PersonCard extends Component {
     const id = this.props.person.id;
     this.props.pactions.giveKudos(id);
     this.setState({
-      kudos: this.props.person.kudos + 1
-    })
+      kudos: this.props.person.kudos += 1
+    });
   }
 
   render() {
