@@ -10,7 +10,7 @@ const logoStyle = {
 };
 const headingStyle = {
   paddingTop: '100px'
-}
+};
 const Header = (props) => {
   return (
     <div className="header__main" style={ props.heroImage }>

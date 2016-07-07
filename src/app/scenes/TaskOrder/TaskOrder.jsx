@@ -34,7 +34,12 @@ const btnStyle = {
 
 function mapStateToProps(state) {
   return {
-    filter: state.report.filter
+    filter: state.report.filter,
+    hero: state.heroReducer,
+    loading: state.report.loading,
+    report: state.report,
+    sidebar: state.sidebarReducer,
+    env: state.environment
   };
 }
 
@@ -64,7 +69,7 @@ class TaskOrder extends Component {
   handleFilter = (event, index, value) => {
     this.props.actions.setFilter(value);
   }
-  handleToggle = () => this.setState({open: !this.state.open});
+  handleToggle = () => this.setState({ open: !this.state.open });
 
   handleClose = () => this.setState({ open: false });
   render() {
@@ -111,7 +116,7 @@ class TaskOrder extends Component {
           docked={false}
           width={200}
           open={ this.state.open }
-          onRequestChange={(open) => this.setState({open})}
+          onRequestChange={(open) => this.setState({ open })}
           containerStyle={ styles.drawer }
         >
           <MenuItem className="nav__item"><Link to="/">Employee Search</Link></MenuItem>
@@ -141,14 +146,5 @@ class TaskOrder extends Component {
     );
   }
 }
-function mapStateToProps(state) {
-  return {
-    hero: state.heroReducer,
-    loading: state.report.loading,
-    report: state.report,
-    sidebar: state.sidebarReducer,
-    env: state.environment
-  };
-}
 
-export default connect(mapStateToProps)(TaskOrder);
+export default TaskOrder;

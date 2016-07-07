@@ -80,7 +80,7 @@ export default class Hero extends React.Component {
           { this.props.searchField }
 
           <Heading size={ 4 } color="#fff" align="center" top="50">
-          <a href="#" className="header__link"><FileIcn color="#fff" /> Download Org Chart</a></Heading>
+          <a href="https://s3.amazonaws.com/nasaupdate/personnel/orgchart.pdf" className="header__link"><FileIcn color="#fff" /> Download Org Chart</a></Heading>
           </div>
         </div>
         <div className="row center-xs">
