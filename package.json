@@ -29,7 +29,7 @@
     }
   },
   "scripts": {
-    "compile": "NODE_ENV=production babel-node ./node_modules/.bin/webpack --optimize-minimize --progress --config ./tools/webpack/prod.config",
+    "compile": "NODE_ENV=production babel-node ./node_modules/.bin/webpack --progress --config ./tools/webpack/prod.config",
     "compile:server": "better-npm-run compile:server",
     "lint": "./node_modules/.bin/eslint src/common/**/*.js src/common/**/*.jsx src/server/**/*.js",
     "prod": "NODE_PATH=src NODE_ENV=production babel-node src/server/index.js",
